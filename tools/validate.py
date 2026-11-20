@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -77,6 +78,14 @@ def check_meta(meta: dict) -> tuple[list[str], list[dict]]:
     issues: list[str] = []
     stages = meta.get("stages", [])
     courses = meta.get("courses", [])
+    site = meta.get("site", {})
+    site_url = str(site.get("url", ""))
+    if not site_url.startswith("https://"):
+        issues.append("meta: site.url must start with https://")
+    if site_url.endswith("/"):
+        issues.append("meta: site.url must not end with /")
+    if not site.get("author"):
+        issues.append("meta: site.author is missing")
     if len(stages) != 6:
         issues.append(f"meta: expected 6 stages, got {len(stages)}")
     if len(courses) != 36:
@@ -109,9 +118,11 @@ def check_meta(meta: dict) -> tuple[list[str], list[dict]]:
             issues.append(f"meta: course {num} has unknown stage {c.get('stage')}")
         if not (ROOT / c.get("source", "")).exists():
             issues.append(f"meta: missing lesson source {c.get('source')}")
-        for key in ("title", "subtitle", "goal", "keywords", "prereq", "minutes"):
+        for key in ("title", "subtitle", "goal", "keywords", "prereq", "minutes", "updated"):
             if key not in c:
                 issues.append(f"meta: course {num} missing {key}")
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(c.get("updated", ""))):
+            issues.append(f"meta: course {num} has invalid updated date")
     return issues, courses
 
 
@@ -160,7 +171,7 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
     if not DIST.exists():
         return ["dist: directory does not exist"]
 
-    expected = {"index.html", "404.html", "_headers"}
+    expected = {"index.html", "404.html", "_headers", "sitemap.xml", "robots.txt"}
     expected.update(c["file"] for c in courses)
     expected.update({
         "courses/index.html",
@@ -174,6 +185,7 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
         "assets/js/courses-data.js",
         "assets/js/search-index.js",
     })
+    site_url = str(meta["site"]["url"]).rstrip("/")
     html_count = 0
     for rel in sorted(expected):
         path = DIST / rel
@@ -192,7 +204,7 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
                 continue
             if '<meta charset="UTF-8">' not in text:
                 issues.append(f"dist: missing charset in {rel}")
-            issues.extend(check_html(rel, text, courses))
+            issues.extend(check_html(rel, text, courses, site_url))
     if html_count != 43:
         issues.append(f"dist: expected 43 HTML files, found {html_count}")
 
@@ -202,7 +214,7 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
         rel = path.relative_to(DIST).as_posix()
         if rel.startswith("."):
             issues.append(f"dist: hidden file {rel}")
-        if path.suffix.lower() in {".md", ".py", ".pdf", ".docx", ".doc", ".txt", ".xlsx"}:
+        if path.suffix.lower() in {".md", ".py", ".pdf", ".docx", ".doc", ".txt", ".xlsx"} and rel != "robots.txt":
             issues.append(f"dist: forbidden file type {rel}")
         if "__pycache__" in rel:
             issues.append(f"dist: forbidden cache path {rel}")
@@ -232,6 +244,27 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
             if needle not in text:
                 issues.append(f"dist: {rel} missing key value {needle}")
 
+    sitemap_path = DIST / "sitemap.xml"
+    if sitemap_path.exists():
+        try:
+            root = ET.fromstring(sitemap_path.read_text(encoding="utf-8"))
+            ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+            locs = [el.text or "" for el in root.findall(".//s:loc", ns)]
+            if len(locs) != 42:
+                issues.append(f"dist: sitemap expected 42 URLs, found {len(locs)}")
+            for loc in locs:
+                if not loc.startswith(site_url + "/"):
+                    issues.append(f"dist: sitemap URL not under site.url: {loc}")
+        except ET.ParseError as exc:
+            issues.append(f"dist: sitemap.xml is not valid XML: {exc}")
+
+    robots_path = DIST / "robots.txt"
+    if robots_path.exists():
+        robots = robots_path.read_text(encoding="utf-8")
+        for needle in (f"Sitemap: {site_url}/sitemap.xml", "Disallow: /admin/", "Disallow: /api/"):
+            if needle not in robots:
+                issues.append(f"dist: robots.txt missing {needle}")
+
     return issues
 
 
@@ -247,7 +280,7 @@ def resolve_relative(page: Path, target: str) -> Path | None:
     return (page.parent / path).resolve()
 
 
-def check_html(rel: str, text: str, courses: list[dict]) -> list[str]:
+def check_html(rel: str, text: str, courses: list[dict], site_url: str) -> list[str]:
     issues: list[str] = []
     page = (DIST / rel).resolve()
 
@@ -255,6 +288,43 @@ def check_html(rel: str, text: str, courses: list[dict]) -> list[str]:
     parser.feed(text)
     if len(parser.ids) != len(set(parser.ids)):
         issues.append(f"html {rel}: duplicate id")
+
+    canonical = re.search(r'<link[^>]*\brel=["\']canonical["\'][^>]*>', text, re.I)
+    if rel == "404.html":
+        if canonical:
+            issues.append(f"html {rel}: 404 should not have canonical")
+        if 'name="robots" content="noindex' not in text:
+            issues.append(f"html {rel}: 404 missing noindex")
+    else:
+        if not canonical:
+            issues.append(f"html {rel}: missing canonical")
+        else:
+            href = re.search(r'\bhref=["\']([^"\']+)["\']', canonical.group(0), re.I)
+            if not href or not href.group(1).startswith(site_url + "/"):
+                issues.append(f"html {rel}: canonical not under site.url")
+
+    for prop in ("og:site_name", "og:type", "og:title", "og:description", "og:url", "og:image"):
+        if f'property="{prop}"' not in text:
+            issues.append(f"html {rel}: missing {prop}")
+    if 'name="twitter:card"' not in text:
+        issues.append(f"html {rel}: missing twitter:card")
+
+    ld_blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
+    if rel != "404.html" and not ld_blocks:
+        issues.append(f"html {rel}: missing JSON-LD")
+    for block in ld_blocks:
+        try:
+            json.loads(block)
+        except json.JSONDecodeError as exc:
+            issues.append(f"html {rel}: invalid JSON-LD ({exc})")
+
+    for match in re.finditer(r'<h([23])\b[^>]*\bid="([^"]+)"[^>]*>(.*?)</h\1>', text, re.S):
+        heading_html = match.group(3)
+        anchor = re.search(r'<a[^>]*class="heading-anchor"[^>]*href="#([^"]+)"', heading_html)
+        if not anchor:
+            issues.append(f"html {rel}: heading {match.group(2)} missing anchor")
+        elif anchor.group(1) not in parser.ids:
+            issues.append(f"html {rel}: heading anchor #{anchor.group(1)} missing target")
 
     body = BODY_TEXT_RE.search(text)
     visible = TAG_RE.sub(" ", body.group(0)) if body else text
@@ -305,9 +375,12 @@ def check_html(rel: str, text: str, courses: list[dict]) -> list[str]:
         parsed = urlparse(src.group(1))
         if parsed.scheme in ("http", "https") and parsed.netloc not in ALLOWED_IMAGE_HOSTS:
             issues.append(f"html {rel}: image host not allowed {parsed.netloc}")
-        for attr in ("alt", "loading", "decoding", "referrerpolicy"):
+        for attr in ("alt", "loading", "decoding", "referrerpolicy", "width", "height"):
             if not re.search(rf"\b{attr}\s*=", tag, re.I):
                 issues.append(f"html {rel}: img missing {attr}")
+        for attr in ("width", "height"):
+            if not re.search(rf'\b{attr}\s*=\s*["\']\d+["\']', tag, re.I):
+                issues.append(f"html {rel}: img {attr} is not a positive integer")
 
     if rel.startswith("courses/") and rel != "courses/index.html":
         scripts = [urlparse(s).path for s in SCRIPT_RE.findall(text)]

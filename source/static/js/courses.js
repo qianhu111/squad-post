@@ -69,7 +69,10 @@
     var title = el('div', 'local-title', '本课小节');
     var list = el('div', 'local-links');
     headings.forEach(function (heading) {
-      var link = el('a', 'local-link', heading.textContent.trim());
+      var clone = heading.cloneNode(true);
+      var anchor = clone.querySelector('.heading-anchor');
+      if (anchor) anchor.parentNode.removeChild(anchor);
+      var link = el('a', 'local-link', clone.textContent.trim());
       if (heading.tagName === 'H3') link.classList.add('indent');
       link.href = '#' + heading.parentNode.id;
       list.appendChild(link);

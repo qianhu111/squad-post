@@ -15,6 +15,8 @@ ALLOWED_TOP = {
     "index.html",
     "404.html",
     "_headers",
+    "sitemap.xml",
+    "robots.txt",
     "assets",
     "courses",
     "reference",
@@ -53,7 +55,7 @@ def main() -> int:
         if any(part.startswith(".") or part == "__pycache__" for part in rel.parts):
             print(f"FAILED: forbidden path {rel.as_posix()}")
             return 1
-        if path.suffix.lower() in FORBIDDEN_SUFFIXES:
+        if path.suffix.lower() in FORBIDDEN_SUFFIXES and rel.as_posix() != "robots.txt":
             print(f"FAILED: forbidden file type {rel.as_posix()}")
             return 1
         if path.read_bytes().startswith(b"\xef\xbb\xbf"):

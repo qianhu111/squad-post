@@ -54,8 +54,12 @@ def inline(text: str) -> str:
         url = _safe_url(match.group(2), image=True)
         if not url:
             return match.group(1)
+        if urlparse(url).path.lower().endswith(".svg"):
+            width, height = 800, 450
+        else:
+            width, height = 1280, 720
         return keep(
-            f'<img src="{_attr(url)}" alt="{_attr(alt)}" '
+            f'<img src="{_attr(url)}" alt="{_attr(alt)}" width="{width}" height="{height}" '
             f'loading="lazy" decoding="async" referrerpolicy="no-referrer">'
         )
 
@@ -198,7 +202,9 @@ def render(markdown: str, state: dict | None = None) -> str:
                 out.append("</section>")
                 open_sections.pop()
             ident = _slug(state, level)
-            out.append(f'<section id="{ident}"><h{level} id="{ident}-title">{inline(head.group(2))}</h{level}>')
+            heading = inline(head.group(2))
+            anchor = f'<a class="heading-anchor" href="#{ident}" aria-label="链接到本节">#</a>'
+            out.append(f'<section id="{ident}"><h{level} id="{ident}-title">{heading}{anchor}</h{level}>')
             open_sections.append(level)
             i += 1
             continue

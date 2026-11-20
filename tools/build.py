@@ -15,6 +15,7 @@ import shutil
 from pathlib import Path
 
 from markdown_lite import inline, render
+from features import reading, seo, sitemap
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "source"
@@ -134,9 +135,23 @@ def shell(
     prev_course: dict | None = None,
     next_course: dict | None = None,
     current_course: dict | None = None,
+    page_path: str = "",
+    page_type: str = "website",
+    json_ld: str = "",
+    noindex: bool = False,
 ) -> str:
     site = meta["site"]
     is_lesson = body_page in {c["id"] for c in meta["courses"]}
+    full_title = f"{title}｜{site['title']}"
+    seo_block = seo.seo_head(
+        site,
+        title=full_title,
+        description=description,
+        path=page_path,
+        og_type=page_type,
+        json_ld=json_ld,
+        noindex=noindex,
+    )
     nav = "\n    ".join([
         nav_link(root, "index.html", "首页", body_page == "home", "home"),
         nav_link(root, "courses/index.html", "课程", body_page == "courses" or is_lesson, "book"),
@@ -184,8 +199,9 @@ def shell(
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{e(title)}｜{e(site['title'])}</title>
+<title>{e(full_title)}</title>
 <meta name="description" content="{e(description)}">
+{seo_block}
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="{root}assets/css/site.css">
 <script>{THEME_BOOT}</script>
@@ -243,6 +259,8 @@ def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
         raise FileNotFoundError(f"Missing lesson source: {source_path}")
     md = source_path.read_text(encoding="utf-8")
     body = render(md)
+    word_count = reading.count_cjk(md)
+    read_minutes = reading.reading_minutes(md)
 
     stage = stage_by_id(meta, course["stage"])
     num = f'{course["num"]:02d}'
@@ -270,13 +288,17 @@ def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
     <div class="lesson-meta">
       <span class="pill">第 {num} 课 / 共 {len(courses):02d} 课</span>
       <span class="pill">{e(stage['num'])} {e(stage['name'])}</span>
-      <span class="pill">预计 {e(course['minutes'])} 分钟</span>
+      <span class="pill">建议学习 {e(course['minutes'])} 分钟</span>
       <span class="pill">前置：{e(course['prereq'])}</span>
     </div>
+    <p class="reading-meta">正文约 {word_count:,} 字 · 阅读约 {read_minutes} 分钟</p>
     <div class="lesson-progress" id="lesson-progress" aria-label="本课进度"><span></span></div>
     <article class="prose">
 {body}
     </article>"""
+
+    lesson_url = seo.absolute_url(meta["site"], course["file"])
+    lesson_json_ld = seo.json_ld_learning_resource(meta["site"], course, stage, lesson_url)
 
     return shell(
         meta,
@@ -291,6 +313,9 @@ def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
         prev_course=prev_course,
         next_course=next_course,
         current_course=course,
+        page_path=course["file"],
+        page_type="article",
+        json_ld=lesson_json_ld,
     )
 
 
@@ -343,7 +368,7 @@ def build_home(meta: dict) -> str:
       </div>
     </header>
     <section class="intro-section">
-      <h2 id="home-s1">一条连续的成长路线</h2>
+      <h2 id="home-s1">一条连续的成长路线<a class="heading-anchor" href="#home-s1" aria-label="链接到本节">#</a></h2>
       <p>36 课串成一条从第一次进服到带队复盘的成长路线。你只需要从第 01 课往前走：每一阶解决一类问题，每一课都留给你可以直接带进下一局的动作。</p>
       <div class="stage-grid">
 {stage_cards(meta, './')}
@@ -351,7 +376,7 @@ def build_home(meta: dict) -> str:
       <div class="takeaway">顺序学习就从第 01 课开始；带着问题回来，就按课次跳到对应阶段。</div>
     </section>
     <section class="intro-section">
-      <h2 id="home-s2">完整课程表</h2>
+      <h2 id="home-s2">完整课程表<a class="heading-anchor" href="#home-s2" aria-label="链接到本节">#</a></h2>
       <div class="table-wrap course-table"><table>
         <thead><tr><th>课次</th><th>标题</th><th>一句话目标</th><th>时长</th></tr></thead>
         <tbody>
@@ -361,7 +386,7 @@ def build_home(meta: dict) -> str:
     </section>
 {extra}
     <section class="intro-section tools-section">
-      <h2 id="home-s3">顺便带上的工具</h2>
+      <h2 id="home-s3">顺便带上的工具<a class="heading-anchor" href="#home-s3" aria-label="链接到本节">#</a></h2>
       <div class="tool-grid">
         <a class="tool-card" href="./reference/index.html"><strong>速查表</strong><span>票值、复活、压制、报点模板，一页查完。</span></a>
         <a class="tool-card" href="./reference/sources.html"><strong>资料说明</strong><span>每课根据哪些材料改写，哪些材料只作背景。</span></a>
@@ -370,13 +395,14 @@ def build_home(meta: dict) -> str:
       </div>
     </section>
     <section class="intro-section qq-section">
-      <h2 id="home-s4">加入邮差好友公会</h2>
+      <h2 id="home-s4">加入邮差好友公会<a class="heading-anchor" href="#home-s4" aria-label="链接到本节">#</a></h2>
       <p>课程集由邮差好友公会制作和维护。想跟队实战、找人带第一局，或者刚进游戏需要问路，点下面的群卡片直接申请加群。</p>
       <div class="qq-grid">
 {qq_cards()}
       </div>
       <div class="takeaway">加群时说明“看到课程集来的”，管理员会把你分到合适的群。</div>
     </section>"""
+    home_json_ld = seo.json_ld_website(meta["site"], meta["site"]["description"])
     return shell(
         meta,
         title="首页",
@@ -384,6 +410,8 @@ def build_home(meta: dict) -> str:
         root="./",
         body_page="home",
         content=content,
+        page_path="index.html",
+        json_ld=home_json_ld,
     )
 
 
@@ -404,7 +432,7 @@ def build_courses_index(meta: dict) -> str:
             f"""    <section class="stage-section" id="{e(stage['id'])}">
       <div class="stage-head">
         <span class="stage-num">{e(stage['num'])}</span>
-        <div><h2>{e(stage['name'])}</h2><p>{e(stage['summary'])}</p></div>
+        <div><h2 id="{e(stage['id'])}-title">{e(stage['name'])}<a class="heading-anchor" href="#{e(stage['id'])}" aria-label="链接到本节">#</a></h2><p>{e(stage['summary'])}</p></div>
         <span class="stage-range">第 {e(stage['range'])} 课</span>
       </div>
       <div class="course-list">
@@ -418,21 +446,39 @@ def build_courses_index(meta: dict) -> str:
     <p class="lead">全站按一条连续的六阶能力阶梯组织。课次是全局编号，上一课 / 下一课也按这条顺序切换。</p>
     <div class="note"><b>怎么用</b>第一次学按 01 → 36 顺序走；已经打过一段时间，可以先做两套能力自检，缺哪课补哪课；准备带训练时重点看第四阶到第六阶。</div>
 """ + "\n".join(parts)
+    overview_desc = "邮差战队课程集完整课程表：六阶能力阶梯，36 课由浅入深。"
+    overview_url = seo.absolute_url(meta["site"], "courses/index.html")
+    overview_json_ld = seo.json_ld_collection(meta["site"], "课程总览", overview_desc, overview_url)
     return shell(
         meta,
         title="课程总览",
-        description="邮差战队课程集完整课程表：六阶能力阶梯，36 课由浅入深。",
+        description=overview_desc,
         root="../",
         body_page="courses",
         content=content,
+        page_path="courses/index.html",
+        json_ld=overview_json_ld,
     )
 
 
-def build_markdown_page(meta: dict, *, source_name: str, out: str, title: str, desc: str, root: str, body_page: str) -> str:
+def build_markdown_page(meta: dict, *, source_name: str, out: str, title: str, desc: str, root: str, body_page: str, noindex: bool = False) -> str:
     md = page_source(source_name)
     if not md.strip():
         raise FileNotFoundError(f"Missing page source: {source_name}")
-    return shell(meta, title=title, description=desc, root=root, body_page=body_page, content=render(md))
+    page_url = seo.absolute_url(meta["site"], out)
+    page_json_ld = "" if noindex else seo.json_ld_webpage(meta["site"], title, desc, page_url)
+    return shell(
+        meta,
+        title=title,
+        description=desc,
+        root=root,
+        body_page=body_page,
+        content=render(md),
+        page_path=out,
+        page_type="article" if not noindex else "website",
+        json_ld=page_json_ld,
+        noindex=noindex,
+    )
 
 
 def build_quiz(meta: dict, *, source_name: str, out: str, title: str, desc: str, root: str, body_page: str, intro: str) -> str:
@@ -465,7 +511,18 @@ def build_quiz(meta: dict, *, source_name: str, out: str, title: str, desc: str,
 {chr(10).join(blocks)}
     </div>
     <div class="takeaway">自检不是考试排名，是找出下一局最值得练的那一个动作。</div>"""
-    return shell(meta, title=title, description=desc, root=root, body_page=body_page, content=content)
+    quiz_url = seo.absolute_url(meta["site"], out)
+    quiz_json_ld = seo.json_ld_webpage(meta["site"], title, desc, quiz_url)
+    return shell(
+        meta,
+        title=title,
+        description=desc,
+        root=root,
+        body_page=body_page,
+        content=content,
+        page_path=out,
+        json_ld=quiz_json_ld,
+    )
 
 
 def build_js(meta: dict) -> None:
@@ -538,6 +595,7 @@ def main() -> None:
         desc="这个页面不存在，回到课程阶梯继续学习。",
         root="./",
         body_page="404",
+        noindex=True,
     ))
     write(DIST / "courses/index.html", build_courses_index(meta))
     for course in courses:
@@ -581,6 +639,8 @@ def main() -> None:
         body_page="quiz-advanced",
         intro="",
     ))
+    write(DIST / "sitemap.xml", sitemap.build_sitemap(meta, courses))
+    write(DIST / "robots.txt", sitemap.build_robots(meta))
     build_js(meta)
     copy_static()
     print(f"built {len(courses)} lessons and {7 + len(courses)} HTML pages into {DIST}")
