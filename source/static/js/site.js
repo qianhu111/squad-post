@@ -429,7 +429,7 @@
           });
         }
       }
-      if (headHit || !matchedSections.length) {
+      if (headHit) {
         hits.push({
           num: item.num,
           path: item.path,
