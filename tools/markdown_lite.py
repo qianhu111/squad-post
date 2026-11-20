@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import html
 import re
+from html.parser import HTMLParser
 from urllib.parse import urlparse
 
 BLOCK_RE = re.compile(r"^:::\s*([a-zA-Z][\w-]*)\s*(.*)$")
@@ -113,6 +114,57 @@ def outline(markdown: str) -> list[dict]:
             "title": _plain(match.group(2)),
         })
     return items
+
+
+class _VisibleText(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.parts: list[str] = []
+
+    def handle_data(self, data: str) -> None:
+        self.parts.append(data)
+
+
+def visible_text(markdown: str) -> str:
+    """Render controlled Markdown and return normalized visible text."""
+    parser = _VisibleText()
+    parser.feed(render(markdown))
+    parser.close()
+    return re.sub(r"\s+", " ", " ".join(parser.parts)).strip()
+
+
+def section_index(markdown: str) -> list[dict]:
+    """Return one visible-text search segment per H2 section."""
+    lines = markdown.replace("\r\n", "\n").replace("\r", "\n").split("\n")
+    state = {"section": 0, "sub": 0}
+    segments: list[dict] = []
+    current: dict | None = None
+    body: list[str] = []
+
+    def flush() -> None:
+        if current is None:
+            return
+        text = visible_text("\n".join(body))
+        if text:
+            segments.append({**current, "text": text})
+
+    for line in lines:
+        match = HEAD_RE.match(line.strip())
+        if not match:
+            if current is not None:
+                body.append(line)
+            continue
+        level = len(match.group(1))
+        ident = _slug(state, level)
+        if level == 2:
+            flush()
+            current = {"id": ident, "title": _plain(match.group(2))}
+            body = []
+        elif current is not None:
+            body.append(line)
+
+    flush()
+    return segments
 
 
 def _is_special(line: str) -> bool:

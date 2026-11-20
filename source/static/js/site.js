@@ -366,19 +366,42 @@
     });
   }
 
-  function renderResults(query) {
-    if (!results) return;
-    var q = query.trim().toLowerCase();
-    if (!q) {
-      results.innerHTML = '<div class="search-hint">输入课次、标题、小节或关键词开始搜索。</div>';
-      return;
+  var EXCERPT_LENGTH = 86;
+
+  function includesEvery(haystack, terms) {
+    for (var i = 0; i < terms.length; i += 1) {
+      if (haystack.indexOf(terms[i]) < 0) return false;
     }
-    var terms = q.split(/\s+/);
-    var matched = indexItems().filter(function (item) {
-      var sectionTitles = (item.sections || []).map(function (section) {
-        return section.title || '';
-      }).join(' ');
-      var haystack = [
+    return true;
+  }
+
+  function highlight(safeText, terms) {
+    var out = safeText;
+    for (var i = 0; i < terms.length; i += 1) {
+      var term = escapeHtml(terms[i]);
+      if (term) out = out.split(term).join('<mark>' + term + '</mark>');
+    }
+    return out;
+  }
+
+  function excerpt(text, terms) {
+    var lower = text.toLowerCase();
+    var at = -1;
+    for (var i = 0; i < terms.length; i += 1) {
+      var found = lower.indexOf(terms[i]);
+      if (found >= 0 && (at < 0 || found < at)) at = found;
+    }
+    var start = at > 32 ? at - 32 : 0;
+    var slice = text.slice(start, start + EXCERPT_LENGTH);
+    if (start > 0) slice = '…' + slice;
+    if (start + EXCERPT_LENGTH < text.length) slice += '…';
+    return slice;
+  }
+
+  function searchItems(terms) {
+    var hits = [];
+    indexItems().forEach(function (item) {
+      var head = [
         String(item.num || ''),
         '第' + String(item.num || '') + '课',
         item.title || '',
@@ -386,31 +409,80 @@
         item.stage || '',
         (item.keywords || []).join(' '),
         (item.tags || []).join(' '),
-        sectionTitles
+        (item.tags || []).map(function (tag) { return '#' + tag; }).join(' ')
       ].join(' ').toLowerCase();
-      return terms.every(function (term) { return haystack.indexOf(term) > -1; });
-    }).slice(0, 12);
+      var headHit = includesEvery(head, terms);
+      var sections = item.sections || [];
+      var matchedSections = [];
+      for (var i = 0; i < sections.length; i += 1) {
+        var section = sections[i];
+        var title = String(section.title || '').toLowerCase();
+        var text = String(section.text || '').toLowerCase();
+        var inTitle = includesEvery(title, terms);
+        var inText = !!text && includesEvery(text, terms);
+        if (inTitle || inText) {
+          matchedSections.push({
+            id: section.id,
+            title: section.title,
+            snippet: inText && !inTitle ? excerpt(section.text, terms) : '',
+            rank: inTitle ? 1 : 2,
+          });
+        }
+      }
+      if (headHit || !matchedSections.length) {
+        hits.push({
+          num: item.num,
+          path: item.path,
+          title: item.title,
+          stage: item.stage,
+          subtitle: item.subtitle,
+          section: null,
+          rank: 0,
+        });
+      } else if (matchedSections.length) {
+        hits.push({
+          num: item.num,
+          path: item.path,
+          title: item.title,
+          stage: item.stage,
+          subtitle: item.subtitle,
+          section: matchedSections[0],
+          rank: matchedSections[0].rank,
+        });
+      }
+    });
+    hits.sort(function (a, b) {
+      if (a.rank !== b.rank) return a.rank - b.rank;
+      return a.num - b.num;
+    });
+    return hits.slice(0, 12);
+  }
+
+  function renderResults(query) {
+    if (!results) return;
+    var q = query.trim().toLowerCase();
+    if (!q) {
+      results.innerHTML = '<div class="search-hint">输入课次、标题、小节、正文或关键词开始搜索。</div>';
+      return;
+    }
+    var terms = q.split(/\s+/);
+    var matched = searchItems(terms);
 
     if (!matched.length) {
-      results.innerHTML = '<div class="search-empty">没有找到匹配课程。换个关键词，或打开课程总览按课次找。</div>';
+      results.innerHTML = '<div class="search-empty">没有找到匹配内容。换个关键词，或打开课程总览按课次找。</div>';
       return;
     }
 
     results.innerHTML = matched.map(function (item) {
-      var section = null;
-      var sections = item.sections || [];
-      for (var i = 0; i < sections.length; i += 1) {
-        var title = String(sections[i].title || '').toLowerCase();
-        if (terms.every(function (term) { return title.indexOf(term) > -1; })) {
-          section = sections[i];
-          break;
-        }
-      }
-      var href = pageHref(item.path) + (section ? '#' + section.id : '');
-      var detail = section ? '§ ' + section.title : item.subtitle;
+      var href = pageHref(item.path) + (item.section ? '#' + item.section.id : '');
+      var detail = item.section ? '§ ' + item.section.title : item.subtitle;
+      var snippet = item.section && item.section.snippet
+        ? '<em class="search-snippet">' + highlight(escapeHtml(item.section.snippet), terms) + '</em>'
+        : '';
       return '<a class="search-result" href="' + escapeHtml(href) + '">' +
         '<strong>' + String(item.num).padStart(2, '0') + ' · ' + escapeHtml(item.title) + '</strong>' +
-        '<small>' + escapeHtml(item.stage) + ' · ' + escapeHtml(detail) + '</small></a>';
+        '<small>' + escapeHtml(item.stage) + ' · ' + escapeHtml(detail) + '</small>' +
+        snippet + '</a>';
     }).join('');
   }
 

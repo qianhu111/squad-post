@@ -11,6 +11,9 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from markdown_lite import outline  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "source"
 DIST = ROOT / "dist"
@@ -180,6 +183,49 @@ def check_lessons(meta: dict) -> list[str]:
         if course["num"] == 26 and "社区经验值，以游戏内为准" not in text:
             issues.append("lesson 26: missing mortar disclaimer")
 
+    return issues
+
+
+def check_search_index(meta: dict) -> list[str]:
+    issues: list[str] = []
+    path = DIST / "assets/js/search-index.js"
+    if not path.exists():
+        return ["search: missing assets/js/search-index.js"]
+    raw = path.read_text(encoding="utf-8")
+    if "</script" in raw.lower():
+        issues.append("search: index contains a literal script terminator")
+    prefix = "window.YOUCHAI_SEARCH_INDEX = "
+    if not raw.startswith(prefix) or not raw.rstrip().endswith(";"):
+        return issues + ["search: index is not a single static assignment"]
+    try:
+        payload = json.loads(raw[len(prefix):].rstrip().rstrip(";"))
+    except json.JSONDecodeError as exc:
+        return issues + [f"search: index is not valid JSON ({exc})"]
+    if len(payload) != len(meta["courses"]):
+        issues.append(f"search: expected {len(meta['courses'])} records, found {len(payload)}")
+    by_id = {item.get("id"): item for item in payload}
+    for course in meta["courses"]:
+        item = by_id.get(course["id"])
+        if item is None:
+            issues.append(f"search: missing record for {course['id']}")
+            continue
+        if item.get("path") != course["file"][:-5]:
+            issues.append(f"search: wrong path for {course['id']}")
+        outline_ids = [h["id"] for h in outline((ROOT / course["source"]).read_text(encoding="utf-8")) if h["level"] == 2]
+        section_ids = [s.get("id") for s in item.get("sections", [])]
+        if section_ids != outline_ids:
+            issues.append(f"search: section ids for {course['id']} do not match outline")
+        for section in item.get("sections", []):
+            text = str(section.get("text", "")).strip()
+            if not text:
+                issues.append(f"search: empty text in {course['id']} {section.get('id')}")
+            # ":::" alone is legitimate prose here (e.g. a table row like '<50 米');
+            # only fail when no readable text remains after stripping the syntax.
+            stripped = text
+            for token in (":::", "![", "](http", "</", "<p>", "<li>", "##", "**", "`"):
+                stripped = stripped.replace(token, "")
+            if len(re.findall(r"[一-鿿A-Za-z0-9]", stripped)) < 20:
+                issues.append(f"search: unreadable text in {course['id']} {section.get('id')}")
     return issues
 
 
@@ -438,7 +484,7 @@ def check_html(rel: str, text: str, courses: list[dict], site_url: str) -> list[
 
     if rel.startswith("courses/") and rel != "courses/index.html":
         scripts = [urlparse(s).path for s in SCRIPT_RE.findall(text)]
-        base = ["assets/js/site.js", "assets/js/courses-data.js", "assets/js/courses.js"]
+        base = ["assets/js/search-index.js", "assets/js/site.js", "assets/js/courses-data.js", "assets/js/courses.js"]
         positions = []
         for wanted in base:
             matches = [i for i, s in enumerate(scripts) if s.endswith(wanted)]
@@ -456,7 +502,7 @@ def check_html(rel: str, text: str, courses: list[dict], site_url: str) -> list[
 def main() -> int:
     meta = json.loads(META_PATH.read_text(encoding="utf-8"))
     meta_issues, courses = check_meta(meta)
-    issues = meta_issues + check_lessons(meta) + check_dist(meta, courses)
+    issues = meta_issues + check_lessons(meta) + check_dist(meta, courses) + check_search_index(meta)
 
     if issues:
         print(f"FAILED: {len(issues)} issue(s)")

@@ -15,7 +15,7 @@ import re
 import shutil
 from pathlib import Path
 
-from markdown_lite import inline, outline, render
+from markdown_lite import inline, render, section_index
 from features import feed, reading, seo, sitemap, tags as tag_features
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -310,7 +310,7 @@ def shell(
   <div class="search-box">
     <div class="search-head">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-      <input id="search-input" type="search" placeholder="搜索课次、标题、小节或关键词…" autocomplete="off" aria-label="搜索关键词">
+      <input id="search-input" type="search" placeholder="搜索课次、标题、小节、正文或关键词…" autocomplete="off" aria-label="搜索关键词">
       <button type="button" id="search-close" aria-label="关闭搜索">Esc</button>
     </div>
     <div class="search-results" id="search-results" aria-live="polite"></div>
@@ -843,10 +843,7 @@ def build_js(meta: dict) -> None:
         source = ROOT / course["source"]
         sections = []
         if source.exists():
-            sections = [
-                {"id": section["id"], "title": section["title"]}
-                for section in outline(source.read_text(encoding="utf-8"))
-            ]
+            sections = section_index(source.read_text(encoding="utf-8"))
         search_payload.append({
             "num": course["num"],
             "id": course["id"],
@@ -859,7 +856,17 @@ def build_js(meta: dict) -> None:
             "sections": sections,
         })
     write(DIST / "assets/js/courses-data.js", "window.YOUCHAI_COURSES = " + json.dumps(courses_payload, ensure_ascii=False, indent=2) + ";\n")
-    write(DIST / "assets/js/search-index.js", "window.YOUCHAI_SEARCH_INDEX = " + json.dumps(search_payload, ensure_ascii=False, indent=2) + ";\n")
+    write(DIST / "assets/js/search-index.js", "window.YOUCHAI_SEARCH_INDEX = " + json_for_script(search_payload) + ";\n")
+
+
+def json_for_script(payload: object) -> str:
+    """Serialize JSON without indent and neutralize characters that can end a script."""
+    return (
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        .replace("&", "\\u0026")
+        .replace("<", "\\u003c")
+        .replace(">", "\\u003e")
+    )
 
 
 def copy_static() -> None:
