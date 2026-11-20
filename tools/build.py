@@ -326,7 +326,7 @@ def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
       <span class="pill">前置：{e(course['prereq'])}</span>
     </div>
     <p class="reading-meta">正文约 {word_count:,} 字 · 阅读约 {read_minutes} 分钟</p>
-    <div class="tag-list">{tag_chips}</div>
+    <div class="tag-list"><span class="tag-list-label">标签</span>{tag_chips}</div>
     <div class="lesson-progress" id="lesson-progress" aria-label="本课进度"><span></span></div>
     <article class="prose">
 {body}
@@ -510,9 +510,13 @@ def build_tags_index(meta: dict) -> str:
         <span>{e(tag['description'])}</span>
       </a>"""
         )
-    content = f"""    <p class="kicker">标签</p>
-    <h1>按主题找课</h1>
-    <p class="lead">{len(meta.get('tags', []))} 个标签覆盖 {len(meta['courses'])} 课。想补哪一块，就从标签进入。</p>
+    content = f"""    <div class="tag-hero">
+      <span class="tag-hero-mark" aria-hidden="true">#</span>
+      <p class="kicker">标签</p>
+      <h1>按主题找课</h1>
+      <p class="lead">{len(meta.get('tags', []))} 个标签覆盖 {len(meta['courses'])} 课。想补哪一块，就从标签进入。</p>
+      <span class="tag-count">{len(meta.get('tags', []))} 个标签</span>
+    </div>
     <div class="tag-grid">
 {chr(10).join(cards)}
     </div>"""
@@ -542,14 +546,17 @@ def build_tag_page(meta: dict, tag: dict) -> str:
           <span class="course-time">{e(course['minutes'])}′</span>
         </a>"""
         )
-    content = f"""    <p class="kicker">标签</p>
-    <h1>#{e(tag['name'])}</h1>
-    <p class="lead">{e(tag['description'])}</p>
-    <p class="reading-meta">共 {len(courses)} 课</p>
+    content = f"""    <div class="tag-hero">
+      <span class="tag-hero-mark" aria-hidden="true">#</span>
+      <p class="kicker">标签</p>
+      <h1>{e(tag['name'])}</h1>
+      <p class="lead">{e(tag['description'])}</p>
+      <span class="tag-count">共 {len(courses)} 课</span>
+    </div>
     <div class="course-list">
 {chr(10).join(cards)}
     </div>
-    <p><a href="./">← 全部标签</a></p>"""
+    <p><a class="tag-back" href="./">← 全部标签</a></p>"""
     url = seo.absolute_url(meta["site"], f"tags/{tag['slug']}.html")
     json_ld = seo.json_ld_collection(meta["site"], f"标签：{tag['name']}", tag["description"], url)
     return shell(
