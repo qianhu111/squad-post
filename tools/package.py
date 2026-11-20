@@ -23,6 +23,8 @@ ALLOWED_TOP = {
     "reference",
     "quiz",
     "tags",
+    "progress",
+    "changelog",
 }
 
 FORBIDDEN_SUFFIXES = {

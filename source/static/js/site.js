@@ -2,9 +2,8 @@
   'use strict';
 
   var THEME_KEY = 'youchai-theme';
-  var PROGRESS_KEY = (document.body && document.body.getAttribute('data-root') === '../../')
-    ? 'youchai-courses-file'
-    : (location.protocol === 'file:' ? 'youchai-courses-file' : 'youchai-courses-http');
+  var PROGRESS_KEY = 'youchai-courses-progress';
+  var LEGACY_PROGRESS_KEYS = ['youchai-courses-file', 'youchai-courses-http'];
 
   function readStore(key) {
     try {
@@ -23,8 +22,18 @@
   }
 
   function readVisited() {
+    var raw = readStore(PROGRESS_KEY);
+    if (raw === null) {
+      for (var i = 0; i < LEGACY_PROGRESS_KEYS.length; i += 1) {
+        raw = readStore(LEGACY_PROGRESS_KEYS[i]);
+        if (raw !== null) {
+          writeStore(PROGRESS_KEY, raw);
+          break;
+        }
+      }
+    }
     try {
-      return JSON.parse(readStore(PROGRESS_KEY) || '{}') || {};
+      return JSON.parse(raw || '{}') || {};
     } catch (e) {
       return {};
     }
@@ -214,9 +223,6 @@
     var marker = document.querySelector('[data-visited-marker]');
     if (!marker) return;
     var key = marker.getAttribute('data-key') || marker.getAttribute('data-visited-marker');
-    var visited = readVisited();
-    visited[key] = true;
-    writeVisited(visited);
     paintVisited();
 
     marker.addEventListener('click', function () {
@@ -298,6 +304,8 @@
 
   window.YOUCHAI_INIT_PAGE = initPage;
   window.YOUCHAI_READ_VISITED = readVisited;
+  window.YOUCHAI_WRITE_VISITED = writeVisited;
+  window.YOUCHAI_PROGRESS_KEY = PROGRESS_KEY;
 
   var panel = document.getElementById('search-panel');
   var openBtn = document.getElementById('search-open');

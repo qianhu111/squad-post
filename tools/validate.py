@@ -198,9 +198,12 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
         "reference/sources.html",
         "quiz/beginner.html",
         "quiz/advanced.html",
+        "progress/index.html",
+        "changelog/index.html",
         "assets/css/site.css",
         "assets/js/site.js",
         "assets/js/courses.js",
+        "assets/js/progress.js",
         "assets/js/courses-data.js",
         "assets/js/search-index.js",
     })
@@ -224,7 +227,7 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
             if '<meta charset="UTF-8">' not in text:
                 issues.append(f"dist: missing charset in {rel}")
             issues.extend(check_html(rel, text, courses, site_url))
-    expected_html = 43 + 1 + len(meta.get("tags", []))
+    expected_html = 43 + 3 + len(meta.get("tags", []))
     if html_count != expected_html:
         issues.append(f"dist: expected {expected_html} HTML files, found {html_count}")
 
@@ -270,7 +273,7 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
             root = ET.fromstring(sitemap_path.read_text(encoding="utf-8"))
             ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
             locs = [el.text or "" for el in root.findall(".//s:loc", ns)]
-            expected_locs = 42 + 1 + len(meta.get("tags", []))
+            expected_locs = 44 + 1 + len(meta.get("tags", []))
             if len(locs) != expected_locs:
                 issues.append(f"dist: sitemap expected {expected_locs} URLs, found {len(locs)}")
             for loc in locs:

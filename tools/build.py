@@ -43,15 +43,23 @@ def qq_link(num: str) -> str:
     )
 
 
-def qq_footer() -> str:
+def qq_footer(root: str) -> str:
     links = "".join(
         f'<a class="qq-group" href="{qq_link(num)}" aria-label="{e(name)} {num}，点击申请加群">'
         f'<span>{e(name)}</span><span class="qq-num">{e(num)}</span></a>'
         for name, num, _tag in QQ_GROUPS
     )
+    footer_links = (
+        f'<nav class="footer-links" aria-label="站点链接">'
+        f'<a href="{seo.pretty_href(root, "progress/index.html")}">学习进度</a>'
+        f'<a href="{seo.pretty_href(root, "changelog/index.html")}">更新日志</a>'
+        f'<a href="{seo.pretty_href(root, "tags/index.html")}">标签</a>'
+        f'<a href="{root}feed.xml">RSS</a>'
+        f'</nav>'
+    )
     return f"""<footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-brand"><strong>邮差战队课程集</strong><span>由「邮差好友公会」制作</span></div>
+    <div class="footer-brand"><strong>邮差战队课程集</strong><span>由「邮差好友公会」制作</span>{footer_links}</div>
     <div class="footer-groups"><span class="footer-label">点击群号申请加群</span>{links}</div>
   </div>
 </footer>"""
@@ -158,6 +166,7 @@ def shell(
     page_type: str = "website",
     json_ld: str = "",
     noindex: bool = False,
+    extra_scripts: str = "",
 ) -> str:
     site = meta["site"]
     is_lesson = body_page in {c["id"] for c in meta["courses"]}
@@ -232,6 +241,7 @@ def shell(
 <meta name="description" content="{e(description)}">
 {seo_block}
 <meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/svg+xml" href="{root}assets/images/favicon.svg">
 <link rel="stylesheet" href="{root}assets/css/site.css?v={ASSET_VERSION}">
 <link rel="alternate" type="application/atom+xml" title="{e(site['title'])}" href="{root}feed.xml">
 <script>{THEME_BOOT}</script>
@@ -243,6 +253,9 @@ def shell(
   <a class="brand" href="{seo.pretty_href(root, 'index.html')}">邮差战队课程集 <span>/ Squad 10.6.x</span></a>
   <nav class="topnav" aria-label="主导航">{nav}</nav>
   <div class="top-actions">
+    <a class="icon-btn" id="progress-link" href="{seo.pretty_href(root, 'progress/index.html')}" aria-label="学习进度" title="学习进度"{' aria-current="page"' if body_page == 'progress' else ''}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>
+    </a>
     <button class="icon-btn" id="search-open" type="button" aria-label="打开搜索" title="搜索（Ctrl/⌘ + K）">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
     </button>
@@ -260,7 +273,7 @@ def shell(
     {lesson_nav}
   </main>
 </div>
-{qq_footer()}
+{qq_footer(root)}
 <button class="backtop" id="backtop" type="button" aria-label="返回顶部">↑</button>
 <div class="search-panel" id="search-panel" role="dialog" aria-modal="true" aria-label="站内搜索" hidden>
   <div class="search-backdrop" data-search-close></div>
@@ -278,6 +291,7 @@ def shell(
 <script src="{root}assets/js/site.js?v={ASSET_VERSION}"></script>
 <script src="{root}assets/js/courses-data.js?v={ASSET_VERSION}"></script>
 <script src="{root}assets/js/courses.js?v={ASSET_VERSION}"></script>
+{extra_scripts}
 </body>
 </html>
 """
@@ -423,9 +437,11 @@ def build_home(meta: dict) -> str:
     <section class="intro-section tools-section">
       <h2 id="home-s3">顺便带上的工具<a class="heading-anchor" href="#home-s3" aria-label="链接到本节">#</a></h2>
       <div class="tool-grid">
+        <a class="tool-card" href="./progress/"><strong>学习进度</strong><span>看 36 课完成到哪，接着上一课继续。</span></a>
         <a class="tool-card" href="./reference/"><strong>速查表</strong><span>票值、复活、压制、报点模板，一页查完。</span></a>
         <a class="tool-card" href="./reference/sources"><strong>资料说明</strong><span>每课根据哪些材料改写，哪些材料只作背景。</span></a>
         <a class="tool-card" href="./tags/"><strong>标签索引</strong><span>按主题找课：医疗、FOB、巷战、载具……</span></a>
+        <a class="tool-card" href="./changelog/"><strong>更新日志</strong><span>最近补了哪些课、改了哪些功能。</span></a>
         <a class="tool-card" href="./feed.xml"><strong>RSS 订阅</strong><span>用阅读器订阅课程更新。</span></a>
         <a class="tool-card" href="./quiz/beginner"><strong>能力自检 Ⅰ</strong><span>个人基础、观察报点与资源规则。</span></a>
         <a class="tool-card" href="./quiz/advanced"><strong>能力自检 Ⅱ</strong><span>小队行动、专业协同与指挥复盘。</span></a>
@@ -449,6 +465,74 @@ def build_home(meta: dict) -> str:
         content=content,
         page_path="index.html",
         json_ld=home_json_ld,
+    )
+
+
+def build_progress(meta: dict) -> str:
+    stage_blocks = []
+    for stage in meta["stages"]:
+        stage_courses = [c for c in meta["courses"] if c["stage"] == stage["id"]]
+        rows = []
+        for course in stage_courses:
+            rows.append(
+                f"""        <li class="progress-item" data-progress-course="{e(course['id'])}">
+          <button class="progress-check" type="button" data-progress-toggle="{e(course['id'])}" aria-pressed="false" aria-label="标记第 {course['num']:02d} 课完成"><span class="check-dot" aria-hidden="true"></span><span class="check-text">标记完成</span></button>
+          <a class="progress-course" href="{seo.pretty_href('../', course['file'])}"><strong>{course['num']:02d} · {e(course['title'])}</strong><span>{e(course['subtitle'])}</span></a>
+          <span class="progress-time">{e(course['minutes'])} 分钟</span>
+        </li>"""
+            )
+        stage_blocks.append(
+            f"""    <section class="stage-progress" data-progress-stage="{e(stage['id'])}">
+      <div class="stage-progress-head">
+        <span class="stage-num">{e(stage['num'])}</span>
+        <div><h2 id="progress-{e(stage['id'])}">{e(stage['name'])}<a class="heading-anchor" href="#progress-{e(stage['id'])}" aria-label="链接到本节">#</a></h2><p>{e(stage['summary'])}</p></div>
+        <span class="stage-count" data-stage-count="{e(stage['id'])}">0 / {len(stage_courses)}</span>
+      </div>
+      <div class="stage-bar" aria-hidden="true"><span data-stage-bar="{e(stage['id'])}"></span></div>
+      <ul class="progress-list">
+{chr(10).join(rows)}
+      </ul>
+    </section>"""
+        )
+    first = meta["courses"][0]
+    total = len(meta["courses"])
+    content = f"""    <div class="progress-hero">
+      <span class="progress-hero-mark" aria-hidden="true">✓</span>
+      <p class="kicker">学习进度</p>
+      <h1 id="progress-title">{total} 课，走到哪了<a class="heading-anchor" href="#progress-title" aria-label="链接到本节">#</a></h1>
+      <p class="lead">完成标记保存在当前浏览器。换设备、换浏览器或清理站点数据后，进度不会跟随。</p>
+    </div>
+    <section class="progress-summary" aria-label="总进度">
+      <div class="progress-ring" id="progress-ring" style="--p:0%"><span id="progress-percent">0%</span></div>
+      <div class="progress-copy">
+        <p class="kicker">当前进度</p>
+        <strong id="progress-count">0 / {total} 课</strong>
+        <p id="progress-next">下一课：第 {first['num']:02d} 课 · {e(first['title'])}</p>
+        <div class="progress-bar" aria-hidden="true"><span id="progress-bar-fill"></span></div>
+      </div>
+      <div class="progress-actions">
+        <a class="btn primary" id="progress-continue" href="{seo.pretty_href('../', first['file'])}">继续第 {first['num']:02d} 课</a>
+        <button class="btn ghost" type="button" id="progress-reset">清空进度</button>
+      </div>
+    </section>
+    <p class="progress-warning" id="progress-warning" hidden>浏览器拒绝了本地存储，完成状态无法保存；关闭隐私模式或允许站点存储后再试。</p>
+    <noscript><p class="progress-warning">需要启用 JavaScript 才能读取和保存本地进度。</p></noscript>
+    <div class="progress-stages">
+{chr(10).join(stage_blocks)}
+    </div>"""
+    desc = f"按六阶查看 {total} 课的完成进度、下一课和每阶完成情况。"
+    url = seo.absolute_url(meta["site"], "progress/index.html")
+    json_ld = seo.json_ld_webpage(meta["site"], "学习进度", desc, url)
+    return shell(
+        meta,
+        title="学习进度",
+        description=desc,
+        root="../",
+        body_page="progress",
+        content=content,
+        page_path="progress/index.html",
+        json_ld=json_ld,
+        extra_scripts=f'<script src="../assets/js/progress.js?v={ASSET_VERSION}"></script>',
     )
 
 
@@ -591,6 +675,34 @@ def build_markdown_page(meta: dict, *, source_name: str, out: str, title: str, d
     )
 
 
+def build_changelog(meta: dict) -> str:
+    body = render(page_source("changelog.md"))
+    total = len(meta["courses"])
+    content = f"""    <div class="progress-hero">
+      <span class="progress-hero-mark" aria-hidden="true">↻</span>
+      <p class="kicker">更新日志</p>
+      <h1 id="changelog-title">站点与课程更新<a class="heading-anchor" href="#changelog-title" aria-label="链接到本节">#</a></h1>
+      <p class="lead">按日期记录 {total} 课的内容调整与站点功能变化。</p>
+    </div>
+    <article class="prose">
+{body}
+    </article>"""
+    desc = "邮差战队课程集的内容与功能更新记录。"
+    url = seo.absolute_url(meta["site"], "changelog/index.html")
+    json_ld = seo.json_ld_webpage(meta["site"], "更新日志", desc, url)
+    return shell(
+        meta,
+        title="更新日志",
+        description=desc,
+        root="../",
+        body_page="changelog",
+        content=content,
+        page_path="changelog/index.html",
+        page_type="article",
+        json_ld=json_ld,
+    )
+
+
 def build_quiz(meta: dict, *, source_name: str, out: str, title: str, desc: str, root: str, body_page: str, intro: str) -> str:
     path = SOURCE / "pages" / source_name
     if not path.exists():
@@ -676,7 +788,7 @@ def build_js(meta: dict) -> None:
 
 
 def copy_static() -> None:
-    for rel in ["assets/css/site.css", "assets/js/site.js", "assets/js/courses.js"]:
+    for rel in ["assets/css/site.css", "assets/js/site.js", "assets/js/courses.js", "assets/js/progress.js"]:
         src = SOURCE / "static" / rel.replace("assets/", "")
         if not src.exists():
             raise FileNotFoundError(f"Missing static source: {src}")
@@ -753,6 +865,8 @@ def main() -> None:
         body_page="quiz-advanced",
         intro="",
     ))
+    write(DIST / "progress/index.html", build_progress(meta))
+    write(DIST / "changelog/index.html", build_changelog(meta))
     write(DIST / "tags/index.html", build_tags_index(meta))
     for tag in meta.get("tags", []):
         write(DIST / f"tags/{tag['slug']}.html", build_tag_page(meta, tag))
@@ -761,7 +875,8 @@ def main() -> None:
     write(DIST / "robots.txt", sitemap.build_robots(meta))
     build_js(meta)
     copy_static()
-    print(f"built {len(courses)} lessons and {8 + len(courses) + len(meta.get('tags', []))} HTML pages into {DIST}")
+    html_pages = sum(1 for _ in DIST.rglob("*.html"))
+    print(f"built {len(courses)} lessons and {html_pages} HTML pages into {DIST}")
 
 
 if __name__ == "__main__":
