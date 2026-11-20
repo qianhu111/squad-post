@@ -119,7 +119,7 @@ NAV_ICONS = {
 
 def nav_link(root: str, path: str, label: str, active: bool, icon: str) -> str:
     marker = ' aria-current="page"' if active else ""
-    return f'<a href="{root}{path}"{marker}>{NAV_ICONS[icon]}<span>{label}</span></a>'
+    return f'<a href="{seo.pretty_href(root, path)}"{marker}>{NAV_ICONS[icon]}<span>{label}</span></a>'
 
 
 def shell(
@@ -181,7 +181,7 @@ def shell(
         next_html = ""
         if prev_course:
             prev_html = (
-                f'<a id="prev-lesson" href="{root}{prev_course["file"]}">'
+                f'<a id="prev-lesson" href="{seo.pretty_href(root, prev_course["file"])}">'
                 f'<span>← 上一课 · {e(prev_course["num"]):0>2}</span>'
                 f'<strong>{e(prev_course["title"])}</strong></a>'
             )
@@ -189,7 +189,7 @@ def shell(
             prev_html = '<span id="prev-lesson" class="disabled" aria-hidden="true"></span>'
         if next_course:
             next_html = (
-                f'<a id="next-lesson" class="next" href="{root}{next_course["file"]}">'
+                f'<a id="next-lesson" class="next" href="{seo.pretty_href(root, next_course["file"])}">'
                 f'<span>下一课 · {e(next_course["num"]):0>2} →</span>'
                 f'<strong>{e(next_course["title"])}</strong></a>'
             )
@@ -222,7 +222,7 @@ def shell(
 <a class="skip-link" href="#main">跳到正文</a>
 <div class="progress" id="progress" aria-hidden="true"><span></span></div>
 <header class="topbar">
-  <a class="brand" href="{root}index.html">邮差战队课程集 <span>/ Squad 10.6.x</span></a>
+  <a class="brand" href="{seo.pretty_href(root, 'index.html')}">邮差战队课程集 <span>/ Squad 10.6.x</span></a>
   <nav class="topnav" aria-label="主导航">{nav}</nav>
   <div class="top-actions">
     <button class="icon-btn" id="search-open" type="button" aria-label="打开搜索" title="搜索（Ctrl/⌘ + K）">
@@ -276,7 +276,7 @@ def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
 
     stage = stage_by_id(meta, course["stage"])
     tag_chips = "".join(
-        f'<a class="tag-chip" href="../../tags/{e(slug)}.html">#{e(tag_features.tag_name(meta, slug))}</a>'
+        f'<a class="tag-chip" href="../../tags/{e(slug)}">#{e(tag_features.tag_name(meta, slug))}</a>'
         for slug in course.get("tags", [])
     )
     num = f'{course["num"]:02d}'
@@ -285,8 +285,8 @@ def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
     next_course = courses[idx + 1] if idx < len(courses) - 1 else None
 
     crumb = (
-        f'<a href="../../index.html">首页</a><span>/</span>'
-        f'<a href="../index.html">学习阶梯</a><span>/</span>'
+        f'<a href="../../">首页</a><span>/</span>'
+        f'<a href="../">学习阶梯</a><span>/</span>'
         f'{e(stage["num"])} {e(stage["name"])}<span>/</span>'
         f'第 {num} 课 {e(course["title"])}'
     )
@@ -341,7 +341,7 @@ def stage_cards(meta: dict, root: str) -> str:
     for stage in meta["stages"]:
         first = next(c for c in meta["courses"] if c["stage"] == stage["id"])
         cards.append(
-            f"""      <a class="stage-card" href="{root}{first['file']}">
+            f"""      <a class="stage-card" href="{seo.pretty_href(root, first['file'])}">
         <span class="stage-num">{e(stage['num'])}</span>
         <h3>{e(stage['name'])}</h3>
         <p class="stage-range">第 {e(stage['range'])} 课</p>
@@ -360,7 +360,7 @@ def course_rows(meta: dict, root: str) -> str:
             parts.append(
                 f"""      <tr>
         <td class="num">{course['num']:02d}</td>
-        <td><a href="{root}{course['file']}">{e(course['title'])}</a></td>
+        <td><a href="{seo.pretty_href(root, course['file'])}">{e(course['title'])}</a></td>
         <td>{e(course['subtitle'])}</td>
         <td class="minutes">{e(course['minutes'])} 分钟</td>
       </tr>"""
@@ -378,8 +378,8 @@ def build_home(meta: dict) -> str:
         <h1>先把第一局打明白，<br>再把队伍带起来。</h1>
         <p class="lead">36 课按六阶战场能力阶梯连续展开：先会活下来，再会看战场，接着理解复活与票账，最后学会带队、协同和复盘。</p>
         <div class="hero-actions">
-          <a class="btn primary" href="./courses/beginner/01-first-match.html">从第 01 课开始</a>
-          <a class="btn ghost" href="./courses/index.html">查看完整阶梯</a>
+          <a class="btn primary" href="./courses/beginner/01-first-match">从第 01 课开始</a>
+          <a class="btn ghost" href="./courses/">查看完整阶梯</a>
         </div>
         <div class="hero-meta"><span>36 课</span><span>六阶能力阶梯</span><span>2 套能力自检</span><span>由邮差好友公会制作</span></div>
       </div>
@@ -405,12 +405,12 @@ def build_home(meta: dict) -> str:
     <section class="intro-section tools-section">
       <h2 id="home-s3">顺便带上的工具<a class="heading-anchor" href="#home-s3" aria-label="链接到本节">#</a></h2>
       <div class="tool-grid">
-        <a class="tool-card" href="./reference/index.html"><strong>速查表</strong><span>票值、复活、压制、报点模板，一页查完。</span></a>
-        <a class="tool-card" href="./reference/sources.html"><strong>资料说明</strong><span>每课根据哪些材料改写，哪些材料只作背景。</span></a>
-        <a class="tool-card" href="./tags/index.html"><strong>标签索引</strong><span>按主题找课：医疗、FOB、巷战、载具……</span></a>
+        <a class="tool-card" href="./reference/"><strong>速查表</strong><span>票值、复活、压制、报点模板，一页查完。</span></a>
+        <a class="tool-card" href="./reference/sources"><strong>资料说明</strong><span>每课根据哪些材料改写，哪些材料只作背景。</span></a>
+        <a class="tool-card" href="./tags/"><strong>标签索引</strong><span>按主题找课：医疗、FOB、巷战、载具……</span></a>
         <a class="tool-card" href="./feed.xml"><strong>RSS 订阅</strong><span>用阅读器订阅课程更新。</span></a>
-        <a class="tool-card" href="./quiz/beginner.html"><strong>能力自检 Ⅰ</strong><span>个人基础、观察报点与资源规则。</span></a>
-        <a class="tool-card" href="./quiz/advanced.html"><strong>能力自检 Ⅱ</strong><span>小队行动、专业协同与指挥复盘。</span></a>
+        <a class="tool-card" href="./quiz/beginner"><strong>能力自检 Ⅰ</strong><span>个人基础、观察报点与资源规则。</span></a>
+        <a class="tool-card" href="./quiz/advanced"><strong>能力自检 Ⅱ</strong><span>小队行动、专业协同与指挥复盘。</span></a>
       </div>
     </section>
     <section class="intro-section qq-section">
@@ -441,7 +441,7 @@ def build_courses_index(meta: dict) -> str:
         cards = []
         for c in courses:
             cards.append(
-                f"""        <a class="course-card" href="../{c['file']}">
+                f"""        <a class="course-card" href="{seo.pretty_href('../', c['file'])}">
           <span class="course-num">{c['num']:02d}</span>
           <span class="course-body"><strong>{e(c['title'])}</strong><span>{e(c['subtitle'])}</span></span>
           <span class="course-time">{e(c['minutes'])}′</span>
@@ -486,7 +486,7 @@ def build_tags_index(meta: dict) -> str:
     for tag in meta.get("tags", []):
         count = counts.get(tag["slug"], 0)
         cards.append(
-            f"""      <a class="tag-card" href="./{e(tag['slug'])}.html">
+            f"""      <a class="tag-card" href="./{e(tag['slug'])}">
         <span class="tag-count">{count} 课</span>
         <strong>#{e(tag['name'])}</strong>
         <span>{e(tag['description'])}</span>
@@ -518,7 +518,7 @@ def build_tag_page(meta: dict, tag: dict) -> str:
     for course in courses:
         stage = stage_by_id(meta, course["stage"])
         cards.append(
-            f"""        <a class="course-card" href="../{course['file']}">
+            f"""        <a class="course-card" href="{seo.pretty_href('../', course['file'])}">
           <span class="course-num">{course['num']:02d}</span>
           <span class="course-body"><strong>{e(course['title'])}</strong><span>{e(stage['name'])} · {e(course['subtitle'])}</span></span>
           <span class="course-time">{e(course['minutes'])}′</span>
@@ -531,7 +531,7 @@ def build_tag_page(meta: dict, tag: dict) -> str:
     <div class="course-list">
 {chr(10).join(cards)}
     </div>
-    <p><a href="./index.html">← 全部标签</a></p>"""
+    <p><a href="./">← 全部标签</a></p>"""
     url = seo.absolute_url(meta["site"], f"tags/{tag['slug']}.html")
     json_ld = seo.json_ld_collection(meta["site"], f"标签：{tag['name']}", tag["description"], url)
     return shell(
@@ -621,7 +621,7 @@ def build_js(meta: dict) -> None:
                 "num": c["num"],
                 "id": c["id"],
                 "stage": c["stage"],
-                "file": c["file"],
+                "file": seo.pretty_path(c["file"]),
                 "title": c["title"],
                 "subtitle": c["subtitle"],
                 "minutes": c["minutes"],
@@ -640,7 +640,7 @@ def build_js(meta: dict) -> None:
             "stage": stage_by_id(meta, c["stage"])["name"],
             "title": c["title"],
             "subtitle": c["subtitle"],
-            "path": c["file"],
+            "path": seo.pretty_path(c["file"]),
             "keywords": c["keywords"],
             "tags": [tag_features.tag_name(meta, slug) for slug in c.get("tags", [])],
         }

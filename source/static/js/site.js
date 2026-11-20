@@ -262,12 +262,38 @@
 
   var pageInitialized = false;
 
+  function initFileLinks() {
+    if (location.protocol !== 'file:') return;
+    var links = document.querySelectorAll('a[href]');
+    [].forEach.call(links, function (link) {
+      var href = link.getAttribute('href');
+      if (!href || /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(href)) return;
+      if (/\.[a-z0-9]+(?:[?#]|$)/i.test(href)) return;
+      var hash = '';
+      var hashIndex = href.indexOf('#');
+      if (hashIndex >= 0) {
+        hash = href.slice(hashIndex);
+        href = href.slice(0, hashIndex);
+      }
+      var query = '';
+      var queryIndex = href.indexOf('?');
+      if (queryIndex >= 0) {
+        query = href.slice(queryIndex);
+        href = href.slice(0, queryIndex);
+      }
+      if (href.charAt(href.length - 1) === '/') href += 'index.html';
+      else href += '.html';
+      link.setAttribute('href', href + query + hash);
+    });
+  }
+
   function initPage() {
     if (pageInitialized) return;
     pageInitialized = true;
     paintProgress();
     initVisited();
     initTocHighlight();
+    initFileLinks();
   }
 
   window.YOUCHAI_INIT_PAGE = initPage;
@@ -282,6 +308,15 @@
 
   function rootPrefix() {
     return (document.body && document.body.getAttribute('data-root')) || './';
+  }
+
+  function pageHref(path) {
+    var href = rootPrefix() + path;
+    if (location.protocol === 'file:') {
+      if (href.charAt(href.length - 1) === '/') return href + 'index.html';
+      if (!/\.[a-z0-9]+$/i.test(href)) return href + '.html';
+    }
+    return href;
   }
 
   function indexItems() {
@@ -315,7 +350,7 @@
     }
 
     results.innerHTML = matched.map(function (item) {
-      var href = rootPrefix() + item.path;
+      var href = pageHref(item.path);
       return '<a class="search-result" href="' + href.replace(/"/g, '&quot;') + '">' +
         '<strong>' + String(item.num).padStart(2, '0') + ' · ' + item.title + '</strong>' +
         '<small>' + item.stage + ' · ' + item.subtitle + '</small></a>';

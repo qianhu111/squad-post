@@ -313,7 +313,17 @@ def resolve_relative(page: Path, target: str) -> Path | None:
     path = unquote(parsed.path)
     if path.startswith("/"):
         return None
-    return (page.parent / path).resolve()
+    candidate = (page.parent / path).resolve()
+    if candidate.exists():
+        return candidate
+    if path.endswith("/"):
+        index = candidate / "index.html"
+        if index.exists():
+            return index
+    html_candidate = candidate.with_name(candidate.name + ".html")
+    if html_candidate.exists():
+        return html_candidate
+    return candidate
 
 
 def check_html(rel: str, text: str, courses: list[dict], site_url: str) -> list[str]:
@@ -393,7 +403,7 @@ def check_html(rel: str, text: str, courses: list[dict], site_url: str) -> list[
         if not fragment:
             continue
         target_path = resolve_relative(page, parsed.path) if parsed.path else page
-        if target_path is None or not target_path.exists():
+        if target_path is None or not target_path.is_file():
             continue
         try:
             target_text = target_path.read_text(encoding="utf-8")

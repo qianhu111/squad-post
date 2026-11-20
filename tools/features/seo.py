@@ -26,6 +26,17 @@ def absolute_url(site: dict, path: str) -> str:
     return f"{base}/{pretty}" if pretty else f"{base}/"
 
 
+def pretty_href(root: str, path: str) -> str:
+    """Build an extensionless internal href while keeping the generated .html file."""
+    if path == "index.html":
+        return root
+    if path.endswith("/index.html"):
+        return root + path[: -len("index.html")]
+    if path.endswith(".html"):
+        return root + path[:-5]
+    return root + path
+
+
 def _esc(value: object) -> str:
     return html.escape(str(value), quote=True)
 

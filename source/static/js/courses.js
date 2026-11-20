@@ -27,6 +27,15 @@
     return String(num).padStart(2, '0');
   }
 
+  function pageHref(path) {
+    var href = rootPrefix + path;
+    if (location.protocol === 'file:') {
+      if (href.charAt(href.length - 1) === '/') return href + 'index.html';
+      if (!/\.[a-z0-9]+$/i.test(href)) return href + '.html';
+    }
+    return href;
+  }
+
   function stageName(stageId) {
     for (var i = 0; i < stages.length; i += 1) {
       if (stages[i].id === stageId) return stages[i];
@@ -47,7 +56,7 @@
       courses.forEach(function (course) {
         if (course.stage !== stage.id) return;
         var link = el('a', 'ladder-link', pad(course.num) + ' · ' + course.title);
-        link.href = rootPrefix + course.file;
+        link.href = pageHref(course.file);
         link.setAttribute('aria-label', '第 ' + course.num + ' 课 ' + course.title);
         link.setAttribute('data-visited-course', course.id);
         if (course.id === current.id) {
@@ -87,7 +96,7 @@
     if (!course) return;
     var stage = stageName(course.stage);
     node.classList.remove('disabled');
-    node.href = rootPrefix + course.file;
+    node.href = pageHref(course.file);
     node.setAttribute('aria-label', direction + '：第 ' + course.num + ' 课 ' + course.title);
     var label = node.querySelector('span');
     var title = node.querySelector('strong');
