@@ -12,20 +12,20 @@
 
 <rect x="40" y="112" width="720" height="46" rx="6" fill="#eaf5ef"/>
 <text x="60" y="141" class="l" text-anchor="start">抢占敌方已占点</text>
-<text x="360" y="141" class="big" text-anchor="middle" fill="#2f7d5b">+30</text>
-<text x="480" y="141" class="big" text-anchor="middle" fill="#2f7d5b">−30</text>
+<text x="360" y="141" class="big" text-anchor="middle" fill="#2f7d5b">+50</text>
+<text x="480" y="141" class="big" text-anchor="middle" fill="#2f7d5b">−10</text>
 <text x="620" y="141" class="big" text-anchor="middle" fill="#2f7d5b">+60</text>
 
 <rect x="40" y="164" width="720" height="46" rx="6" fill="#fde8e6"/>
 <text x="60" y="193" class="l" text-anchor="start">丢掉己方已占点</text>
-<text x="360" y="193" class="big" text-anchor="middle" fill="#b42318">−30</text>
-<text x="480" y="193" class="big" text-anchor="middle" fill="#b42318">+30</text>
+<text x="360" y="193" class="big" text-anchor="middle" fill="#b42318">−10</text>
+<text x="480" y="193" class="big" text-anchor="middle" fill="#b42318">+50</text>
 <text x="620" y="193" class="big" text-anchor="middle" fill="#b42318">−60</text>
 
 <rect x="40" y="216" width="720" height="46" rx="6" fill="#eaf5ef"/>
 <text x="60" y="245" class="l" text-anchor="start">抢回刚丢的点</text>
-<text x="360" y="245" class="big" text-anchor="middle" fill="#2f7d5b">+30</text>
-<text x="480" y="245" class="big" text-anchor="middle" fill="#2f7d5b">−30</text>
+<text x="360" y="245" class="big" text-anchor="middle" fill="#2f7d5b">+50</text>
+<text x="480" y="245" class="big" text-anchor="middle" fill="#2f7d5b">−10</text>
 <text x="620" y="245" class="big" text-anchor="middle" fill="#2f7d5b">+60</text>
 
 <rect x="40" y="268" width="720" height="46" rx="6" fill="#e8f2f6"/>

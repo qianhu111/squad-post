@@ -19,5 +19,5 @@
 <rect x="40" y="378" width="720" height="48" rx="10" fill="#fff2dd" stroke="#d97706"/>
 <text x="60" y="400" class="s" text-anchor="start" fill="#b45309">票面大不等于期望高：先把成功率乘进去，再把行动分钟除进去。</text>
 <text x="60" y="418" class="s" text-anchor="start" fill="#5b6875">期望为负的仗，偶尔可以赌一次；但不能把它当成稳定收益反复打。</text>
-<text x="40" y="442" class="xs" text-anchor="start" fill="#5b6875">例：拉穿方案 0.5 × 30 + 0.5 × (−30) = 0，长期不赚，只在必须赌时打。</text>
+<text x="40" y="442" class="xs" text-anchor="start" fill="#5b6875">例：拉穿方案 0.5 × 50 + 0.5 × (−10) = 20，期望低于守点，只在必须赌时打。</text>
 </svg>

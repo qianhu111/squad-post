@@ -245,8 +245,8 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
     for rel, needles in {
         "courses/beginner/06-spawns-fob-hab.html": ["9 人 90 米", "30 秒"],
         "courses/resources/15-hab-and-rally.html": ["15 米内至少 1 名本队队员", "15 米内至少 3 名本队队员"],
-        "courses/beginner/17-tickets-supplies.html": ["+30", "−30", "净摆动 60 票", "+20"],
-        "courses/advanced/05-ticket-math.html": ["+30", "−30", "净摆动 60 票"],
+        "courses/beginner/17-tickets-supplies.html": ["+50", "−10", "净摆动 60 票", "+20"],
+        "courses/advanced/05-ticket-math.html": ["+50", "−10", "净摆动 60 票"],
         "courses/advanced/07-mortar-spotting.html": ["社区经验值，以游戏内为准", "21"],
         "reference/index.html": [
             "9 人 90 米",
@@ -254,10 +254,13 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
             "30 秒恢复复活",
             "15 米内至少 3 名本队队员",
             "净摆动 60 票",
+            "净摆动 −60 票",
+            "我方 +50，敌方 −10",
+            "我方 −10，敌方 +50",
             "社区经验值，以游戏内为准",
         ],
-        "quiz/beginner.html": ["社区经验值，以游戏内为准", "净摆动 60 票"],
-        "quiz/advanced.html": ["净摆动 60 票"],
+        "quiz/beginner.html": ["社区经验值，以游戏内为准", "净摆动 60 票", "我方 +50，敌方 −10", "我方 −10，敌方 +50"],
+        "quiz/advanced.html": ["净摆动 60 票", "我方 +50，敌方 −10"],
     }.items():
         path = DIST / rel
         if not path.exists():
