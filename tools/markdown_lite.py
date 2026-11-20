@@ -90,6 +90,31 @@ def _slug(state: dict, level: int) -> str:
     return f"s{state['section']}-{state['sub']}"
 
 
+def _plain(text: str) -> str:
+    text = LINK_RE.sub(lambda match: match.group(1), text)
+    text = IMG_RE.sub(lambda match: match.group(1), text)
+    text = BOLD_RE.sub(lambda match: match.group(1), text)
+    text = CODE_RE.sub(lambda match: match.group(1), text)
+    return text.replace("**", "").replace("`", "").strip()
+
+
+def outline(markdown: str) -> list[dict]:
+    """Return heading ids and titles using the same ids as render()."""
+    state = {"section": 0, "sub": 0}
+    items: list[dict] = []
+    for line in markdown.splitlines():
+        match = HEAD_RE.match(line.strip())
+        if not match:
+            continue
+        level = len(match.group(1))
+        items.append({
+            "id": _slug(state, level),
+            "level": level,
+            "title": _plain(match.group(2)),
+        })
+    return items
+
+
 def _is_special(line: str) -> bool:
     stripped = line.strip()
     return (

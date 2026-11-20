@@ -143,6 +143,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 32px 0; }
 :root[data-reading="1"] .breadcrumb,
 :root[data-reading="1"] .site-footer,
 :root[data-reading="1"] .lesson-nav,
+:root[data-reading="1"] .related-lessons,
 :root[data-reading="1"] .visited-marker { display: none; }
 :root[data-reading="1"] .layout.with-sidebar { grid-template-columns: minmax(0, 1fr); }
 :root[data-reading="1"] .content { max-width: 820px; }
@@ -480,6 +481,20 @@ pre {
 .marker-dot { width: 14px; height: 14px; border: 2px solid currentColor; border-radius: 50%; }
 .visited-marker.done .marker-dot { background: currentColor; box-shadow: inset 0 0 0 3px var(--card); }
 
+.related-lessons { margin-top: 46px; padding-top: 24px; border-top: 1px solid var(--border); }
+.related-lessons h2 { font-size: 1.25rem; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 14px; }
+.related-card {
+  display: flex; flex-direction: column; gap: 4px; padding: 14px 16px;
+  border: 1px solid var(--border); border-radius: 12px; background: var(--card);
+  color: var(--text); box-shadow: 0 4px 12px rgba(22, 33, 43, .04);
+  transition: border-color .16s, transform .16s, box-shadow .16s;
+}
+.related-card:hover { border-color: var(--primary); text-decoration: none; transform: translateY(-1px); box-shadow: var(--shadow); }
+.related-card span { color: var(--primary); font-size: .78rem; font-weight: 700; }
+.related-card strong { font-size: .98rem; }
+.related-card small { color: var(--muted); font-size: .8rem; line-height: 1.5; }
+
 .backtop { position: fixed; right: 22px; bottom: 22px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--card); color: var(--text); box-shadow: var(--shadow); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 700; }
 .backtop.show { opacity: 1; pointer-events: auto; }
 
@@ -580,7 +595,7 @@ pre {
 @media print {
   :root { --bg: #fff; --card: #fff; --text: #000; --muted: #444; --border: #bbb; }
   body { font-size: 11pt; line-height: 1.5; background: #fff; }
-  .topbar, .breadcrumb, .progress, .backtop, .sidebar, .lesson-nav, .visited-marker, .search-panel, .hero-actions, .progress-actions, .progress-check { display: none !important; }
+  .topbar, .breadcrumb, .progress, .backtop, .sidebar, .lesson-nav, .related-lessons, .visited-marker, .search-panel, .hero-actions, .progress-actions, .progress-check { display: none !important; }
   .wrap { max-width: none; padding: 0; }
   .content { max-width: none; }
   .layout { display: block; }

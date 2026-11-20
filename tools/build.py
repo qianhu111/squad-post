@@ -15,7 +15,7 @@ import re
 import shutil
 from pathlib import Path
 
-from markdown_lite import inline, render
+from markdown_lite import inline, outline, render
 from features import feed, reading, seo, sitemap, tags as tag_features
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -167,6 +167,8 @@ def shell(
     json_ld: str = "",
     noindex: bool = False,
     extra_scripts: str = "",
+    data_root: str | None = None,
+    runtime_assets: bool = False,
 ) -> str:
     site = meta["site"]
     is_lesson = body_page in {c["id"] for c in meta["courses"]}
@@ -180,6 +182,36 @@ def shell(
         json_ld=json_ld,
         noindex=noindex,
     )
+    if runtime_assets:
+        head_assets = f"""<script>
+(function(){{
+  var r = location.protocol === 'file:' ? './' : '/';
+  document.write('<link rel="icon" type="image/svg+xml" href="' + r + 'assets/images/favicon.svg">');
+  document.write('<link rel="stylesheet" href="' + r + 'assets/css/site.css?v={ASSET_VERSION}">');
+  document.write('<link rel="alternate" type="application/atom+xml" title="{e(site['title'])}" href="' + r + 'feed.xml">');
+}})();
+</script>
+<noscript><link rel="stylesheet" href="/assets/css/site.css?v={ASSET_VERSION}"></noscript>"""
+        bottom_scripts = f"""<script>
+(function(){{
+  var r = location.protocol === 'file:' ? './' : '/';
+  ['search-index', 'site', 'courses-data', 'courses'].forEach(function(name){{
+    document.write('<script src="' + r + 'assets/js/' + name + '.js?v={ASSET_VERSION}"><\\/script>');
+  }});
+}})();
+</script>"""
+    else:
+        head_assets = f"""<link rel="icon" type="image/svg+xml" href="{root}assets/images/favicon.svg">
+<link rel="stylesheet" href="{root}assets/css/site.css?v={ASSET_VERSION}">
+<link rel="alternate" type="application/atom+xml" title="{e(site['title'])}" href="{root}feed.xml">"""
+        bottom_scripts = f"""<script src="{root}assets/js/search-index.js?v={ASSET_VERSION}"></script>
+<script src="{root}assets/js/site.js?v={ASSET_VERSION}"></script>
+<script src="{root}assets/js/courses-data.js?v={ASSET_VERSION}"></script>
+<script src="{root}assets/js/courses.js?v={ASSET_VERSION}"></script>
+{extra_scripts}"""
+
+    data_root_value = data_root if data_root is not None else root
+
     reading_tools = ""
     if is_course:
         reading_tools = """    <button class="icon-btn" id="reading-toggle" type="button" aria-label="进入阅读模式" aria-pressed="false" title="阅读模式">
@@ -241,12 +273,10 @@ def shell(
 <meta name="description" content="{e(description)}">
 {seo_block}
 <meta name="color-scheme" content="light dark">
-<link rel="icon" type="image/svg+xml" href="{root}assets/images/favicon.svg">
-<link rel="stylesheet" href="{root}assets/css/site.css?v={ASSET_VERSION}">
-<link rel="alternate" type="application/atom+xml" title="{e(site['title'])}" href="{root}feed.xml">
+{head_assets}
 <script>{THEME_BOOT}</script>
 </head>
-<body data-page="{e(body_page)}" data-root="{e(root)}">
+<body data-page="{e(body_page)}" data-root="{e(data_root_value)}">
 <a class="skip-link" href="#main">跳到正文</a>
 <div class="progress" id="progress" aria-hidden="true"><span></span></div>
 <header class="topbar">
@@ -280,21 +310,55 @@ def shell(
   <div class="search-box">
     <div class="search-head">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-      <input id="search-input" type="search" placeholder="搜索课次、标题、关键词…" autocomplete="off" aria-label="搜索关键词">
+      <input id="search-input" type="search" placeholder="搜索课次、标题、小节或关键词…" autocomplete="off" aria-label="搜索关键词">
       <button type="button" id="search-close" aria-label="关闭搜索">Esc</button>
     </div>
     <div class="search-results" id="search-results" aria-live="polite"></div>
     <p class="search-hint">输入课次或关键词，例如“压制”“FOB”“迫击炮”。</p>
   </div>
 </div>
-<script src="{root}assets/js/search-index.js?v={ASSET_VERSION}"></script>
-<script src="{root}assets/js/site.js?v={ASSET_VERSION}"></script>
-<script src="{root}assets/js/courses-data.js?v={ASSET_VERSION}"></script>
-<script src="{root}assets/js/courses.js?v={ASSET_VERSION}"></script>
-{extra_scripts}
+{bottom_scripts}
 </body>
 </html>
 """
+
+
+def related_courses(meta: dict, course: dict, limit: int = 4) -> list[tuple[dict, set[str]]]:
+    tags = set(course.get("tags", []))
+    scored = []
+    for other in meta["courses"]:
+        if other["num"] == course["num"]:
+            continue
+        shared = tags & set(other.get("tags", []))
+        if not shared:
+            continue
+        score = len(shared) * 10 + (3 if other["stage"] == course["stage"] else 0)
+        scored.append((score, other["num"], other, shared))
+    scored.sort(key=lambda item: (-item[0], item[1]))
+    return [(other, shared) for _score, _num, other, shared in scored[:limit]]
+
+
+def related_lessons_html(meta: dict, course: dict) -> str:
+    related = related_courses(meta, course)
+    if not related:
+        return ""
+    cards = []
+    for other, shared in related:
+        stage = stage_by_id(meta, other["stage"])
+        labels = "、".join(f"#{tag_features.tag_name(meta, slug)}" for slug in sorted(shared))
+        cards.append(
+            f"""        <a class="related-card" href="{seo.pretty_href('../../', other['file'])}">
+          <span>{e(stage['num'])} · 第 {other['num']:02d} 课</span>
+          <strong>{e(other['title'])}</strong>
+          <small>共同标签：{e(labels)}</small>
+        </a>"""
+        )
+    return f"""    <section class="related-lessons" aria-labelledby="related-title">
+      <h2 id="related-title">相关课程<a class="heading-anchor" href="#related-title" aria-label="链接到本节">#</a></h2>
+      <div class="related-grid">
+{chr(10).join(cards)}
+      </div>
+    </section>"""
 
 
 def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
@@ -338,13 +402,15 @@ def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
       <span class="pill">{e(stage['num'])} {e(stage['name'])}</span>
       <span class="pill">建议学习 {e(course['minutes'])} 分钟</span>
       <span class="pill">前置：{e(course['prereq'])}</span>
+      <span class="pill">更新于 {e(course['updated'])}</span>
     </div>
     <p class="reading-meta">正文约 {word_count:,} 字 · 阅读约 {read_minutes} 分钟</p>
     <div class="tag-list"><span class="tag-list-label">标签</span>{tag_chips}</div>
     <div class="lesson-progress" id="lesson-progress" aria-label="本课进度"><span></span></div>
     <article class="prose">
 {body}
-    </article>"""
+    </article>
+{related_lessons_html(meta, course)}"""
 
     lesson_url = seo.absolute_url(meta["site"], course["file"])
     lesson_json_ld = seo.json_ld_learning_resource(meta["site"], course, stage, lesson_url)
@@ -410,7 +476,7 @@ def build_home(meta: dict) -> str:
         <h1>先把第一局打明白，<br>再把队伍带起来。</h1>
         <p class="lead">36 课按六阶战场能力阶梯连续展开：先会活下来，再会看战场，接着理解复活与票账，最后学会带队、协同和复盘。</p>
         <div class="hero-actions">
-          <a class="btn primary" href="./courses/beginner/01-first-match">从第 01 课开始</a>
+          <a class="btn primary" id="hero-primary" href="./courses/beginner/01-first-match">从第 01 课开始</a>
           <a class="btn ghost" href="./courses/">查看完整阶梯</a>
         </div>
         <div class="hero-meta"><span>36 课</span><span>六阶能力阶梯</span><span>2 套能力自检</span><span>由邮差好友公会制作</span></div>
@@ -655,7 +721,7 @@ def build_tag_page(meta: dict, tag: dict) -> str:
     )
 
 
-def build_markdown_page(meta: dict, *, source_name: str, out: str, title: str, desc: str, root: str, body_page: str, noindex: bool = False) -> str:
+def build_markdown_page(meta: dict, *, source_name: str, out: str, title: str, desc: str, root: str, body_page: str, noindex: bool = False, data_root: str | None = None, runtime_assets: bool = False) -> str:
     md = page_source(source_name)
     if not md.strip():
         raise FileNotFoundError(f"Missing page source: {source_name}")
@@ -672,6 +738,8 @@ def build_markdown_page(meta: dict, *, source_name: str, out: str, title: str, d
         page_type="article" if not noindex else "website",
         json_ld=page_json_ld,
         noindex=noindex,
+        data_root=data_root,
+        runtime_assets=runtime_assets,
     )
 
 
@@ -770,19 +838,26 @@ def build_js(meta: dict) -> None:
             for c in meta["courses"]
         ],
     }
-    search_payload = [
-        {
-            "num": c["num"],
-            "id": c["id"],
-            "stage": stage_by_id(meta, c["stage"])["name"],
-            "title": c["title"],
-            "subtitle": c["subtitle"],
-            "path": seo.pretty_path(c["file"]),
-            "keywords": c["keywords"],
-            "tags": [tag_features.tag_name(meta, slug) for slug in c.get("tags", [])],
-        }
-        for c in meta["courses"]
-    ]
+    search_payload = []
+    for course in meta["courses"]:
+        source = ROOT / course["source"]
+        sections = []
+        if source.exists():
+            sections = [
+                {"id": section["id"], "title": section["title"]}
+                for section in outline(source.read_text(encoding="utf-8"))
+            ]
+        search_payload.append({
+            "num": course["num"],
+            "id": course["id"],
+            "stage": stage_by_id(meta, course["stage"])["name"],
+            "title": course["title"],
+            "subtitle": course["subtitle"],
+            "path": seo.pretty_path(course["file"]),
+            "keywords": course["keywords"],
+            "tags": [tag_features.tag_name(meta, slug) for slug in course.get("tags", [])],
+            "sections": sections,
+        })
     write(DIST / "assets/js/courses-data.js", "window.YOUCHAI_COURSES = " + json.dumps(courses_payload, ensure_ascii=False, indent=2) + ";\n")
     write(DIST / "assets/js/search-index.js", "window.YOUCHAI_SEARCH_INDEX = " + json.dumps(search_payload, ensure_ascii=False, indent=2) + ";\n")
 
@@ -819,9 +894,11 @@ def main() -> None:
         out="404.html",
         title="页面不存在",
         desc="这个页面不存在，回到课程阶梯继续学习。",
-        root="./",
+        root="/",
         body_page="404",
         noindex=True,
+        data_root="./",
+        runtime_assets=True,
     ))
     write(DIST / "courses/index.html", build_courses_index(meta))
     for course in courses:

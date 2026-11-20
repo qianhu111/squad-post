@@ -219,6 +219,30 @@
     });
   }
 
+  function initHomeResume() {
+    if (!document.body || document.body.getAttribute('data-page') !== 'home') return;
+    var link = document.getElementById('hero-primary');
+    var data = window.YOUCHAI_COURSES;
+    if (!link || !data || !data.courses || !data.courses.length) return;
+    var visited = readVisited();
+    var done = 0;
+    var next = null;
+    data.courses.forEach(function (course) {
+      if (visited[course.id]) done += 1;
+      else if (!next) next = course;
+    });
+    if (!done) return;
+    if (next) {
+      link.href = pageHref(next.file);
+      link.textContent = '继续第 ' + String(next.num).padStart(2, '0') + ' 课';
+      link.setAttribute('title', next.title);
+    } else {
+      link.href = pageHref('progress/');
+      link.textContent = '查看学习进度';
+      link.removeAttribute('title');
+    }
+  }
+
   function initVisited() {
     var marker = document.querySelector('[data-visited-marker]');
     if (!marker) return;
@@ -274,6 +298,10 @@
     [].forEach.call(links, function (link) {
       var href = link.getAttribute('href');
       if (!href || /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(href)) return;
+      if (href.charAt(0) === '/') {
+        var siteRoot = (document.body && document.body.getAttribute('data-root')) || './';
+        href = siteRoot + href.slice(1);
+      }
       if (/\.[a-z0-9]+(?:[?#]|$)/i.test(href)) return;
       var hash = '';
       var hashIndex = href.indexOf('#');
@@ -298,6 +326,7 @@
     pageInitialized = true;
     paintProgress();
     initVisited();
+    initHomeResume();
     initTocHighlight();
     initFileLinks();
   }
@@ -331,15 +360,24 @@
     return window.YOUCHAI_SEARCH_INDEX || [];
   }
 
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, function (ch) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch];
+    });
+  }
+
   function renderResults(query) {
     if (!results) return;
     var q = query.trim().toLowerCase();
     if (!q) {
-      results.innerHTML = '<div class="search-hint">输入课次、标题或关键词开始搜索。</div>';
+      results.innerHTML = '<div class="search-hint">输入课次、标题、小节或关键词开始搜索。</div>';
       return;
     }
     var terms = q.split(/\s+/);
     var matched = indexItems().filter(function (item) {
+      var sectionTitles = (item.sections || []).map(function (section) {
+        return section.title || '';
+      }).join(' ');
       var haystack = [
         String(item.num || ''),
         '第' + String(item.num || '') + '课',
@@ -347,7 +385,8 @@
         item.subtitle || '',
         item.stage || '',
         (item.keywords || []).join(' '),
-        (item.tags || []).join(' ')
+        (item.tags || []).join(' '),
+        sectionTitles
       ].join(' ').toLowerCase();
       return terms.every(function (term) { return haystack.indexOf(term) > -1; });
     }).slice(0, 12);
@@ -358,10 +397,20 @@
     }
 
     results.innerHTML = matched.map(function (item) {
-      var href = pageHref(item.path);
-      return '<a class="search-result" href="' + href.replace(/"/g, '&quot;') + '">' +
-        '<strong>' + String(item.num).padStart(2, '0') + ' · ' + item.title + '</strong>' +
-        '<small>' + item.stage + ' · ' + item.subtitle + '</small></a>';
+      var section = null;
+      var sections = item.sections || [];
+      for (var i = 0; i < sections.length; i += 1) {
+        var title = String(sections[i].title || '').toLowerCase();
+        if (terms.every(function (term) { return title.indexOf(term) > -1; })) {
+          section = sections[i];
+          break;
+        }
+      }
+      var href = pageHref(item.path) + (section ? '#' + section.id : '');
+      var detail = section ? '§ ' + section.title : item.subtitle;
+      return '<a class="search-result" href="' + escapeHtml(href) + '">' +
+        '<strong>' + String(item.num).padStart(2, '0') + ' · ' + escapeHtml(item.title) + '</strong>' +
+        '<small>' + escapeHtml(item.stage) + ' · ' + escapeHtml(detail) + '</small></a>';
     }).join('');
   }
 
