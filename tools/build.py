@@ -8,6 +8,7 @@ HTML/CSS/JS.
 
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import re
@@ -71,6 +72,23 @@ def qq_cards() -> str:
       </div>"""
         )
     return "\n".join(cards)
+
+
+ASSET_VERSION = "dev"
+
+
+def content_version() -> str:
+    """Short content hash used to cache-bust CSS/JS after each content change."""
+    digest = hashlib.sha256()
+    paths = [META_PATH]
+    paths += sorted((SOURCE / "lessons").glob("*.md"))
+    paths += sorted((SOURCE / "pages").glob("*"))
+    paths += sorted((SOURCE / "static").rglob("*"))
+    for path in paths:
+        if path.is_file():
+            digest.update(path.name.encode("utf-8"))
+            digest.update(path.read_bytes())
+    return digest.hexdigest()[:10]
 
 
 def load_meta() -> dict:
@@ -214,7 +232,7 @@ def shell(
 <meta name="description" content="{e(description)}">
 {seo_block}
 <meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="{root}assets/css/site.css">
+<link rel="stylesheet" href="{root}assets/css/site.css?v={ASSET_VERSION}">
 <link rel="alternate" type="application/atom+xml" title="{e(site['title'])}" href="{root}feed.xml">
 <script>{THEME_BOOT}</script>
 </head>
@@ -256,10 +274,10 @@ def shell(
     <p class="search-hint">输入课次或关键词，例如“压制”“FOB”“迫击炮”。</p>
   </div>
 </div>
-<script src="{root}assets/js/search-index.js"></script>
-<script src="{root}assets/js/site.js"></script>
-<script src="{root}assets/js/courses-data.js"></script>
-<script src="{root}assets/js/courses.js"></script>
+<script src="{root}assets/js/search-index.js?v={ASSET_VERSION}"></script>
+<script src="{root}assets/js/site.js?v={ASSET_VERSION}"></script>
+<script src="{root}assets/js/courses-data.js?v={ASSET_VERSION}"></script>
+<script src="{root}assets/js/courses.js?v={ASSET_VERSION}"></script>
 </body>
 </html>
 """
@@ -669,9 +687,11 @@ def copy_static() -> None:
 
 
 def main() -> None:
+    global ASSET_VERSION
     meta = load_meta()
     courses = meta["courses"]
     DIST.mkdir(parents=True, exist_ok=True)
+    ASSET_VERSION = content_version()
 
     write(DIST / "index.html", build_home(meta))
     write(DIST / "404.html", build_markdown_page(
