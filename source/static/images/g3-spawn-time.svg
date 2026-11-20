@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">复活方式的等待与到场时间</title><desc id="dsc">主基地、HAB 兵站和队包三种复活方式的等待时间、到场速度与主要风险对比。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:14px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}</style>
+<text x="40" y="42" class="t" text-anchor="start">选复活点：等待时间与到场时间</text>
+<text x="40" y="68" class="s" text-anchor="start" fill="#5b6875">先看能不能安全出人，再比秒数。</text>
+
+<text x="40" y="120" class="l" text-anchor="start">主基地</text>
+<rect x="170" y="96" width="150" height="36" rx="8" fill="#e6ebf0" stroke="#5b6875" stroke-width="2"/>
+<text x="245" y="119" class="s" text-anchor="middle">固定等待 + 集结</text>
+<rect x="320" y="96" width="380" height="36" rx="8" fill="#dbeaf2" stroke="#1f5d78" stroke-width="2"/>
+<text x="510" y="119" class="s" text-anchor="middle" fill="#1f5d78">跑图 2–4 分钟，可能更久</text>
+<text x="715" y="119" class="s" text-anchor="start" fill="#2f7d5b">最安全</text>
+
+<text x="40" y="220" class="l" text-anchor="start">HAB 兵站</text>
+<rect x="170" y="196" width="120" height="36" rx="8" fill="#fff2dd" stroke="#d97706" stroke-width="2"/>
+<text x="230" y="219" class="s" text-anchor="middle" fill="#b45309">45 秒基础</text>
+<rect x="290" y="196" width="190" height="36" rx="8" fill="#dbeaf2" stroke="#1f5d78" stroke-width="2"/>
+<text x="385" y="219" class="s" text-anchor="middle" fill="#1f5d78">部署 + 出门</text>
+<rect x="480" y="196" width="220" height="36" rx="8" fill="#fde8e6" stroke="#b42318" stroke-width="2"/>
+<text x="590" y="219" class="s" text-anchor="middle" fill="#b42318">可能被压制，点不动</text>
+<text x="715" y="219" class="s" text-anchor="start" fill="#b42318">看状态</text>
+
+<text x="40" y="320" class="l" text-anchor="start">队包</text>
+<rect x="170" y="296" width="160" height="36" rx="8" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="250" y="319" class="s" text-anchor="middle" fill="#2f7d5b">最多 60 秒一波</text>
+<rect x="330" y="296" width="120" height="36" rx="8" fill="#e6ebf0" stroke="#5b6875" stroke-width="2"/>
+<text x="390" y="319" class="s" text-anchor="middle">30 秒基础</text>
+<rect x="450" y="296" width="250" height="36" rx="8" fill="#fde8e6" stroke="#b42318" stroke-width="2"/>
+<text x="575" y="319" class="s" text-anchor="middle" fill="#b42318">30 米内敌人即消失</text>
+<text x="715" y="319" class="s" text-anchor="start" fill="#d97706">可能被踩</text>
+
+<rect x="40" y="368" width="720" height="54" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="60" y="392" class="l" text-anchor="start" fill="#1f5d78">判断顺序</text>
+<text x="60" y="412" class="s" text-anchor="start" fill="#5b6875">队包稳就先队包；兵站状态正常再点兵站；都被压或被拆，才回主基地重整。</text>
+<text x="40" y="440" class="xs" text-anchor="start" fill="#5b6875">HAB 基础复活 45 秒；队包 60 秒一波，个人基础复活 30 秒。</text>
+</svg>

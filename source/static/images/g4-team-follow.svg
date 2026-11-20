@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">跟队位置、扇区与过门</title><desc id="dsc">四人小队跟队时的站位、每人负责的扇区，以及过门时不堆在门口的分工。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#5b6875"/></marker><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:14px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="40" class="t" text-anchor="start">跟队：侧后站位、分扇区、过门不堆人</text>
+
+<rect x="24" y="62" width="244" height="330" rx="14" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="146" y="90" class="l" text-anchor="middle">1. 站位</text>
+<circle cx="146" cy="160" r="16" fill="#1f5d78"/><text x="146" y="166" class="m" text-anchor="middle" fill="#ffffff">队</text>
+<circle cx="96" cy="225" r="14" fill="#2f7d5b"/><text x="96" y="230" class="s" text-anchor="middle" fill="#ffffff">2</text>
+<circle cx="196" cy="235" r="14" fill="#2f7d5b"/><text x="196" y="240" class="s" text-anchor="middle" fill="#ffffff">3</text>
+<circle cx="146" cy="300" r="14" fill="#5b6875"/><text x="146" y="305" class="s" text-anchor="middle" fill="#ffffff">4</text>
+<line x1="132" y1="176" x2="108" y2="209" stroke="#5b6875" stroke-width="2" stroke-dasharray="4 4"/>
+<line x1="162" y1="178" x2="186" y2="219" stroke="#5b6875" stroke-width="2" stroke-dasharray="4 4"/>
+<line x1="146" y1="316" x2="146" y2="280" stroke="#5b6875" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="146" y="350" class="s" text-anchor="middle" fill="#5b6875">室内 3–5 m / 野外 10–15 m</text>
+<text x="146" y="372" class="s" text-anchor="middle" fill="#5b6875">不贴背、不挡枪线</text>
+
+<rect x="278" y="62" width="244" height="330" rx="14" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="400" y="90" class="l" text-anchor="middle">2. 扇区</text>
+<circle cx="400" cy="225" r="14" fill="#1f5d78"/><text x="400" y="230" class="s" text-anchor="middle" fill="#ffffff">你</text>
+<path d="M400 225 L330 150 A100 100 0 0 1 470 150 Z" fill="#1f5d78" fill-opacity="0.16" stroke="#1f5d78" stroke-width="1.5"/>
+<path d="M400 225 L310 225 A90 90 0 0 0 340 295 Z" fill="#2f7d5b" fill-opacity="0.18" stroke="#2f7d5b" stroke-width="1.5"/>
+<path d="M400 225 L490 225 A90 90 0 0 1 460 295 Z" fill="#d97706" fill-opacity="0.18" stroke="#d97706" stroke-width="1.5"/>
+<path d="M400 225 L350 310 A90 90 0 0 0 450 310 Z" fill="#5b6875" fill-opacity="0.16" stroke="#5b6875" stroke-width="1.5"/>
+<text x="400" y="128" class="s" text-anchor="middle" fill="#1f5d78">12 点 / 正面</text>
+<text x="322" y="250" class="s" text-anchor="end" fill="#2f7d5b">左翼</text>
+<text x="478" y="250" class="s" text-anchor="start" fill="#d97706">右翼</text>
+<text x="400" y="335" class="s" text-anchor="middle" fill="#5b6875">背后 / 6 点</text>
+<text x="400" y="372" class="s" text-anchor="middle" fill="#5b6875">每人认领一段，不重复</text>
+
+<rect x="532" y="62" width="244" height="330" rx="14" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="654" y="90" class="l" text-anchor="middle">3. 过门</text>
+<rect x="600" y="108" width="108" height="10" fill="#8a97a5"/>
+<rect x="600" y="118" width="12" height="70" fill="#8a97a5"/>
+<rect x="696" y="118" width="12" height="70" fill="#8a97a5"/>
+<text x="654" y="146" class="s" text-anchor="middle" fill="#5b6875">门内</text>
+<circle cx="606" cy="166" r="12" fill="#1f5d78"/><text x="606" y="171" class="s" text-anchor="middle" fill="#ffffff">1</text>
+<circle cx="566" cy="210" r="12" fill="#2f7d5b"/><text x="566" y="215" class="s" text-anchor="middle" fill="#ffffff">2</text>
+<circle cx="650" cy="235" r="12" fill="#d97706"/><text x="650" y="240" class="s" text-anchor="middle" fill="#ffffff">3</text>
+<circle cx="606" cy="285" r="12" fill="#5b6875"/><text x="606" y="290" class="s" text-anchor="middle" fill="#ffffff">4</text>
+<line x1="584" y1="176" x2="584" y2="202" stroke="#b42318" stroke-width="3"/>
+<line x1="572" y1="182" x2="596" y2="198" stroke="#b42318" stroke-width="3"/>
+<line x1="572" y1="198" x2="596" y2="182" stroke="#b42318" stroke-width="3"/>
+<text x="654" y="320" class="s" text-anchor="middle" fill="#5b6875">2 不贴 1 的背，留出门框</text>
+<text x="654" y="342" class="s" text-anchor="middle" fill="#5b6875">3 看街面 / 4 看背后</text>
+<text x="40" y="425" class="s" text-anchor="start" fill="#5b6875">跟队跟的是“停、转、看”三个动作；站位只是让这三个动作有人接得上。</text>
+</svg>

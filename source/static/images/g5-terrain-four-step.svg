@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">地形分析四步法</title><desc id="dsc">尺度、高低、通视、通路四步依次进行，每步产出可执行的判断。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">四步：先在哪打，再站多高，再看谁看见，最后怎么走</text>
+<g>
+<rect x="40" y="75" width="165" height="200" rx="10" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<text x="122" y="104" class="l" text-anchor="middle" fill="#1f5d78">1 尺度</text>
+<text x="122" y="132" class="s" text-anchor="middle">点位 / 主干道</text>
+<text x="122" y="154" class="s" text-anchor="middle">街区 / 林班</text>
+<text x="122" y="176" class="s" text-anchor="middle">墙 / 树 / 沟</text>
+<line x1="70" y1="192" x2="175" y2="192" stroke="#c7d3dc" stroke-width="2"/>
+<text x="122" y="216" class="s" text-anchor="middle" fill="#5b6875">产出：战场分区</text>
+<text x="122" y="240" class="s" text-anchor="middle" fill="#b42318">忌：一上来盯占点</text>
+</g>
+<g>
+<rect x="225" y="75" width="165" height="200" rx="10" fill="#e7f0ea" stroke="#2f7d5b" stroke-width="2"/>
+<text x="307" y="104" class="l" text-anchor="middle" fill="#2f7d5b">2 高低</text>
+<text x="307" y="132" class="s" text-anchor="middle">山脊 / 反斜面</text>
+<text x="307" y="154" class="s" text-anchor="middle">鞍部 / 冲沟</text>
+<text x="307" y="176" class="s" text-anchor="middle">硬掩体 / 软掩体</text>
+<line x1="255" y1="192" x2="360" y2="192" stroke="#c7d3dc" stroke-width="2"/>
+<text x="307" y="216" class="s" text-anchor="middle" fill="#5b6875">产出：制高与隐蔽通道</text>
+<text x="307" y="240" class="s" text-anchor="middle" fill="#b42318">忌：最高点最好</text>
+</g>
+<g>
+<rect x="410" y="75" width="165" height="200" rx="10" fill="#f8ecd9" stroke="#d97706" stroke-width="2"/>
+<text x="492" y="104" class="l" text-anchor="middle" fill="#d97706">3 通视</text>
+<text x="492" y="132" class="s" text-anchor="middle">谁能看见这条路</text>
+<text x="492" y="154" class="s" text-anchor="middle">路能看见谁</text>
+<text x="492" y="176" class="s" text-anchor="middle">哪段没掩体</text>
+<line x1="440" y1="192" x2="545" y2="192" stroke="#c7d3dc" stroke-width="2"/>
+<text x="492" y="216" class="s" text-anchor="middle" fill="#5b6875">产出：风险段清单</text>
+<text x="492" y="240" class="s" text-anchor="middle" fill="#b42318">忌：只看直线距离</text>
+</g>
+<g>
+<rect x="595" y="75" width="165" height="200" rx="10" fill="#f5e3e0" stroke="#b42318" stroke-width="2"/>
+<text x="677" y="104" class="l" text-anchor="middle" fill="#b42318">4 通路</text>
+<text x="677" y="132" class="s" text-anchor="middle">出口 / 桥梁</text>
+<text x="677" y="154" class="s" text-anchor="middle">窄口 / 渡口</text>
+<text x="677" y="176" class="s" text-anchor="middle">主路线 / 备用</text>
+<line x1="625" y1="192" x2="730" y2="192" stroke="#c7d3dc" stroke-width="2"/>
+<text x="677" y="216" class="s" text-anchor="middle" fill="#5b6875">产出：路线卡</text>
+<text x="677" y="240" class="s" text-anchor="middle" fill="#b42318">忌：只规划去</text>
+</g>
+<line x1="205" y1="175" x2="220" y2="175" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="390" y1="175" x2="405" y2="175" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="575" y1="175" x2="590" y2="175" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="40" y="300" width="720" height="55" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="60" y="326" class="m" fill="#1f5d78">一句话结论</text>
+<text x="60" y="346" class="s">“主力走 A 线，B 线备用，观察位 C，集结点 D。”</text>
+<rect x="40" y="370" width="720" height="45" rx="8" fill="#eef3f6" stroke="#c7d3dc" stroke-width="2"/>
+<text x="58" y="398" class="s" fill="#5b6875">顺序不能颠倒：先知道在哪打，再知道站多高，再知道谁看得见，最后才决定怎么走。</text>
+</svg>

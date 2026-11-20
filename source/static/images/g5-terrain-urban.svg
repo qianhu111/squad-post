@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">城市地形要读垂直方向</title><desc id="dsc">街道、楼层、屋顶、地下室构成三维地形；窗口高度差决定交叉射界和死角。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">城市是三层地形：屋顶、楼层、地下</text>
+<rect x="50" y="130" width="160" height="210" fill="#e8e2d6" stroke="#8a7a63" stroke-width="2"/>
+<text x="130" y="160" class="s" text-anchor="middle" fill="#7a6a53">三层楼</text>
+<g fill="#b9cdd8" stroke="#1f5d78" stroke-width="1.5">
+<rect x="72" y="180" width="30" height="22"/><rect x="118" y="180" width="30" height="22"/><rect x="164" y="180" width="30" height="22"/>
+<rect x="72" y="235" width="30" height="22"/><rect x="118" y="235" width="30" height="22"/><rect x="164" y="235" width="30" height="22"/>
+<rect x="72" y="290" width="30" height="22"/><rect x="118" y="290" width="30" height="22"/><rect x="164" y="290" width="30" height="22"/>
+</g>
+<rect x="250" y="250" width="150" height="90" fill="#e8e2d6" stroke="#8a7a63" stroke-width="2"/>
+<text x="325" y="278" class="s" text-anchor="middle" fill="#7a6a53">一层商铺</text>
+<rect x="340" y="150" width="130" height="100" fill="#e8e2d6" stroke="#8a7a63" stroke-width="2"/>
+<text x="405" y="180" class="s" text-anchor="middle" fill="#7a6a53">二层</text>
+<rect x="150" y="355" width="200" height="45" fill="#d9d2c4" stroke="#8a7a63" stroke-width="2"/>
+<text x="250" y="383" class="s" text-anchor="middle" fill="#7a6a53">地下室（单出口）</text>
+<path d="M210 360 v-25 h-40" fill="none" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<text x="215" y="345" class="s" fill="#5b6875">上下通道</text>
+<line x1="300" y1="225" x2="365" y2="225" stroke="#b42318" stroke-width="2" marker-end="url(#ar-red)"/>
+<text x="305" y="218" class="s" fill="#b42318">窗口交叉</text>
+<line x1="365" y1="235" x2="300" y2="235" stroke="#b42318" stroke-width="2" marker-end="url(#ar-red)"/>
+<rect x="530" y="62" width="235" height="330" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="550" y="90" class="m" fill="#1f5d78">四步看城市</text>
+<text x="550" y="118" class="s">尺度：街区、路口、桥</text>
+<text x="550" y="142" class="s">高低：楼层差、屋顶、地下</text>
+<text x="550" y="166" class="s">通视：窗口朝向、死角</text>
+<text x="550" y="190" class="s">通路：门、后巷、鼠洞、楼梯</text>
+<line x1="550" y1="208" x2="745" y2="208" stroke="#c7d3dc" stroke-width="2"/>
+<text x="550" y="234" class="m" fill="#b42318">注意</text>
+<text x="550" y="260" class="s">街宽决定烟幕用量</text>
+<text x="550" y="284" class="s">楼层差决定谁打谁头顶</text>
+<text x="550" y="308" class="s">屋顶是观察位，不是阵地</text>
+<text x="550" y="332" class="s">地下室只有一个出口</text>
+<line x1="550" y1="348" x2="745" y2="348" stroke="#c7d3dc" stroke-width="2"/>
+<text x="550" y="372" class="s" fill="#5b6875">先看哪栋楼能看见哪扇窗，</text>
+<text x="550" y="390" class="s" fill="#5b6875">再看街道能不能过。</text>
+<text x="40" y="430" class="s" fill="#5b6875">城市不是平面图：同一个路口，站一楼、二楼、屋顶看到的是三张不同的地图。</text>
+</svg>

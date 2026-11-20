@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">下车六步与藏车</title><desc id="dsc">停车、下车、筒子找车、机枪占高、步枪散开、队长报点，车头朝撤离方向。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker><marker id="ar-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d97706"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">下车不是跳车：六步展开</text>
+<rect x="55" y="70" width="110" height="58" rx="9" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<text x="110" y="94" class="m" text-anchor="middle" fill="#1f5d78">1 停车</text><text x="110" y="114" class="s" text-anchor="middle" fill="#5b6875">掩体后</text>
+<rect x="185" y="70" width="110" height="58" rx="9" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<text x="240" y="94" class="m" text-anchor="middle" fill="#1f5d78">2 下车</text><text x="240" y="114" class="s" text-anchor="middle" fill="#5b6875">远离敌人一侧</text>
+<rect x="315" y="70" width="110" height="58" rx="9" fill="#f5e3e0" stroke="#b42318" stroke-width="2"/>
+<text x="370" y="94" class="m" text-anchor="middle" fill="#b42318">3 筒子</text><text x="370" y="114" class="s" text-anchor="middle" fill="#5b6875">先看载具来路</text>
+<rect x="445" y="70" width="110" height="58" rx="9" fill="#f8ecd9" stroke="#d97706" stroke-width="2"/>
+<text x="500" y="94" class="m" text-anchor="middle" fill="#d97706">4 机枪</text><text x="500" y="114" class="s" text-anchor="middle" fill="#5b6875">占高点/车后</text>
+<rect x="575" y="70" width="110" height="58" rx="9" fill="#e7f0ea" stroke="#2f7d5b" stroke-width="2"/>
+<text x="630" y="94" class="m" text-anchor="middle" fill="#2f7d5b">5 步枪</text><text x="630" y="114" class="s" text-anchor="middle" fill="#5b6875">散开 5–10 米</text>
+<rect x="705" y="70" width="70" height="58" rx="9" fill="#eef3f6" stroke="#5b6875" stroke-width="2"/>
+<text x="740" y="94" class="m" text-anchor="middle" fill="#5b6875">6 报点</text><text x="740" y="114" class="s" text-anchor="middle" fill="#5b6875">队长</text>
+<line x1="165" y1="99" x2="180" y2="99" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="295" y1="99" x2="310" y2="99" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="425" y1="99" x2="440" y2="99" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="555" y1="99" x2="570" y2="99" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="685" y1="99" x2="700" y2="99" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="55" y="165" width="700" height="190" rx="12" fill="#eef3f6" stroke="#c7d3dc" stroke-width="2"/>
+<rect x="120" y="235" width="130" height="60" rx="14" fill="#dce8ee" stroke="#1f5d78" stroke-width="3"/>
+<text x="185" y="272" class="m" text-anchor="middle" fill="#1f5d78">载具</text>
+<path d="M120 265 L70 265" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-green)"/>
+<text x="82" y="252" class="s" fill="#1f5d78">车头朝撤离</text>
+<rect x="250" y="185" width="120" height="55" rx="6" fill="#e8e2d6" stroke="#8a7a63" stroke-width="2"/>
+<text x="310" y="217" class="s" text-anchor="middle" fill="#7a6a53">建筑掩体</text>
+<path d="M250 245 L210 230" stroke="#2f7d5b" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="250" y="325" class="s" fill="#b42318">敌人方向 ✕</text>
+<line x1="250" y1="340" x2="180" y2="310" stroke="#b42318" stroke-width="3"/>
+<circle cx="420" cy="235" r="12" fill="#b42318"/><text x="420" y="240" class="s" text-anchor="middle" fill="#fff">筒</text>
+<circle cx="470" cy="285" r="12" fill="#d97706"/><text x="470" y="290" class="s" text-anchor="middle" fill="#fff">机</text>
+<circle cx="520" cy="305" r="12" fill="#5b6875"/><text x="520" y="310" class="s" text-anchor="middle" fill="#fff">步</text>
+<circle cx="555" cy="275" r="12" fill="#5b6875"/><text x="555" y="280" class="s" text-anchor="middle" fill="#fff">步</text>
+<circle cx="590" cy="320" r="12" fill="#2f7d5b"/><text x="590" y="325" class="s" text-anchor="middle" fill="#fff">医</text>
+<text x="640" y="220" class="s" fill="#5b6875">散开成三角，</text>
+<text x="640" y="242" class="s" fill="#5b6875">不挤车门。</text>
+<text x="640" y="270" class="s" fill="#b42318">集结点不要选车尾</text>
+<text x="55" y="390" class="s" fill="#5b6875">标准：15 秒内全员离车展开，30 秒内火力成型；车停掩体后，不堵路、不占山顶。</text>
+<text x="55" y="415" class="s" fill="#5b6875">下车后先散开再观察，不要站在车边讨论路线。</text>
+</svg>

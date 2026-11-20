@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">伤情分级与医疗流程</title><desc id="dsc">从流血、止血、缺血回血到倒地呼救和救起的处理顺序。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:14px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">伤情分级：先止血，再回血，最后才谈归队</text>
+<rect x="40" y="85" width="160" height="80" rx="10" fill="#fdecea" stroke="#b42318" stroke-width="2"/>
+<text x="120" y="118" class="l" text-anchor="middle" fill="#b42318">流血</text>
+<text x="120" y="142" class="s" text-anchor="middle">画面闪烁、心跳声</text>
+<line x1="200" y1="125" x2="245" y2="125" stroke="#b42318" stroke-width="3" marker-end="url(#ar-red)"/>
+<rect x="250" y="85" width="170" height="80" rx="10" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="335" y="118" class="l" text-anchor="middle" fill="#d97706">止血带</text>
+<text x="335" y="142" class="s" text-anchor="middle">左键队友 / 右键自己</text>
+<line x1="420" y1="125" x2="465" y2="125" stroke="#d97706" stroke-width="3" marker-end="url(#ar-blue)"/>
+<rect x="470" y="85" width="170" height="80" rx="10" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="555" y="118" class="l" text-anchor="middle" fill="#1f5d78">缺血</text>
+<text x="555" y="142" class="s" text-anchor="middle">血止住，但血量仍低</text>
+<line x1="640" y1="125" x2="685" y2="125" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-green)"/>
+<rect x="690" y="85" width="70" height="80" rx="10" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="725" y="118" class="l" text-anchor="middle" fill="#2f7d5b">医疗包</text>
+<text x="725" y="142" class="s" text-anchor="middle">回血</text>
+<rect x="40" y="225" width="160" height="95" rx="10" fill="#fdecea" stroke="#b42318" stroke-width="2"/>
+<text x="120" y="258" class="l" text-anchor="middle" fill="#b42318">倒地</text>
+<text x="120" y="282" class="s" text-anchor="middle">约 60 秒黑白屏</text>
+<text x="120" y="302" class="s" text-anchor="middle">再中弹直接死亡</text>
+<line x1="200" y1="272" x2="245" y2="272" stroke="#b42318" stroke-width="3" marker-end="url(#ar-red)"/>
+<rect x="250" y="225" width="170" height="95" rx="10" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="335" y="258" class="l" text-anchor="middle" fill="#d97706">呼救与清场</text>
+<text x="335" y="282" class="s" text-anchor="middle">报位置，先确认安全</text>
+<text x="335" y="302" class="s" text-anchor="middle">烟雾遮断，不从正面来</text>
+<line x1="420" y1="272" x2="465" y2="272" stroke="#d97706" stroke-width="3" marker-end="url(#ar-blue)"/>
+<rect x="470" y="225" width="170" height="95" rx="10" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="555" y="258" class="l" text-anchor="middle" fill="#1f5d78">止血带救起</text>
+<text x="555" y="282" class="s" text-anchor="middle">先止血，再医疗包</text>
+<text x="555" y="302" class="s" text-anchor="middle">拖尸按 F 抓头或脚</text>
+<line x1="640" y1="272" x2="685" y2="272" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-green)"/>
+<rect x="690" y="225" width="70" height="95" rx="10" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="725" y="258" class="l" text-anchor="middle" fill="#2f7d5b">回掩体</text>
+<text x="725" y="282" class="s" text-anchor="middle">先恢复</text>
+<text x="725" y="302" class="s" text-anchor="middle">再开火</text>
+<text x="40" y="395" class="s" text-anchor="start" fill="#b42318">记住：被救起不扣票；流血致死或主动放弃，扣 1 票。</text>
+<text x="40" y="420" class="s" text-anchor="start" fill="#5b6875">医疗兵绷带 6 条，打绷带速度约为普通兵种的两倍。</text>
+</svg>

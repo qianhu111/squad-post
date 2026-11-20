@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">攻守对称的占点账</title><desc id="dsc">抢占敌方点、丢掉己方点、抢回点位、占领中立点和只拉白的票差摆动。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:14px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}.big{font-size:18px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">占点账的两面：抢一个点和丢一个点是同一笔</text>
+
+<rect x="40" y="72" width="720" height="34" rx="6" fill="#e6ebf0"/>
+<text x="60" y="95" class="s" text-anchor="start" fill="#5b6875">事件</text>
+<text x="360" y="95" class="s" text-anchor="middle" fill="#5b6875">我方票池</text>
+<text x="480" y="95" class="s" text-anchor="middle" fill="#5b6875">敌方票池</text>
+<text x="620" y="95" class="s" text-anchor="middle" fill="#5b6875">票差摆动</text>
+
+<rect x="40" y="112" width="720" height="46" rx="6" fill="#eaf5ef"/>
+<text x="60" y="141" class="l" text-anchor="start">抢占敌方已占点</text>
+<text x="360" y="141" class="big" text-anchor="middle" fill="#2f7d5b">+30</text>
+<text x="480" y="141" class="big" text-anchor="middle" fill="#2f7d5b">−30</text>
+<text x="620" y="141" class="big" text-anchor="middle" fill="#2f7d5b">+60</text>
+
+<rect x="40" y="164" width="720" height="46" rx="6" fill="#fde8e6"/>
+<text x="60" y="193" class="l" text-anchor="start">丢掉己方已占点</text>
+<text x="360" y="193" class="big" text-anchor="middle" fill="#b42318">−30</text>
+<text x="480" y="193" class="big" text-anchor="middle" fill="#b42318">+30</text>
+<text x="620" y="193" class="big" text-anchor="middle" fill="#b42318">−60</text>
+
+<rect x="40" y="216" width="720" height="46" rx="6" fill="#eaf5ef"/>
+<text x="60" y="245" class="l" text-anchor="start">抢回刚丢的点</text>
+<text x="360" y="245" class="big" text-anchor="middle" fill="#2f7d5b">+30</text>
+<text x="480" y="245" class="big" text-anchor="middle" fill="#2f7d5b">−30</text>
+<text x="620" y="245" class="big" text-anchor="middle" fill="#2f7d5b">+60</text>
+
+<rect x="40" y="268" width="720" height="46" rx="6" fill="#e8f2f6"/>
+<text x="60" y="297" class="l" text-anchor="start">占领中立点</text>
+<text x="360" y="297" class="big" text-anchor="middle" fill="#1f5d78">+20</text>
+<text x="480" y="297" class="big" text-anchor="middle" fill="#5b6875">0</text>
+<text x="620" y="297" class="big" text-anchor="middle" fill="#1f5d78">+20</text>
+
+<rect x="40" y="320" width="720" height="46" rx="6" fill="#f4f6f8"/>
+<text x="60" y="349" class="l" text-anchor="start">只拉白</text>
+<text x="360" y="349" class="big" text-anchor="middle" fill="#5b6875">0</text>
+<text x="480" y="349" class="big" text-anchor="middle" fill="#5b6875">0</text>
+<text x="620" y="349" class="big" text-anchor="middle" fill="#5b6875">0</text>
+
+<text x="40" y="396" class="s" text-anchor="start" fill="#b42318">丢一个点再抢回来，票差回到原点，但中间死的人、耗的时间、丢的载具都不会回来。</text>
+<text x="40" y="420" class="s" text-anchor="start" fill="#5b6875">丢点比丢一个 FOB 更伤：FOB 是 −20，丢点是 −60 摆动，还会让流血方向反转。</text>
+<text x="40" y="442" class="xs" text-anchor="start" fill="#5b6875">票差摆动 = 我方票池变化 − 敌方票池变化；拉白不结算，拉穿才结算。</text>
+</svg>

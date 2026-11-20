@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">复杂局面的十秒排序</title>
+<desc id="dsc">接敌后先扫描弹道、队形、退路、资源、指挥五项，再回答三个问题，最后只留一个主攻、有边界的牵制、预备组和一条退路。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs>
+  <marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker>
+</defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.xs{font-size:12px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">复杂局面：十秒扫描，三问定序，四项输出</text>
+
+<rect x="30" y="75" width="230" height="310" rx="14" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="46" y="105" class="l" text-anchor="start" fill="#1f5d78">十秒扫描</text>
+<rect x="46" y="122" width="198" height="40" rx="20" fill="#e8f2f6" stroke="#1f5d78"/>
+<text x="145" y="147" class="s" text-anchor="middle">弹道从哪个扇区来</text>
+<rect x="46" y="174" width="198" height="40" rx="20" fill="#e8f2f6" stroke="#1f5d78"/>
+<text x="145" y="199" class="s" text-anchor="middle">队形有没有被隔开</text>
+<rect x="46" y="226" width="198" height="40" rx="20" fill="#e8f2f6" stroke="#1f5d78"/>
+<text x="145" y="251" class="s" text-anchor="middle">身后二十米有掩体吗</text>
+<rect x="46" y="278" width="198" height="40" rx="20" fill="#e8f2f6" stroke="#1f5d78"/>
+<text x="145" y="303" class="s" text-anchor="middle">筒子、医疗还剩多少</text>
+<rect x="46" y="330" width="198" height="40" rx="20" fill="#e8f2f6" stroke="#1f5d78"/>
+<text x="145" y="355" class="s" text-anchor="middle">队长还能不能下令</text>
+
+<path d="M262 230 L280 230" fill="none" stroke="#1f5d78" stroke-width="2.5" marker-end="url(#ar-blue)"/>
+
+<rect x="288" y="75" width="224" height="310" rx="14" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="304" y="105" class="l" text-anchor="start" fill="#d97706">只回答三问</text>
+<rect x="304" y="122" width="192" height="66" rx="10" fill="#fff5e6" stroke="#d97706"/>
+<text x="400" y="148" class="s" text-anchor="middle">三十秒内谁最致命？</text>
+<text x="400" y="170" class="xs" text-anchor="middle" fill="#5b6875">最近的、正在包抄的优先</text>
+<rect x="304" y="200" width="192" height="66" rx="10" fill="#fff5e6" stroke="#d97706"/>
+<text x="400" y="226" class="s" text-anchor="middle">现在还能做什么？</text>
+<text x="400" y="248" class="xs" text-anchor="middle" fill="#5b6875">先贴掩体、断开枪线、拖伤员</text>
+<rect x="304" y="278" width="192" height="66" rx="10" fill="#fff5e6" stroke="#d97706"/>
+<text x="400" y="304" class="s" text-anchor="middle">从哪条线退？</text>
+<text x="400" y="326" class="xs" text-anchor="middle" fill="#5b6875">退路要比进攻路线先定</text>
+
+<path d="M514 230 L532 230" fill="none" stroke="#1f5d78" stroke-width="2.5" marker-end="url(#ar-blue)"/>
+
+<rect x="540" y="75" width="230" height="310" rx="14" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="556" y="105" class="l" text-anchor="start" fill="#2f7d5b">输出四项</text>
+<circle cx="566" cy="134" r="4" fill="#1f5d78"/>
+<text x="580" y="139" class="s" text-anchor="start">一个主攻方向</text>
+<circle cx="566" cy="180" r="4" fill="#1f5d78"/>
+<text x="580" y="185" class="s" text-anchor="start">牵制组带停止线</text>
+<circle cx="566" cy="226" r="4" fill="#1f5d78"/>
+<text x="580" y="231" class="s" text-anchor="start">预备组三到四人</text>
+<circle cx="566" cy="272" r="4" fill="#b42318"/>
+<text x="580" y="277" class="s" text-anchor="start">一条明确退路</text>
+<rect x="556" y="304" width="198" height="58" rx="10" fill="#eef7f2" stroke="#2f7d5b"/>
+<text x="655" y="328" class="xs" text-anchor="middle" fill="#2f7d5b">三个组平均分三个方向</text>
+<text x="655" y="348" class="xs" text-anchor="middle" fill="#2f7d5b">等于三个方向都不够</text>
+
+<text x="40" y="420" class="s" text-anchor="start" fill="#5b6875">扫描不是停顿，是把第一反应从开枪改成排序；排序完成再抬枪。</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">丛林手势与低频通信</title><desc id="dsc">握拳停、手掌下压蹲下、两指指眼注意方向、拍头顶发现敌军、挥手推进、画圈集合。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">手势沿队伍逐个回传</text>
+<g>
+<rect x="45" y="70" width="225" height="135" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<circle cx="110" cy="125" r="27" fill="#dce8ee" stroke="#1f5d78" stroke-width="3"/>
+<path d="M96 125 h28 M110 111 v28" stroke="#1f5d78" stroke-width="5"/>
+<text x="155" y="118" class="l" fill="#1f5d78">握拳举起</text>
+<text x="155" y="143" class="s">全体停止</text>
+<text x="155" y="165" class="s" fill="#5b6875">发现声响/轮廓</text>
+</g>
+<g>
+<rect x="285" y="70" width="225" height="135" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<circle cx="350" cy="125" r="27" fill="#e7f0ea" stroke="#2f7d5b" stroke-width="3"/>
+<path d="M332 112 h36 M340 125 h20 M348 138 h4" stroke="#2f7d5b" stroke-width="5"/>
+<text x="395" y="118" class="l" fill="#2f7d5b">手掌下压</text>
+<text x="395" y="143" class="s">蹲下 / 隐蔽</text>
+<text x="395" y="165" class="s" fill="#5b6875">降低轮廓</text>
+</g>
+<g>
+<rect x="525" y="70" width="235" height="135" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<circle cx="590" cy="125" r="27" fill="#f8ecd9" stroke="#d97706" stroke-width="3"/>
+<path d="M578 120 l12 -6 12 6 M590 114 v18" stroke="#d97706" stroke-width="4"/>
+<text x="635" y="118" class="l" fill="#d97706">两指指眼</text>
+<text x="635" y="143" class="s">注意该方向</text>
+<text x="635" y="165" class="s" fill="#5b6875">交接观察扇区</text>
+</g>
+<g>
+<rect x="45" y="220" width="225" height="135" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<circle cx="110" cy="275" r="27" fill="#f5e3e0" stroke="#b42318" stroke-width="3"/>
+<path d="M110 248 v20 M94 258 q16 -14 32 0" stroke="#b42318" stroke-width="4"/>
+<text x="155" y="268" class="l" fill="#b42318">拍头顶</text>
+<text x="155" y="293" class="s">发现敌军</text>
+<text x="155" y="315" class="s" fill="#5b6875">全组战斗准备</text>
+</g>
+<g>
+<rect x="285" y="220" width="225" height="135" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<circle cx="350" cy="275" r="27" fill="#e7f0ea" stroke="#2f7d5b" stroke-width="3"/>
+<path d="M330 285 q20 -30 40 0" stroke="#2f7d5b" stroke-width="4" fill="none"/>
+<path d="M365 272 l8 10 -13 2" stroke="#2f7d5b" stroke-width="3" fill="none"/>
+<text x="395" y="268" class="l" fill="#2f7d5b">手臂前挥</text>
+<text x="395" y="293" class="s">开始推进</text>
+<text x="395" y="315" class="s" fill="#5b6875">确认安全后</text>
+</g>
+<g>
+<rect x="525" y="220" width="235" height="135" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<circle cx="590" cy="275" r="27" fill="#dce8ee" stroke="#1f5d78" stroke-width="3"/>
+<path d="M590 255 a18 18 0 1 1 -12 6" stroke="#1f5d78" stroke-width="4" fill="none"/>
+<path d="M578 250 l-4 12 12 -2" stroke="#1f5d78" stroke-width="3" fill="none"/>
+<text x="635" y="268" class="l" fill="#1f5d78">手指画圈</text>
+<text x="635" y="293" class="s">到此集合</text>
+<text x="635" y="315" class="s" fill="#5b6875">收拢 / 改路线</text>
+</g>
+<rect x="45" y="375" width="715" height="50" rx="8" fill="#f8ecd9" stroke="#d97706" stroke-width="2"/>
+<text x="63" y="405" class="s" fill="#b42318">短哨：一声停、两声集合、三声撤离。约定后不临时改；无线电能不用就不用，必须用控制在十秒内。</text>
+<text x="40" y="440" class="s" fill="#5b6875">动作要夸张、慢，沿队伍逐个回传；中间的人负责重复，直到最后一人确认。</text>
+</svg>

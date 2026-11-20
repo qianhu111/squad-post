@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">成功率与票面的四象限</title><desc id="dsc">按成功率和票面大小分成四类行动：优先做、顺手做、只赌一次、不做。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}.q{font-size:15px;font-weight:700}</style>
+<text x="40" y="42" class="t" text-anchor="start">成功率 × 票面：先看期望，再看胆子</text>
+
+<rect x="150" y="80" width="290" height="150" fill="#eaf5ef" stroke="#ffffff" stroke-width="3"/>
+<rect x="440" y="80" width="290" height="150" fill="#e8f2f6" stroke="#ffffff" stroke-width="3"/>
+<rect x="150" y="230" width="290" height="150" fill="#fde8e6" stroke="#ffffff" stroke-width="3"/>
+<rect x="440" y="230" width="290" height="150" fill="#f4f6f8" stroke="#ffffff" stroke-width="3"/>
+
+<text x="170" y="112" class="q" text-anchor="start" fill="#2f7d5b">高成功 + 小票面</text>
+<text x="170" y="138" class="s" text-anchor="start">顺手做：中立点、孤立 FOB</text>
+<text x="170" y="160" class="s" text-anchor="start" fill="#5b6875">不影响防守、不拖时间才做</text>
+
+<text x="460" y="112" class="q" text-anchor="start" fill="#1f5d78">高成功 + 大票面</text>
+<text x="460" y="138" class="s" text-anchor="start">优先做：守点、拉穿弱守点</text>
+<text x="460" y="160" class="s" text-anchor="start" fill="#5b6875">期望最高，先抢这种机会</text>
+
+<text x="170" y="262" class="q" text-anchor="start" fill="#b42318">低成功 + 小票面</text>
+<text x="170" y="288" class="s" text-anchor="start">不做：残局摸点、单车突入</text>
+<text x="170" y="310" class="s" text-anchor="start" fill="#5b6875">输了赔人，赢了也不够本</text>
+
+<text x="460" y="262" class="q" text-anchor="start" fill="#b45309">低成功 + 大票面</text>
+<text x="460" y="288" class="s" text-anchor="start">只赌一次：强攻重兵点</text>
+<text x="460" y="310" class="s" text-anchor="start" fill="#5b6875">必须赌时再打，不能当稳定收益</text>
+
+<line x1="440" y1="80" x2="440" y2="380" stroke="#5b6875" stroke-width="2"/>
+<line x1="150" y1="230" x2="730" y2="230" stroke="#5b6875" stroke-width="2"/>
+<text x="440" y="404" class="s" text-anchor="middle" fill="#5b6875">票面小　←　→　票面大</text>
+<text x="118" y="230" class="s" text-anchor="middle" fill="#5b6875" transform="rotate(-90 118 230)">成功率高　←　→　低</text>
+
+<text x="40" y="434" class="s" text-anchor="start" fill="#5b6875">期望票值 = 成功率 × 成功净收益 + 失败率 × 失败损失；票面大不等于期望高。</text>
+</svg>

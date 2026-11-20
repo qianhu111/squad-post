@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">队包 60 秒波次</title><desc id="dsc">队包每 60 秒刷新一波，死在波次刚过等待最久，死在波次末尾等待最短。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}</style>
+<text x="40" y="42" class="t" text-anchor="start">队包波次：死在什么时间，等多久</text>
+<circle cx="250" cy="245" r="145" fill="none" stroke="#dfe6ee" stroke-width="16"/>
+<path d="M250 100 A145 145 0 0 1 395 245" fill="none" stroke="#2f7d5b" stroke-width="16"/>
+<path d="M395 245 A145 145 0 0 1 250 390" fill="none" stroke="#d97706" stroke-width="16"/>
+<path d="M250 390 A145 145 0 0 1 105 245" fill="none" stroke="#b42318" stroke-width="16"/>
+<path d="M105 245 A145 145 0 0 1 250 100" fill="none" stroke="#1f5d78" stroke-width="16"/>
+<circle cx="250" cy="100" r="8" fill="#16212b"/>
+<text x="250" y="82" class="s" text-anchor="middle">0 秒：波次刷新</text>
+<circle cx="395" cy="245" r="8" fill="#16212b"/>
+<text x="420" y="240" class="s" text-anchor="start">15 秒</text>
+<circle cx="250" cy="390" r="8" fill="#16212b"/>
+<text x="250" y="416" class="s" text-anchor="middle">30 秒</text>
+<circle cx="105" cy="245" r="8" fill="#16212b"/>
+<text x="80" y="240" class="s" text-anchor="end">45 秒</text>
+<circle cx="250" cy="100" r="14" fill="#b42318" opacity="0.85"/>
+<text x="250" y="106" class="s" text-anchor="middle" fill="#ffffff">60</text>
+
+<circle cx="323" cy="119" r="9" fill="#b42318"/>
+<text x="342" y="114" class="s" text-anchor="start" fill="#b42318">第 5 秒死：等约 55 秒</text>
+<circle cx="125" cy="173" r="9" fill="#2f7d5b"/>
+<text x="40" y="92" class="s" text-anchor="start" fill="#2f7d5b">50 秒死：等约 10 秒</text>
+
+<rect x="470" y="100" width="300" height="230" rx="14" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="492" y="134" class="l" text-anchor="start" fill="#1f5d78">三个数字</text>
+<text x="492" y="168" class="s" text-anchor="start">队包复活：60 秒一波</text>
+<text x="492" y="196" class="s" text-anchor="start">个人基础复活：30 秒</text>
+<text x="492" y="224" class="s" text-anchor="start">放置成功冷却：150 秒</text>
+<line x1="492" y1="246" x2="748" y2="246" stroke="#dfe6ee"/>
+<text x="492" y="274" class="s" text-anchor="start" fill="#b42318">波次刚过就送全队，</text>
+<text x="492" y="296" class="s" text-anchor="start" fill="#b42318">等于白等一整波。</text>
+<text x="492" y="318" class="s" text-anchor="start" fill="#5b6875">推进前先看一眼波次。</text>
+
+<text x="40" y="440" class="s" text-anchor="start" fill="#5b6875">大部队持续增援靠 HAB 的 45 秒基础等待；小队独立行动才靠队包波次。</text>
+</svg>

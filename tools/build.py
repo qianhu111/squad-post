@@ -1,0 +1,590 @@
+#!/usr/bin/env python3
+"""Build the static Youchai course site from source files.
+
+The output directory `dist/` is the publish root for Cloudflare Pages Direct
+Upload. No build service is used: this script runs locally and writes plain
+HTML/CSS/JS.
+"""
+
+from __future__ import annotations
+
+import html
+import json
+import re
+import shutil
+from pathlib import Path
+
+from markdown_lite import inline, render
+
+ROOT = Path(__file__).resolve().parents[1]
+SOURCE = ROOT / "source"
+DIST = ROOT / "dist"
+META_PATH = SOURCE / "meta.json"
+
+THEME_BOOT = """(function(){try{var k='youchai-theme';var s=localStorage.getItem(k);var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=s||(m?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}})();"""
+
+
+def e(value: object) -> str:
+    return html.escape(str(value), quote=True)
+
+
+QQ_GROUPS = [
+    ("邮差公会玩家群", "637704265", "玩家群"),
+    ("邮差好友公会新兵营", "914864419", "新兵营"),
+]
+
+
+def qq_link(num: str) -> str:
+    return (
+        "mqqapi://card/show_pslcard?src_type=internal&amp;version=1"
+        f"&amp;uin={num}&amp;card_type=group&amp;source=qrcode"
+    )
+
+
+def qq_footer() -> str:
+    links = "".join(
+        f'<a class="qq-group" href="{qq_link(num)}" aria-label="{e(name)} {num}，点击申请加群">'
+        f'<span>{e(name)}</span><span class="qq-num">{e(num)}</span></a>'
+        for name, num, _tag in QQ_GROUPS
+    )
+    return f"""<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><strong>邮差战队课程集</strong><span>由「邮差好友公会」制作</span></div>
+    <div class="footer-groups"><span class="footer-label">点击群号申请加群</span>{links}</div>
+  </div>
+</footer>"""
+
+
+def qq_cards() -> str:
+    cards = []
+    for name, num, tag in QQ_GROUPS:
+        cards.append(
+            f"""      <div class="qq-card">
+        <span class="qq-tag">{e(tag)}</span>
+        <strong>{e(name)}</strong>
+        <span class="qq-number">{e(num)}</span>
+        <div class="qq-actions">
+          <a class="qq-join" href="{qq_link(num)}">点击申请加群</a>
+          <button class="qq-copy" type="button" data-copy="{e(num)}">复制群号</button>
+        </div>
+      </div>"""
+        )
+    return "\n".join(cards)
+
+
+def load_meta() -> dict:
+    with META_PATH.open("r", encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def rel_root(depth: int) -> str:
+    return "../" * depth if depth else "./"
+
+
+def page_source(name: str) -> str:
+    path = SOURCE / "pages" / name
+    if not path.exists():
+        return ""
+    return path.read_text(encoding="utf-8")
+
+
+def write(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
+def stage_by_id(meta: dict, stage_id: str) -> dict:
+    for stage in meta["stages"]:
+        if stage["id"] == stage_id:
+            return stage
+    raise KeyError(stage_id)
+
+
+def course_by_num(meta: dict, num: int) -> dict | None:
+    for course in meta["courses"]:
+        if course["num"] == num:
+            return course
+    return None
+
+
+NAV_ICONS = {
+    "home": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>',
+    "book": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/></svg>',
+    "bolt": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>',
+    "check": '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>',
+}
+
+
+def nav_link(root: str, path: str, label: str, active: bool, icon: str) -> str:
+    marker = ' aria-current="page"' if active else ""
+    return f'<a href="{root}{path}"{marker}>{NAV_ICONS[icon]}<span>{label}</span></a>'
+
+
+def shell(
+    meta: dict,
+    *,
+    title: str,
+    description: str,
+    root: str,
+    body_page: str,
+    content: str,
+    aside: str = "",
+    breadcrumb: str = "",
+    is_course: bool = False,
+    prev_course: dict | None = None,
+    next_course: dict | None = None,
+    current_course: dict | None = None,
+) -> str:
+    site = meta["site"]
+    is_lesson = body_page in {c["id"] for c in meta["courses"]}
+    nav = "\n    ".join([
+        nav_link(root, "index.html", "首页", body_page == "home", "home"),
+        nav_link(root, "courses/index.html", "课程", body_page == "courses" or is_lesson, "book"),
+        nav_link(root, "reference/index.html", "速查", body_page in {"reference", "sources"}, "bolt"),
+        nav_link(root, "quiz/beginner.html", "能力自检 Ⅰ", body_page == "quiz-beginner", "check"),
+        nav_link(root, "quiz/advanced.html", "能力自检 Ⅱ", body_page == "quiz-advanced", "check"),
+    ])
+
+    crumb = f'<nav class="breadcrumb" aria-label="面包屑">{breadcrumb}</nav>' if breadcrumb else ""
+    sidebar = f'<aside class="sidebar">{aside}</aside>' if aside else ""
+    layout_class = "layout wrap with-sidebar" if aside else "layout wrap"
+
+    lesson_nav = ""
+    if is_course and (prev_course or next_course):
+        prev_html = ""
+        next_html = ""
+        if prev_course:
+            prev_html = (
+                f'<a id="prev-lesson" href="{root}{prev_course["file"]}">'
+                f'<span>← 上一课 · {e(prev_course["num"]):0>2}</span>'
+                f'<strong>{e(prev_course["title"])}</strong></a>'
+            )
+        else:
+            prev_html = '<span id="prev-lesson" class="disabled" aria-hidden="true"></span>'
+        if next_course:
+            next_html = (
+                f'<a id="next-lesson" class="next" href="{root}{next_course["file"]}">'
+                f'<span>下一课 · {e(next_course["num"]):0>2} →</span>'
+                f'<strong>{e(next_course["title"])}</strong></a>'
+            )
+        else:
+            next_html = '<span id="next-lesson" class="disabled next" aria-hidden="true"></span>'
+        lesson_nav = f'<div class="lesson-nav">{prev_html}{next_html}</div>'
+
+    marker = ""
+    if current_course:
+        marker = (
+            '<button class="visited-marker" type="button" data-visited-marker '
+            f'data-key="{e(current_course["id"])}" aria-label="标记本课完成">'
+            '<span class="marker-dot" aria-hidden="true"></span><span class="marker-text">标记完成</span></button>'
+        )
+
+    return f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{e(title)}｜{e(site['title'])}</title>
+<meta name="description" content="{e(description)}">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="{root}assets/css/site.css">
+<script>{THEME_BOOT}</script>
+</head>
+<body data-page="{e(body_page)}" data-root="{e(root)}">
+<a class="skip-link" href="#main">跳到正文</a>
+<div class="progress" id="progress" aria-hidden="true"><span></span></div>
+<header class="topbar">
+  <a class="brand" href="{root}index.html">邮差战队课程集 <span>/ Squad 10.6.x</span></a>
+  <nav class="topnav" aria-label="主导航">{nav}</nav>
+  <div class="top-actions">
+    <button class="icon-btn" id="search-open" type="button" aria-label="打开搜索" title="搜索（Ctrl/⌘ + K）">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+    </button>
+    <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅主题" title="切换深浅主题">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.4 0-.8-.1-1.2A7 7 0 0 1 12 3z"></path></svg>
+    </button>
+  </div>
+</header>
+{crumb}
+<div class="{layout_class}">
+  {sidebar}
+  <main class="content" id="main">
+{content}
+    {marker}
+    {lesson_nav}
+  </main>
+</div>
+{qq_footer()}
+<button class="backtop" id="backtop" type="button" aria-label="返回顶部">↑</button>
+<div class="search-panel" id="search-panel" role="dialog" aria-modal="true" aria-label="站内搜索" hidden>
+  <div class="search-backdrop" data-search-close></div>
+  <div class="search-box">
+    <div class="search-head">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input id="search-input" type="search" placeholder="搜索课次、标题、关键词…" autocomplete="off" aria-label="搜索关键词">
+      <button type="button" id="search-close" aria-label="关闭搜索">Esc</button>
+    </div>
+    <div class="search-results" id="search-results" aria-live="polite"></div>
+    <p class="search-hint">输入课次或关键词，例如“压制”“FOB”“迫击炮”。</p>
+  </div>
+</div>
+<script src="{root}assets/js/search-index.js"></script>
+<script src="{root}assets/js/site.js"></script>
+<script src="{root}assets/js/courses-data.js"></script>
+<script src="{root}assets/js/courses.js"></script>
+</body>
+</html>
+"""
+
+
+def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
+    source_path = ROOT / course["source"]
+    if not source_path.exists():
+        raise FileNotFoundError(f"Missing lesson source: {source_path}")
+    md = source_path.read_text(encoding="utf-8")
+    body = render(md)
+
+    stage = stage_by_id(meta, course["stage"])
+    num = f'{course["num"]:02d}'
+    idx = courses.index(course)
+    prev_course = courses[idx - 1] if idx > 0 else None
+    next_course = courses[idx + 1] if idx < len(courses) - 1 else None
+
+    crumb = (
+        f'<a href="../../index.html">首页</a><span>/</span>'
+        f'<a href="../index.html">学习阶梯</a><span>/</span>'
+        f'{e(stage["num"])} {e(stage["name"])}<span>/</span>'
+        f'第 {num} 课 {e(course["title"])}'
+    )
+
+    aside = f"""
+    <div class="sidebar-toggle" id="sidebar-toggle" type="button" role="button" tabindex="0" aria-expanded="false">目录与阶梯 <span>展开</span></div>
+    <div class="sidebar-inner" id="sidebar-inner">
+      <nav class="ladder" id="course-toc" aria-label="学习阶梯"></nav>
+      <nav class="local-toc" id="local-toc" aria-label="本课小节"></nav>
+    </div>"""
+
+    content = f"""    <p class="kicker">{e(stage['num'])} · {e(stage['name'])} · 第 {num} 课</p>
+    <h1>{e(course['title'])}</h1>
+    <p class="lead">{e(course['subtitle'])}</p>
+    <div class="lesson-meta">
+      <span class="pill">第 {num} 课 / 共 {len(courses):02d} 课</span>
+      <span class="pill">{e(stage['num'])} {e(stage['name'])}</span>
+      <span class="pill">预计 {e(course['minutes'])} 分钟</span>
+      <span class="pill">前置：{e(course['prereq'])}</span>
+    </div>
+    <div class="lesson-progress" id="lesson-progress" aria-label="本课进度"><span></span></div>
+    <article class="prose">
+{body}
+    </article>"""
+
+    return shell(
+        meta,
+        title=f'{num} {course["title"]}',
+        description=f'{course["title"]}：{course["subtitle"]}。{stage["num"]}{stage["name"]}第 {num} 课。',
+        root="../../",
+        body_page=course["id"],
+        content=content,
+        aside=aside,
+        breadcrumb=crumb,
+        is_course=True,
+        prev_course=prev_course,
+        next_course=next_course,
+        current_course=course,
+    )
+
+
+def stage_cards(meta: dict, root: str) -> str:
+    cards = []
+    for stage in meta["stages"]:
+        first = next(c for c in meta["courses"] if c["stage"] == stage["id"])
+        cards.append(
+            f"""      <a class="stage-card" href="{root}{first['file']}">
+        <span class="stage-num">{e(stage['num'])}</span>
+        <h3>{e(stage['name'])}</h3>
+        <p class="stage-range">第 {e(stage['range'])} 课</p>
+        <p>{e(stage['summary'])}</p>
+        <span class="stage-link">从第 {first['num']:02d} 课开始 →</span>
+      </a>"""
+        )
+    return "\n".join(cards)
+
+
+def course_rows(meta: dict, root: str) -> str:
+    parts = []
+    for stage in meta["stages"]:
+        parts.append(f'      <tr class="stage-row"><th colspan="4">{e(stage["num"])} · {e(stage["name"])}（{e(stage["range"])}）</th></tr>')
+        for course in [c for c in meta["courses"] if c["stage"] == stage["id"]]:
+            parts.append(
+                f"""      <tr>
+        <td class="num">{course['num']:02d}</td>
+        <td><a href="{root}{course['file']}">{e(course['title'])}</a></td>
+        <td>{e(course['subtitle'])}</td>
+        <td class="minutes">{e(course['minutes'])} 分钟</td>
+      </tr>"""
+            )
+    return "\n".join(parts)
+
+
+def build_home(meta: dict) -> str:
+    notes = page_source("home.md")
+    extra = render(notes) if notes.strip() else ""
+    content = f"""    <header class="hero">
+      <div class="hero-bg" style="background-image:url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/393380/ss_62314ae7cc786d5f4ce67f191d37e9a1520d4cb4.1920x1080.jpg?t=1792423549')"></div>
+      <div class="hero-inner">
+        <p class="kicker">POST Courses · Squad 10.6.x</p>
+        <h1>先把第一局打明白，<br>再把队伍带起来。</h1>
+        <p class="lead">36 课按六阶战场能力阶梯连续展开：先会活下来，再会看战场，接着理解复活与票账，最后学会带队、协同和复盘。</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="./courses/beginner/01-first-match.html">从第 01 课开始</a>
+          <a class="btn ghost" href="./courses/index.html">查看完整阶梯</a>
+        </div>
+        <div class="hero-meta"><span>36 课</span><span>六阶能力阶梯</span><span>2 套能力自检</span><span>由邮差好友公会制作</span></div>
+      </div>
+    </header>
+    <section class="intro-section">
+      <h2 id="home-s1">一条连续的成长路线</h2>
+      <p>36 课串成一条从第一次进服到带队复盘的成长路线。你只需要从第 01 课往前走：每一阶解决一类问题，每一课都留给你可以直接带进下一局的动作。</p>
+      <div class="stage-grid">
+{stage_cards(meta, './')}
+      </div>
+      <div class="takeaway">顺序学习就从第 01 课开始；带着问题回来，就按课次跳到对应阶段。</div>
+    </section>
+    <section class="intro-section">
+      <h2 id="home-s2">完整课程表</h2>
+      <div class="table-wrap course-table"><table>
+        <thead><tr><th>课次</th><th>标题</th><th>一句话目标</th><th>时长</th></tr></thead>
+        <tbody>
+{course_rows(meta, './')}
+        </tbody>
+      </table></div>
+    </section>
+{extra}
+    <section class="intro-section tools-section">
+      <h2 id="home-s3">顺便带上的工具</h2>
+      <div class="tool-grid">
+        <a class="tool-card" href="./reference/index.html"><strong>速查表</strong><span>票值、复活、压制、报点模板，一页查完。</span></a>
+        <a class="tool-card" href="./reference/sources.html"><strong>资料说明</strong><span>每课根据哪些材料改写，哪些材料只作背景。</span></a>
+        <a class="tool-card" href="./quiz/beginner.html"><strong>能力自检 Ⅰ</strong><span>个人基础、观察报点与资源规则。</span></a>
+        <a class="tool-card" href="./quiz/advanced.html"><strong>能力自检 Ⅱ</strong><span>小队行动、专业协同与指挥复盘。</span></a>
+      </div>
+    </section>
+    <section class="intro-section qq-section">
+      <h2 id="home-s4">加入邮差好友公会</h2>
+      <p>课程集由邮差好友公会制作和维护。想跟队实战、找人带第一局，或者刚进游戏需要问路，点下面的群卡片直接申请加群。</p>
+      <div class="qq-grid">
+{qq_cards()}
+      </div>
+      <div class="takeaway">加群时说明“看到课程集来的”，管理员会把你分到合适的群。</div>
+    </section>"""
+    return shell(
+        meta,
+        title="首页",
+        description=meta["site"]["description"],
+        root="./",
+        body_page="home",
+        content=content,
+    )
+
+
+def build_courses_index(meta: dict) -> str:
+    parts = []
+    for stage in meta["stages"]:
+        courses = [c for c in meta["courses"] if c["stage"] == stage["id"]]
+        cards = []
+        for c in courses:
+            cards.append(
+                f"""        <a class="course-card" href="../{c['file']}">
+          <span class="course-num">{c['num']:02d}</span>
+          <span class="course-body"><strong>{e(c['title'])}</strong><span>{e(c['subtitle'])}</span></span>
+          <span class="course-time">{e(c['minutes'])}′</span>
+        </a>"""
+            )
+        parts.append(
+            f"""    <section class="stage-section" id="{e(stage['id'])}">
+      <div class="stage-head">
+        <span class="stage-num">{e(stage['num'])}</span>
+        <div><h2>{e(stage['name'])}</h2><p>{e(stage['summary'])}</p></div>
+        <span class="stage-range">第 {e(stage['range'])} 课</span>
+      </div>
+      <div class="course-list">
+{chr(10).join(cards)}
+      </div>
+      <div class="takeaway">{e(stage['name'])}这一阶的重点：{e(stage['summary'])}</div>
+    </section>"""
+        )
+    content = """    <p class="kicker">学习阶梯 · 36 课</p>
+    <h1>从会活下来，到能带队复盘</h1>
+    <p class="lead">全站按一条连续的六阶能力阶梯组织。课次是全局编号，上一课 / 下一课也按这条顺序切换。</p>
+    <div class="note"><b>怎么用</b>第一次学按 01 → 36 顺序走；已经打过一段时间，可以先做两套能力自检，缺哪课补哪课；准备带训练时重点看第四阶到第六阶。</div>
+""" + "\n".join(parts)
+    return shell(
+        meta,
+        title="课程总览",
+        description="邮差战队课程集完整课程表：六阶能力阶梯，36 课由浅入深。",
+        root="../",
+        body_page="courses",
+        content=content,
+    )
+
+
+def build_markdown_page(meta: dict, *, source_name: str, out: str, title: str, desc: str, root: str, body_page: str) -> str:
+    md = page_source(source_name)
+    if not md.strip():
+        raise FileNotFoundError(f"Missing page source: {source_name}")
+    return shell(meta, title=title, description=desc, root=root, body_page=body_page, content=render(md))
+
+
+def build_quiz(meta: dict, *, source_name: str, out: str, title: str, desc: str, root: str, body_page: str, intro: str) -> str:
+    path = SOURCE / "pages" / source_name
+    if not path.exists():
+        raise FileNotFoundError(f"Missing quiz source: {path}")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    questions = data.get("questions", [])
+    blocks = []
+    for i, q in enumerate(questions, start=1):
+        options = "".join(
+            f'<li{" class=correct" if j == q["answer"] else ""}>{e(chr(65 + j))}. {inline(opt)}</li>'
+            for j, opt in enumerate(q["options"])
+        )
+        explain = q.get("explain", "")
+        explain_html = f'<p class="quiz-explain">{inline(explain)}</p>' if explain else ""
+        blocks.append(
+            f"""      <details>
+        <summary>{i}. {inline(q['q'])}</summary>
+        <ol class="quiz-options">{options}</ol>
+        <p class="quiz-answer">答：{e(chr(65 + q['answer']))}。{inline(q.get('answer_text', q['options'][q['answer']]))}</p>
+        {explain_html}
+      </details>"""
+        )
+    content = f"""    <p class="kicker">能力自检</p>
+    <h1>{e(title)}</h1>
+    <p class="lead">{e(desc)}</p>
+    <div class="note"><b>怎么用</b>先自己回答，再展开答案。错题回到对应课次重看一遍，下一局只练一个动作。</div>
+    <div class="quiz-list">
+{chr(10).join(blocks)}
+    </div>
+    <div class="takeaway">自检不是考试排名，是找出下一局最值得练的那一个动作。</div>"""
+    return shell(meta, title=title, description=desc, root=root, body_page=body_page, content=content)
+
+
+def build_js(meta: dict) -> None:
+    courses_payload = {
+        "stages": [
+            {"id": s["id"], "num": s["num"], "name": s["name"], "range": s["range"]}
+            for s in meta["stages"]
+        ],
+        "courses": [
+            {
+                "num": c["num"],
+                "id": c["id"],
+                "stage": c["stage"],
+                "file": c["file"],
+                "title": c["title"],
+                "subtitle": c["subtitle"],
+                "minutes": c["minutes"],
+                "goal": c["goal"],
+                "keywords": c["keywords"],
+                "prereq": c["prereq"],
+            }
+            for c in meta["courses"]
+        ],
+    }
+    search_payload = [
+        {
+            "num": c["num"],
+            "id": c["id"],
+            "stage": stage_by_id(meta, c["stage"])["name"],
+            "title": c["title"],
+            "subtitle": c["subtitle"],
+            "path": c["file"],
+            "keywords": c["keywords"],
+        }
+        for c in meta["courses"]
+    ]
+    write(DIST / "assets/js/courses-data.js", "window.YOUCHAI_COURSES = " + json.dumps(courses_payload, ensure_ascii=False, indent=2) + ";\n")
+    write(DIST / "assets/js/search-index.js", "window.YOUCHAI_SEARCH_INDEX = " + json.dumps(search_payload, ensure_ascii=False, indent=2) + ";\n")
+
+
+def copy_static() -> None:
+    for rel in ["assets/css/site.css", "assets/js/site.js", "assets/js/courses.js"]:
+        src = SOURCE / "static" / rel.replace("assets/", "")
+        if not src.exists():
+            raise FileNotFoundError(f"Missing static source: {src}")
+        dst = DIST / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(src, dst)
+    images_src = SOURCE / "static" / "images"
+    if images_src.is_dir():
+        shutil.copytree(images_src, DIST / "assets/images", dirs_exist_ok=True)
+    headers_src = ROOT / "_headers"
+    if headers_src.exists():
+        shutil.copyfile(headers_src, DIST / "_headers")
+    else:
+        write(DIST / "_headers", "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n\n/*.html\n  Cache-Control: max-age=0, must-revalidate\n\n/assets/*\n  Cache-Control: public, max-age=604800\n")
+
+
+def main() -> None:
+    meta = load_meta()
+    courses = meta["courses"]
+    DIST.mkdir(parents=True, exist_ok=True)
+
+    write(DIST / "index.html", build_home(meta))
+    write(DIST / "404.html", build_markdown_page(
+        meta,
+        source_name="404.md",
+        out="404.html",
+        title="页面不存在",
+        desc="这个页面不存在，回到课程阶梯继续学习。",
+        root="./",
+        body_page="404",
+    ))
+    write(DIST / "courses/index.html", build_courses_index(meta))
+    for course in courses:
+        target = DIST / course["file"]
+        write(target, build_course(meta, course, courses))
+    write(DIST / "reference/index.html", build_markdown_page(
+        meta,
+        source_name="reference.md",
+        out="reference/index.html",
+        title="速查表",
+        desc="Squad 票数、复活、压制、队包、迫击炮刻度与报点模板速查。",
+        root="../",
+        body_page="reference",
+    ))
+    write(DIST / "reference/sources.html", build_markdown_page(
+        meta,
+        source_name="sources.md",
+        out="reference/sources.html",
+        title="资料说明",
+        desc="邮差战队课程集如何把 33 份教材改写为 36 课。",
+        root="../",
+        body_page="sources",
+    ))
+    write(DIST / "quiz/beginner.html", build_quiz(
+        meta,
+        source_name="quiz-beginner.json",
+        out="quiz/beginner.html",
+        title="能力自检 Ⅰ：个人基础",
+        desc="个人基础、观察报点、复活与资源规则。",
+        root="../",
+        body_page="quiz-beginner",
+        intro="",
+    ))
+    write(DIST / "quiz/advanced.html", build_quiz(
+        meta,
+        source_name="quiz-advanced.json",
+        out="quiz/advanced.html",
+        title="能力自检 Ⅱ：小队指挥",
+        desc="小队行动、专业协同与指挥复盘。",
+        root="../",
+        body_page="quiz-advanced",
+        intro="",
+    ))
+    build_js(meta)
+    copy_static()
+    print(f"built {len(courses)} lessons and {7 + len(courses)} HTML pages into {DIST}")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">训练闭环</title>
+<desc id="dsc">从诊断、训练卡、考核、处方到复测的五步训练闭环，每一步都要有次数、分数或通过线。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs>
+  <marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker>
+</defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.xs{font-size:12px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">训练闭环：诊断 → 训练卡 → 考核 → 处方 → 复测</text>
+
+<circle cx="400" cy="235" r="145" fill="none" stroke="#dfe6ee" stroke-width="2" stroke-dasharray="6 6"/>
+<path d="M400 90 A145 145 0 1 1 399 90" fill="none" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+
+<circle cx="400" cy="235" r="54" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="400" y="230" class="l" text-anchor="middle" fill="#1f5d78">可数</text>
+<text x="400" y="250" class="xs" text-anchor="middle" fill="#5b6875">次数 · 分数 · 通过率</text>
+
+<circle cx="400" cy="90" r="38" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="400" y="96" class="s" text-anchor="middle">诊断</text>
+
+<circle cx="538" cy="190" r="38" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="538" y="196" class="s" text-anchor="middle">训练卡</text>
+
+<circle cx="485" cy="352" r="38" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="485" y="358" class="s" text-anchor="middle">考核</text>
+
+<circle cx="315" cy="352" r="38" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="315" y="358" class="s" text-anchor="middle">处方</text>
+
+<circle cx="262" cy="190" r="38" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="262" y="196" class="s" text-anchor="middle">复测</text>
+
+<text x="585" y="140" class="xs" text-anchor="start" fill="#5b6875">目标 · 场地 · 流程</text>
+<text x="585" y="158" class="xs" text-anchor="start" fill="#5b6875">指标 · 补救</text>
+<text x="470" y="410" class="xs" text-anchor="middle" fill="#5b6875">0/1/2 锚点 · 双人打表</text>
+<text x="300" y="410" class="xs" text-anchor="middle" fill="#5b6875">一周一个主项</text>
+<text x="225" y="120" class="xs" text-anchor="start" fill="#5b6875">同图同任务</text>
+<text x="225" y="138" class="xs" text-anchor="start" fill="#5b6875">只换注入方向</text>
+
+<text x="40" y="432" class="s" text-anchor="start" fill="#5b6875">训练不是“打一局看看”：每一轮都要留下数字，下一轮只改一个变量。</text>
+</svg>

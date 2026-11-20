@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">补给链四环</title><desc id="dsc">补给点装车、补给卡运输、FOB 三十米内卸货、HAB 与弹药箱和维修站使用。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}</style>
+<text x="40" y="42" class="t" text-anchor="start">补给链：四个环，缺一环就断</text>
+
+<rect x="30" y="120" width="150" height="110" rx="12" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="105" y="152" class="l" text-anchor="middle" fill="#1f5d78">补给点</text>
+<text x="105" y="178" class="s" text-anchor="middle">主基地 / 据点</text>
+<text x="105" y="200" class="s" text-anchor="middle" fill="#5b6875">固定装填</text>
+
+<rect x="230" y="120" width="150" height="110" rx="12" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+<text x="305" y="152" class="l" text-anchor="middle" fill="#b45309">补给卡</text>
+<text x="305" y="178" class="s" text-anchor="middle">移动仓库</text>
+<text x="305" y="200" class="s" text-anchor="middle" fill="#5b6875">建材 + 弹药</text>
+
+<rect x="430" y="120" width="150" height="110" rx="12" fill="#ffffff" stroke="#2f7d5b" stroke-width="2"/>
+<text x="505" y="152" class="l" text-anchor="middle" fill="#2f7d5b">FOB 电台</text>
+<text x="505" y="178" class="s" text-anchor="middle">收货点</text>
+<text x="505" y="200" class="s" text-anchor="middle" fill="#5b6875">150 米建造圈</text>
+
+<rect x="630" y="120" width="140" height="110" rx="12" fill="#ffffff" stroke="#b42318" stroke-width="2"/>
+<text x="700" y="152" class="l" text-anchor="middle" fill="#b42318">前线设施</text>
+<text x="700" y="178" class="s" text-anchor="middle">HAB / 弹药箱</text>
+<text x="700" y="200" class="s" text-anchor="middle" fill="#5b6875">维修站 / 工事</text>
+
+<line x1="180" y1="175" x2="222" y2="175" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<line x1="380" y1="175" x2="422" y2="175" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<line x1="580" y1="175" x2="622" y2="175" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+
+<text x="201" y="112" class="s" text-anchor="middle" fill="#5b6875">装车</text>
+<text x="401" y="112" class="s" text-anchor="middle" fill="#5b6875">运输</text>
+<text x="601" y="112" class="s" text-anchor="middle" fill="#5b6875">30 米内卸货</text>
+
+<rect x="230" y="258" width="350" height="52" rx="10" fill="#fff2dd" stroke="#d97706"/>
+<text x="405" y="281" class="s" text-anchor="middle" fill="#b45309">补给卡必须停在电台 30 米内才能装卸</text>
+<text x="405" y="300" class="s" text-anchor="middle" fill="#5b6875">直升机同样要落在 30 米内，低空慢速</text>
+
+<rect x="30" y="334" width="740" height="76" rx="12" fill="#fde8e6" stroke="#b42318"/>
+<text x="50" y="360" class="l" text-anchor="start" fill="#b42318">断环的四种方式</text>
+<text x="50" y="384" class="s" text-anchor="start">车被毁、路线被封、补给点丢掉、根本没有司机。</text>
+<text x="50" y="404" class="s" text-anchor="start" fill="#5b6875">任何一环断掉，前线会在几分钟内出现“没建材、没弹、没绷带”的连锁反应。</text>
+
+<text x="40" y="440" class="xs" text-anchor="start" fill="#5b6875">补给卡被毁只扣 5 票，但整车货和这条线的连续性一起没了。</text>
+</svg>

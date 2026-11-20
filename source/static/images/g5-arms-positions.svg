@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">小队四个关键位置</title><desc id="dsc">筒子站侧翼、机枪守路口高点、特射上高处远观、医疗在队伍中间偏后。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d97706"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:17px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">四个位置，四种任务</text>
+<rect x="40" y="62" width="470" height="300" rx="12" fill="#eef3f6" stroke="#c7d3dc" stroke-width="2"/>
+<rect x="330" y="62" width="70" height="300" fill="#dfe8ee"/>
+<text x="365" y="90" class="s" text-anchor="middle" fill="#5b6875">公路</text>
+<rect x="70" y="85" width="120" height="80" rx="6" fill="#e8e2d6" stroke="#8a7a63" stroke-width="2"/>
+<text x="130" y="130" class="s" text-anchor="middle" fill="#7a6a53">临街楼</text>
+<rect x="70" y="250" width="100" height="70" rx="6" fill="#e8e2d6" stroke="#8a7a63" stroke-width="2"/>
+<text x="120" y="290" class="s" text-anchor="middle" fill="#7a6a53">院墙</text>
+<path d="M410 300 C450 280 455 210 420 180" fill="none" stroke="#8a7a63" stroke-width="3"/>
+<path d="M410 300 C445 290 460 240 440 220" fill="none" stroke="#8a7a63" stroke-width="2"/>
+<text x="450" y="300" class="s" fill="#7a6a53">高地</text>
+<circle cx="250" cy="205" r="16" fill="#1f5d78"/><text x="250" y="210" class="s" text-anchor="middle" fill="#fff">队</text>
+<circle cx="290" cy="235" r="12" fill="#2f7d5b"/><text x="290" y="240" class="s" text-anchor="middle" fill="#fff">医</text>
+<circle cx="215" cy="240" r="12" fill="#5b6875"/><text x="215" y="245" class="s" text-anchor="middle" fill="#fff">步</text>
+<circle cx="155" cy="205" r="15" fill="#b42318"/><text x="155" y="210" class="s" text-anchor="middle" fill="#fff">筒</text>
+<text x="155" y="187" class="s" text-anchor="middle" fill="#b42318">侧翼独立射位</text>
+<line x1="168" y1="200" x2="320" y2="150" stroke="#b42318" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ar-blue)"/>
+<text x="245" y="145" class="s" text-anchor="middle" fill="#b42318">看载具来路</text>
+<circle cx="430" cy="150" r="15" fill="#d97706"/><text x="430" y="155" class="s" text-anchor="middle" fill="#fff">机</text>
+<text x="430" y="128" class="s" text-anchor="middle" fill="#d97706">路口 / 高点</text>
+<line x1="427" y1="166" x2="390" y2="245" stroke="#d97706" stroke-width="3" marker-end="url(#ar-amber)"/>
+<circle cx="400" cy="105" r="15" fill="#1f5d78"/><text x="400" y="110" class="s" text-anchor="middle" fill="#fff">特</text>
+<text x="400" y="83" class="s" text-anchor="middle" fill="#1f5d78">高处远观</text>
+<line x1="250" y1="218" x2="270" y2="225" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="300" y="270" class="s" fill="#2f7d5b">医疗在尖兵后 15–25 米</text>
+<rect x="530" y="70" width="230" height="290" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="550" y="98" class="m" fill="#16212b">站位口诀</text>
+<circle cx="556" cy="126" r="7" fill="#b42318"/><text x="572" y="131" class="s">筒子：侧翼、独立、能退</text>
+<circle cx="556" cy="158" r="7" fill="#d97706"/><text x="572" y="163" class="s">机枪：路口、高点、短点射</text>
+<circle cx="556" cy="190" r="7" fill="#1f5d78"/><text x="572" y="195" class="s">特射：高处、远界、先报点</text>
+<circle cx="556" cy="222" r="7" fill="#2f7d5b"/><text x="572" y="227" class="s">医疗：中间偏后、有掩体</text>
+<circle cx="556" cy="254" r="7" fill="#5b6875"/><text x="572" y="259" class="s">步枪：尖兵、补弹、清房</text>
+<line x1="550" y1="282" x2="740" y2="282" stroke="#c7d3dc" stroke-width="2"/>
+<text x="550" y="308" class="s" fill="#5b6875">位置错了，兵种还在，</text>
+<text x="550" y="330" class="s" fill="#5b6875">作用已经没了。</text>
+<text x="40" y="395" class="s" fill="#5b6875">四个位置不是四个跟班：每个人都要知道自己在看哪一片、打完往哪退。</text>
+</svg>

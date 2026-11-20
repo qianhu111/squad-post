@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">反载具的四个条件与弱点</title><desc id="dsc">武器、角度、距离、退路四个条件缺一不可；优先打履带、轮胎、引擎和尾部。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker><marker id="ar-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#5b6875"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:17px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">打哪里，什么时候打</text>
+<rect x="70" y="95" width="360" height="150" rx="22" fill="#dce8ee" stroke="#1f5d78" stroke-width="3"/>
+<rect x="110" y="115" width="120" height="70" rx="10" fill="#b9cdd8" stroke="#1f5d78" stroke-width="2"/>
+<text x="170" y="155" class="s" text-anchor="middle" fill="#1f5d78">炮塔正面</text>
+<rect x="230" y="130" width="180" height="80" rx="8" fill="#c9d8e1" stroke="#1f5d78" stroke-width="2"/>
+<text x="320" y="175" class="s" text-anchor="middle" fill="#1f5d78">车体</text>
+<rect x="86" y="195" width="330" height="26" rx="8" fill="#7f8c98"/>
+<text x="250" y="214" class="s" text-anchor="middle" fill="#fff">履带 / 轮胎</text>
+<rect x="370" y="138" width="48" height="60" rx="8" fill="#e3b7ae" stroke="#b42318" stroke-width="3"/>
+<text x="394" y="130" class="s" text-anchor="middle" fill="#b42318">尾部引擎</text>
+<circle cx="120" cy="230" r="18" fill="#b42318" opacity="0.25"/>
+<text x="120" y="255" class="s" text-anchor="middle" fill="#b42318">打履带</text>
+<line x1="150" y1="220" x2="210" y2="208" stroke="#b42318" stroke-width="3" marker-end="url(#ar-red)"/>
+<text x="390" y="75" class="s" text-anchor="middle" fill="#b42318">侧面、后部、顶部才是机会</text>
+<rect x="470" y="70" width="290" height="310" rx="12" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="490" y="98" class="m">四个条件，缺一不打</text>
+<rect x="490" y="112" width="250" height="52" rx="8" fill="#eef3f6"/>
+<text x="505" y="134" class="s" fill="#1f5d78">1 武器：LAT / HAT / 地雷 / C4</text>
+<text x="505" y="154" class="s" fill="#5b6875">步枪只打无装甲车轮胎</text>
+<rect x="490" y="172" width="250" height="52" rx="8" fill="#eef3f6"/>
+<text x="505" y="194" class="s" fill="#1f5d78">2 角度：侧、后、顶、履带</text>
+<text x="505" y="214" class="s" fill="#5b6875">正面开火等于挠痒</text>
+<rect x="490" y="232" width="250" height="52" rx="8" fill="#eef3f6"/>
+<text x="505" y="254" class="s" fill="#1f5d78">3 距离：LAT 100–200 米</text>
+<text x="505" y="274" class="s" fill="#5b6875">HAT 300–500 米，太远别浪费</text>
+<rect x="490" y="292" width="250" height="52" rx="8" fill="#eef3f6"/>
+<text x="505" y="314" class="s" fill="#1f5d78">4 退路：3 秒能缩回掩体</text>
+<text x="505" y="334" class="s" fill="#5b6875">装填时不要探头看战果</text>
+<text x="70" y="290" class="m" fill="#b42318">目标：先打停，再打炸</text>
+<text x="70" y="315" class="s" fill="#5b6875">履带断 = 固定炮台；引擎坏 = 跑不掉。</text>
+<text x="70" y="337" class="s" fill="#5b6875">打得动比打得穿更有价值。</text>
+<circle cx="405" cy="360" r="20" fill="#2f7d5b"/><text x="405" y="366" class="s" text-anchor="middle" fill="#fff">烟</text>
+<text x="435" y="366" class="s" fill="#2f7d5b">打完 20–50 米换位</text>
+<line x1="390" y1="350" x2="330" y2="330" stroke="#2f7d5b" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#ar-green)"/>
+<text x="40" y="420" class="s" fill="#5b6875">条件不齐就报点：方位、距离、车型、数量、朝向，比一发打不穿的火箭更有用。</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">路线卡与三段式</title><desc id="dsc">路线卡包含起点、两个检查点、火力支援位、目标进入点、撤离集结点；分接近、冲击、巩固三段。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">路线卡：每个人走散后都能回答下一步去哪</text>
+<rect x="45" y="65" width="710" height="250" rx="12" fill="#eef3e8" stroke="#a9bfae" stroke-width="2"/>
+<path d="M90 265 C150 230 180 200 240 190 S330 160 380 130 S470 105 520 120" fill="none" stroke="#1f5d78" stroke-width="4" stroke-dasharray="8 5" marker-end="url(#ar-blue)"/>
+<circle cx="90" cy="265" r="11" fill="#1f5d78"/><text x="75" y="290" class="s" fill="#1f5d78">起点</text>
+<circle cx="240" cy="190" r="10" fill="#2f7d5b"/><text x="225" y="215" class="s" fill="#2f7d5b">CP1</text>
+<circle cx="380" cy="130" r="10" fill="#2f7d5b"/><text x="365" y="115" class="s" fill="#2f7d5b">CP2</text>
+<circle cx="520" cy="120" r="12" fill="#b42318"/><text x="505" y="98" class="s" fill="#b42318">目标进入点</text>
+<rect x="120" y="150" width="55" height="38" rx="5" fill="#f8ecd9" stroke="#d97706" stroke-width="2"/>
+<text x="147" y="174" class="s" text-anchor="middle" fill="#d97706">支援位</text>
+<line x1="175" y1="169" x2="235" y2="185" stroke="#d97706" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="620" cy="175" r="11" fill="#8a7a63"/><text x="638" y="180" class="s" fill="#8a7a63">撤离集结点</text>
+<path d="M520 132 Q560 160 610 172" fill="none" stroke="#8a7a63" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="260" y="275" class="s" fill="#1f5d78">接近段：隐蔽、慢</text>
+<text x="420" y="235" class="s" fill="#b42318">冲击段：短</text>
+<text x="570" y="245" class="s" fill="#8a7a63">巩固段：硬掩体</text>
+<rect x="45" y="330" width="710" height="55" rx="8" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="63" y="355" class="m" fill="#1f5d78">五项必须写在图上</text>
+<text x="63" y="375" class="s">起点 · 两个检查点 · 火力支援位 · 目标进入点 · 撤离集结点</text>
+<text x="45" y="420" class="s" fill="#b42318">冲击段超过 50 米加烟幕；巩固段没有硬掩体，占下来也守不住。</text>
+<text x="45" y="440" class="s" fill="#5b6875">时间按战术速度算，绕路 100 米换有掩体的路线，通常比直线硬冲快。</text>
+</svg>

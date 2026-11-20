@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">迫击炮目标信息的四个字段</title><desc id="dsc">目标类型、参照物、距离、紧迫性四字段齐全，炮手才能直接装填。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:17px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">四字段：炮手听完就能装填</text>
+<rect x="50" y="70" width="160" height="120" rx="10" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<text x="130" y="98" class="l" text-anchor="middle" fill="#1f5d78">目标类型</text>
+<text x="130" y="124" class="s" text-anchor="middle">步兵班 / 机枪阵地</text>
+<text x="130" y="146" class="s" text-anchor="middle">FOB / 静止载具</text>
+<text x="130" y="172" class="s" text-anchor="middle" fill="#b42318">不是“有人”</text>
+<rect x="225" y="70" width="160" height="120" rx="10" fill="#e7f0ea" stroke="#2f7d5b" stroke-width="2"/>
+<text x="305" y="98" class="l" text-anchor="middle" fill="#2f7d5b">参照物</text>
+<text x="305" y="124" class="s" text-anchor="middle">加油站东南侧</text>
+<text x="305" y="146" class="s" text-anchor="middle">清真寺北墙外</text>
+<text x="305" y="172" class="s" text-anchor="middle" fill="#b42318">不是“前面”</text>
+<rect x="400" y="70" width="160" height="120" rx="10" fill="#f8ecd9" stroke="#d97706" stroke-width="2"/>
+<text x="480" y="98" class="l" text-anchor="middle" fill="#d97706">距离</text>
+<text x="480" y="124" class="s" text-anchor="middle">距参照物 200 米</text>
+<text x="480" y="146" class="s" text-anchor="middle">或距我 350 米</text>
+<text x="480" y="172" class="s" text-anchor="middle" fill="#b42318">不是“不远”</text>
+<rect x="575" y="70" width="175" height="120" rx="10" fill="#f5e3e0" stroke="#b42318" stroke-width="2"/>
+<text x="662" y="98" class="l" text-anchor="middle" fill="#b42318">紧迫性</text>
+<text x="662" y="124" class="s" text-anchor="middle">正在架枪封锁</text>
+<text x="662" y="146" class="s" text-anchor="middle">正在撤退 / 可等</text>
+<text x="662" y="172" class="s" text-anchor="middle" fill="#b42318">不是“快点”</text>
+<line x1="210" y1="130" x2="220" y2="130" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="385" y1="130" x2="395" y2="130" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="560" y1="130" x2="570" y2="130" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="50" y="220" width="700" height="76" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="70" y="248" class="m" fill="#5b6875">完整呼叫：</text>
+<text x="70" y="276" class="s" fill="#16212b">“迫击炮，这里是 A 组观察手，D6 加油站东南 200 米，敌方步兵三人正在架机枪封锁路口，优先处理。”</text>
+<rect x="50" y="315" width="330" height="85" rx="10" fill="#eef3f6" stroke="#c7d3dc" stroke-width="2"/>
+<text x="70" y="341" class="m" fill="#1f5d78">频道忙时压缩</text>
+<text x="70" y="368" class="s">“加油站东南 200，步兵三人架枪，优先。”</text>
+<text x="70" y="390" class="s" fill="#b42318">四个字段一个都不能丢。</text>
+<rect x="400" y="315" width="350" height="85" rx="10" fill="#f5e3e0" stroke="#b42318" stroke-width="2"/>
+<text x="420" y="341" class="m" fill="#b42318">常见残缺</text>
+<text x="420" y="368" class="s">“有人”“前面”“不远”“快点”</text>
+<text x="420" y="390" class="s" fill="#5b6875">炮手只能猜，第一发就浪费。</text>
+<text x="40" y="432" class="s" fill="#5b6875">目标相对参照物，不是目标相对你；两种说法在频道里像，算出来可能差几百米。</text>
+</svg>

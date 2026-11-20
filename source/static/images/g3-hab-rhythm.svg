@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">HAB 建造、修复与复活节奏</title><desc id="dsc">HAB 建成或修复后锁定 30 秒，点击复活后基础等待 45 秒，压制解除后还要 30 秒恢复。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}</style>
+<text x="40" y="42" class="t" text-anchor="start">HAB 的三段计时：锁定、等待、恢复</text>
+<text x="40" y="68" class="s" text-anchor="start" fill="#5b6875">30 秒锁定和 45 秒基础等待是两段不同的计时，不要混在一起算。</text>
+
+<text x="40" y="112" class="l" text-anchor="start">建成 / 修复后</text>
+<rect x="180" y="92" width="180" height="34" rx="7" fill="#fde8e6" stroke="#b42318" stroke-width="2"/>
+<text x="270" y="114" class="s" text-anchor="middle" fill="#b42318">锁定 30 秒，不能复活</text>
+<rect x="360" y="92" width="360" height="34" rx="7" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="540" y="114" class="s" text-anchor="middle" fill="#2f7d5b">30 秒后可以被选中</text>
+
+<text x="40" y="192" class="l" text-anchor="start">点击复活后</text>
+<rect x="180" y="172" width="360" height="34" rx="7" fill="#dbeaf2" stroke="#1f5d78" stroke-width="2"/>
+<text x="360" y="194" class="s" text-anchor="middle" fill="#1f5d78">基础复活等待 45 秒</text>
+<rect x="540" y="172" width="180" height="34" rx="7" fill="#e6ebf0" stroke="#5b6875" stroke-width="2"/>
+<text x="630" y="194" class="s" text-anchor="middle" fill="#5b6875">部署 + 出门</text>
+
+<text x="40" y="272" class="l" text-anchor="start">压制解除后</text>
+<rect x="180" y="252" width="180" height="34" rx="7" fill="#fde8e6" stroke="#b42318" stroke-width="2"/>
+<text x="270" y="274" class="s" text-anchor="middle" fill="#b42318">恢复 30 秒，仍不能复活</text>
+<rect x="360" y="252" width="360" height="34" rx="7" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="540" y="274" class="s" text-anchor="middle" fill="#2f7d5b">敌人离开或倒地后开始计时</text>
+
+<line x1="180" y1="330" x2="720" y2="330" stroke="#5b6875" stroke-width="2"/>
+<line x1="180" y1="322" x2="180" y2="338" stroke="#5b6875" stroke-width="2"/>
+<line x1="360" y1="322" x2="360" y2="338" stroke="#5b6875" stroke-width="2"/>
+<line x1="540" y1="322" x2="540" y2="338" stroke="#5b6875" stroke-width="2"/>
+<line x1="720" y1="322" x2="720" y2="338" stroke="#5b6875" stroke-width="2"/>
+<text x="180" y="356" class="s" text-anchor="middle" fill="#5b6875">0 秒</text>
+<text x="360" y="356" class="s" text-anchor="middle" fill="#5b6875">30 秒</text>
+<text x="540" y="356" class="s" text-anchor="middle" fill="#5b6875">60 秒</text>
+<text x="720" y="356" class="s" text-anchor="middle" fill="#5b6875">90 秒</text>
+
+<rect x="40" y="378" width="720" height="48" rx="10" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="60" y="400" class="s" text-anchor="start" fill="#1f5d78">报点要说“还有多久可用”，不要只说“兵站好了”。</text>
+<text x="60" y="418" class="s" text-anchor="start" fill="#5b6875">修 HAB 要在敌人回填前的间隙，修完同样有 30 秒锁定。</text>
+<text x="40" y="442" class="xs" text-anchor="start" fill="#5b6875">HAB 造价 500 建材；基础复活 45 秒；建好或修复后 30 秒才能复活。</text>
+</svg>

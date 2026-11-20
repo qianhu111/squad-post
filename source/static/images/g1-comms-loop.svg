@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">通话闭环与频道分工</title><desc id="dsc">观察、判断、报告、复述、行动、回报的闭环，以及附近、小队、指挥三个频道。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker><marker id="ar-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#6b4c9a"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:14px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">一条信息走完五步，才算传到了</text>
+<rect x="40" y="75" width="130" height="55" rx="9" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="105" y="108" class="l" text-anchor="middle" fill="#1f5d78">观察</text>
+<line x1="170" y1="102" x2="205" y2="102" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<rect x="210" y="75" width="130" height="55" rx="9" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="275" y="108" class="l" text-anchor="middle" fill="#1f5d78">判断</text>
+<line x1="340" y1="102" x2="375" y2="102" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<rect x="380" y="75" width="130" height="55" rx="9" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="445" y="108" class="l" text-anchor="middle" fill="#d97706">报告</text>
+<line x1="510" y1="102" x2="545" y2="102" stroke="#d97706" stroke-width="3" marker-end="url(#ar-blue)"/>
+<rect x="550" y="75" width="130" height="55" rx="9" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="615" y="108" class="l" text-anchor="middle" fill="#d97706">复述确认</text>
+<line x1="615" y1="130" x2="615" y2="165" stroke="#2f7d5b" stroke-width="3" marker-end="url(#ar-green)"/>
+<rect x="550" y="170" width="130" height="55" rx="9" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="615" y="203" class="l" text-anchor="middle" fill="#2f7d5b">行动</text>
+<line x1="550" y1="197" x2="445" y2="197" stroke="#2f7d5b" stroke-width="3" marker-end="url(#ar-green)"/>
+<rect x="380" y="170" width="130" height="55" rx="9" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="445" y="203" class="l" text-anchor="middle" fill="#2f7d5b">回报结果</text>
+<text x="40" y="268" class="l" text-anchor="start">频道只选一个说完整</text>
+<rect x="40" y="285" width="220" height="60" rx="9" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="150" y="310" class="l" text-anchor="middle" fill="#1f5d78">附近语音 · 按住 V</text>
+<text x="150" y="332" class="s" text-anchor="middle">数十米内队友，三秒警告</text>
+<rect x="290" y="285" width="220" height="60" rx="9" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="400" y="310" class="l" text-anchor="middle" fill="#2f7d5b">小队语音 · 按住 B</text>
+<text x="400" y="332" class="s" text-anchor="middle">全队，无视距离，主工作频道</text>
+<rect x="540" y="285" width="220" height="60" rx="9" fill="#fdecea" stroke="#b42318" stroke-width="2"/>
+<text x="650" y="310" class="l" text-anchor="middle" fill="#b42318">指挥频道 · 按住 G</text>
+<text x="650" y="332" class="s" text-anchor="middle">仅队长与指挥官，跨队协调</text>
+<text x="40" y="385" class="s" text-anchor="start" fill="#6b4c9a">小键盘 1–9：队长之间单独通话，能私聊就不要占指挥频道。</text>
+<text x="40" y="415" class="s" text-anchor="start" fill="#5b6875">报点先分级：P1 接敌立刻打断，P2 排队，P3 等空档，P4 打完再说。</text>
+</svg>

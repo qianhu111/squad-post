@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">态势感知闭环</title><desc id="dsc">感知、理解、预判、行动、回报五步循环，最后回到感知。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:14px}.m{font-size:15px}.l{font-size:17px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">态势感知闭环：看到、看懂、猜下一步、行动、回报</text>
+<ellipse cx="400" cy="238" rx="235" ry="138" fill="none" stroke="#dfe6ee" stroke-width="2" stroke-dasharray="7 7"/>
+<path d="M400 100 A138 138 0 1 1 399 100" fill="none" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<circle cx="400" cy="238" r="58" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="400" y="236" class="l" text-anchor="middle" fill="#1f5d78">态势</text>
+<text x="400" y="258" class="s" text-anchor="middle" fill="#1f5d78">不是感觉</text>
+<rect x="330" y="62" width="140" height="58" rx="12" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="400" y="88" class="l" text-anchor="middle">感知</text>
+<text x="400" y="108" class="s" text-anchor="middle">听到、看到、数清</text>
+<rect x="520" y="158" width="160" height="58" rx="12" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="600" y="184" class="l" text-anchor="middle">理解</text>
+<text x="600" y="204" class="s" text-anchor="middle">他在做什么、为什么</text>
+<rect x="505" y="310" width="160" height="58" rx="12" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="585" y="336" class="l" text-anchor="middle">预判</text>
+<text x="585" y="356" class="s" text-anchor="middle">30 秒后可能去哪</text>
+<rect x="300" y="348" width="140" height="58" rx="12" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+<text x="370" y="374" class="l" text-anchor="middle" fill="#d97706">行动</text>
+<text x="370" y="394" class="s" text-anchor="middle">打、躲、绕、报</text>
+<rect x="110" y="238" width="150" height="58" rx="12" fill="#ffffff" stroke="#2f7d5b" stroke-width="2"/>
+<text x="185" y="264" class="l" text-anchor="middle" fill="#2f7d5b">回报</text>
+<text x="185" y="284" class="s" text-anchor="middle">结果告诉队友</text>
+<rect x="140" y="112" width="150" height="58" rx="12" fill="#ffffff" stroke="#5b6875" stroke-width="2"/>
+<text x="215" y="138" class="l" text-anchor="middle" fill="#5b6875">对照</text>
+<text x="215" y="158" class="s" text-anchor="middle">地图、声音、目视</text>
+<text x="40" y="432" class="s" text-anchor="start" fill="#5b6875">回报不是可选项；少了最后一步，队友不知道那条信息已经用完。</text>
+</svg>

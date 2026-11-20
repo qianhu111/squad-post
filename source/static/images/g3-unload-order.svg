@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">卸货优先级</title><desc id="dsc">常规卸货顺序为建材、弹药、医疗、修车，被压制缺反载具时弹药提前。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d97706"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}</style>
+<text x="40" y="42" class="t" text-anchor="start">卸货顺序：先让前线活，再让前线打</text>
+
+<rect x="40" y="88" width="500" height="58" rx="10" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="62" y="112" class="l" text-anchor="start" fill="#1f5d78">1　建材</text>
+<text x="62" y="134" class="s" text-anchor="start">电台、HAB、弹药箱、维修站——没有建材就没有复活点</text>
+
+<rect x="40" y="160" width="500" height="58" rx="10" fill="#fff2dd" stroke="#d97706" stroke-width="2"/>
+<text x="62" y="184" class="l" text-anchor="start" fill="#b45309">2　弹药</text>
+<text x="62" y="206" class="s" text-anchor="start">弹药箱、机枪弹、榴弹、反坦克弹——没有弹药就守不住</text>
+
+<rect x="40" y="232" width="500" height="58" rx="10" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="62" y="256" class="l" text-anchor="start" fill="#2f7d5b">3　医疗</text>
+<text x="62" y="278" class="s" text-anchor="start">绷带、医疗包——跟着弹药箱走，优先补医疗兵</text>
+
+<rect x="40" y="304" width="500" height="58" rx="10" fill="#e6ebf0" stroke="#5b6875" stroke-width="2"/>
+<text x="62" y="328" class="l" text-anchor="start" fill="#5b6875">4　修车</text>
+<text x="62" y="350" class="s" text-anchor="start">维修站修复载具——重要，但不该挤掉前两项</text>
+
+<line x1="290" y1="146" x2="290" y2="158" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<line x1="290" y1="218" x2="290" y2="230" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<line x1="290" y1="290" x2="290" y2="302" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+
+<rect x="570" y="88" width="200" height="120" rx="12" fill="#fde8e6" stroke="#b42318" stroke-width="2"/>
+<text x="590" y="116" class="l" text-anchor="start" fill="#b42318">例外</text>
+<text x="590" y="142" class="s" text-anchor="start">点位被压制、</text>
+<text x="590" y="164" class="s" text-anchor="start">急需反载具弹药</text>
+<text x="590" y="190" class="s" text-anchor="start" fill="#b42318">→ 弹药提前</text>
+<path d="M570 150 C552 150 552 190 545 190" fill="none" stroke="#b42318" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ar-amber)"/>
+
+<rect x="570" y="232" width="200" height="130" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="590" y="260" class="l" text-anchor="start" fill="#1f5d78">卸完就走</text>
+<text x="590" y="286" class="s" text-anchor="start">车停掩体后，车头朝外</text>
+<text x="590" y="308" class="s" text-anchor="start">司机留守，一人卸一人警戒</text>
+<text x="590" y="330" class="s" text-anchor="start" fill="#b42318">别在路口摆仓库</text>
+
+<text x="40" y="400" class="s" text-anchor="start" fill="#5b6875">常规：建材 → 弹药 → 医疗 → 修车。被压制：弹药先上，先让筒子有弹。</text>
+<text x="40" y="424" class="s" text-anchor="start" fill="#5b6875">建材决定“能不能活”，弹药决定“能不能打”，医疗和修车排在后面。</text>
+<text x="40" y="444" class="xs" text-anchor="start" fill="#5b6875">进攻 FOB 最低 1100 建材：电台 500 + HAB 500 + 弹药箱 100。</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">等高线与地貌</title><desc id="dsc">等高线密集表示陡坡，V 字指向上游是谷，山脊两侧有反斜面，最高点不一定最好。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">等高线读三件事：陡缓、脊谷、死角</text>
+<rect x="40" y="62" width="430" height="330" rx="12" fill="#eef3e8" stroke="#a9bfae" stroke-width="2"/>
+<g fill="none" stroke="#8a7a63" stroke-width="2">
+<ellipse cx="220" cy="210" rx="130" ry="95"/>
+<ellipse cx="220" cy="210" rx="100" ry="72"/>
+<ellipse cx="220" cy="210" rx="70" ry="50"/>
+<ellipse cx="220" cy="210" rx="40" ry="28"/>
+<ellipse cx="220" cy="210" rx="15" ry="10"/>
+</g>
+<text x="220" y="214" class="s" text-anchor="middle" fill="#7a6a53">山顶</text>
+<path d="M350 210 Q390 180 420 140" fill="none" stroke="#8a7a63" stroke-width="2"/>
+<text x="380" y="230" class="s" fill="#7a6a53">山脊</text>
+<path d="M90 300 L150 300 L190 330 L240 330" fill="none" stroke="#1f5d78" stroke-width="3"/>
+<text x="105" y="320" class="s" fill="#1f5d78">V 指向上游 = 谷</text>
+<path d="M330 300 q20 25 40 0 q20 -25 40 0" fill="none" stroke="#d97706" stroke-width="3"/>
+<text x="350" y="290" class="s" fill="#d97706">鞍部</text>
+<circle cx="180" cy="280" r="10" fill="#b42318"/><text x="180" y="305" class="s" text-anchor="middle" fill="#b42318">山顶：暴露</text>
+<circle cx="300" cy="205" r="10" fill="#2f7d5b"/><text x="318" y="200" class="s" fill="#2f7d5b">侧坡：可藏</text>
+<path d="M310 215 q30 20 10 45" fill="none" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="325" y="255" class="s" fill="#2f7d5b">反斜面死角</text>
+<rect x="490" y="62" width="275" height="330" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="510" y="90" class="m" fill="#1f5d78">判读口诀</text>
+<text x="510" y="118" class="s">线密 = 陡，线疏 = 缓</text>
+<text x="510" y="142" class="s">同心圆 = 山顶</text>
+<text x="510" y="166" class="s">V 字指上游 = 谷</text>
+<text x="510" y="190" class="s">两组同心圆之间 = 鞍部</text>
+<text x="510" y="214" class="s">等高线不等于掩体</text>
+<text x="510" y="238" class="s">等高线不等于植被</text>
+<line x1="510" y1="256" x2="745" y2="256" stroke="#c7d3dc" stroke-width="2"/>
+<text x="510" y="282" class="m" fill="#b42318">选择</text>
+<text x="510" y="308" class="s">主阵地：次高点 + 反斜面</text>
+<text x="510" y="332" class="s">观察位：能看目标、不站脊线</text>
+<text x="510" y="356" class="s">接近路：沿谷底、冲沟、林线</text>
+<text x="510" y="380" class="s" fill="#5b6875">陡坡绕行，别把体力耗在爬坡上。</text>
+<text x="40" y="430" class="s" fill="#5b6875">山顶给视野，也把你的轮廓交给四面；反斜面给隐蔽，但要有人替你看着山脊。</text>
+</svg>

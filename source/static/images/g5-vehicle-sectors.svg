@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">车内观察扇区与盲区</title><desc id="dsc">司机看十二点路面，车长看十点到两点远方，炮手看射界，乘客分担两侧和车尾。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">一辆车，四双眼睛，十二个方向</text>
+<rect x="55" y="70" width="420" height="330" rx="12" fill="#eef3e8" stroke="#a9bfae" stroke-width="2"/>
+<rect x="210" y="165" width="110" height="150" rx="18" fill="#dce8ee" stroke="#1f5d78" stroke-width="3"/>
+<text x="265" y="248" class="s" text-anchor="middle" fill="#1f5d78">车体</text>
+<path d="M265 315 L265 370" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-blue)"/>
+<text x="265" y="390" class="s" text-anchor="middle" fill="#5b6875">车头</text>
+<path d="M320 180 C390 150 430 180 420 250" fill="#b42318" opacity="0.14"/>
+<path d="M210 180 C140 150 100 180 110 250" fill="#b42318" opacity="0.14"/>
+<text x="390" y="135" class="s" fill="#b42318">侧后盲区</text>
+<text x="90" y="135" class="s" fill="#b42318">侧后盲区</text>
+<path d="M265 165 L265 100" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<text x="265" y="92" class="s" text-anchor="middle" fill="#1f5d78">司机：12 点路面</text>
+<path d="M225 165 L165 110" stroke="#2f7d5b" stroke-width="3" marker-end="url(#ar-blue)"/>
+<text x="145" y="100" class="s" text-anchor="middle" fill="#2f7d5b">车长：10–2 点</text>
+<path d="M305 165 L365 110" stroke="#2f7d5b" stroke-width="3" marker-end="url(#ar-blue)"/>
+<text x="380" y="100" class="s" text-anchor="middle" fill="#2f7d5b">炮手：射界</text>
+<path d="M210 290 L160 320" stroke="#d97706" stroke-width="3" marker-end="url(#ar-blue)"/>
+<text x="130" y="335" class="s" fill="#d97706">乘客：左后</text>
+<path d="M320 290 L370 320" stroke="#d97706" stroke-width="3" marker-end="url(#ar-blue)"/>
+<text x="375" y="335" class="s" fill="#d97706">乘客：右后</text>
+<rect x="500" y="70" width="265" height="330" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="520" y="98" class="m" fill="#1f5d78">分工说死</text>
+<text x="520" y="126" class="s">司机：路面、车距、倒车</text>
+<text x="520" y="150" class="s">车长：地图、两侧、远方</text>
+<text x="520" y="174" class="s">炮手：射界、窗口、载具</text>
+<text x="520" y="198" class="s">乘客：左右后，至少一人看尾</text>
+<line x1="520" y1="216" x2="745" y2="216" stroke="#c7d3dc" stroke-width="2"/>
+<text x="520" y="242" class="m" fill="#b42318">车头前 5–10 米</text>
+<text x="520" y="266" class="s">车尾后 10 米</text>
+<text x="520" y="290" class="s">车侧 3–5 米</text>
+<text x="520" y="314" class="s">炮塔顶：都是死角</text>
+<line x1="520" y1="332" x2="745" y2="332" stroke="#c7d3dc" stroke-width="2"/>
+<text x="520" y="358" class="s" fill="#5b6875">引擎声盖住脚步和枪声，</text>
+<text x="520" y="378" class="s" fill="#5b6875">车组常“听见爆炸才知道被贴”。</text>
+<text x="40" y="430" class="s" fill="#5b6875">全车都盯正前方，等于把侧后交给敌人；分扇区，不要三个人同时喊“左左左”。</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">新兵训练闭环</title><desc id="dsc">测一局、选一个主题、重复五到十局、验收、记录、再进入下一项的训练循环。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker><marker id="ar-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d97706"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:14px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">一局一个主题：让场次变成进度</text>
+<rect x="50" y="80" width="150" height="70" rx="10" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="125" y="111" class="l" text-anchor="middle" fill="#1f5d78">测一局</text>
+<text x="125" y="133" class="s" text-anchor="middle">找出最低的一项</text>
+<line x1="200" y1="115" x2="245" y2="115" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<rect x="250" y="80" width="150" height="70" rx="10" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="325" y="111" class="l" text-anchor="middle" fill="#d97706">选一个主题</text>
+<text x="325" y="133" class="s" text-anchor="middle">只写一个指标</text>
+<line x1="400" y1="115" x2="445" y2="115" stroke="#d97706" stroke-width="3" marker-end="url(#ar-amber)"/>
+<rect x="450" y="80" width="150" height="70" rx="10" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="525" y="111" class="l" text-anchor="middle" fill="#d97706">练 5–10 局</text>
+<text x="525" y="133" class="s" text-anchor="middle">每局只改一个细节</text>
+<line x1="600" y1="115" x2="645" y2="115" stroke="#d97706" stroke-width="3" marker-end="url(#ar-green)"/>
+<rect x="650" y="80" width="110" height="70" rx="10" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="705" y="111" class="l" text-anchor="middle" fill="#2f7d5b">验收</text>
+<text x="705" y="133" class="s" text-anchor="middle">次数/秒数/米数</text>
+<line x1="700" y1="150" x2="700" y2="200" stroke="#2f7d5b" stroke-width="3" marker-end="url(#ar-green)"/>
+<rect x="540" y="205" width="240" height="75" rx="10" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="660" y="236" class="l" text-anchor="middle" fill="#2f7d5b">记录一行</text>
+<text x="660" y="258" class="s" text-anchor="middle">目标 · 结果 · 判定 · 下局改法</text>
+<line x1="540" y1="242" x2="440" y2="242" stroke="#5b6875" stroke-width="3" marker-end="url(#ar-blue)"/>
+<rect x="250" y="205" width="185" height="75" rx="10" fill="#eef2f5" stroke="#5b6875" stroke-width="2"/>
+<text x="342" y="236" class="l" text-anchor="middle">连续 3 局 0 分？</text>
+<text x="342" y="258" class="s" text-anchor="middle">回对应课程重学要领</text>
+<line x1="250" y1="242" x2="165" y2="242" stroke="#5b6875" stroke-width="3" marker-end="url(#ar-blue)"/>
+<rect x="50" y="205" width="110" height="75" rx="10" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="105" y="236" class="l" text-anchor="middle" fill="#1f5d78">下一项</text>
+<text x="105" y="258" class="s" text-anchor="middle">一次只补一个</text>
+<rect x="50" y="320" width="710" height="80" rx="10" fill="#ffffff" stroke="#d9e2ea" stroke-width="2"/>
+<text x="70" y="348" class="l" text-anchor="start">五项可观察指标</text>
+<text x="70" y="376" class="s" text-anchor="start">报点 8 秒内齐全 · 换弹 0 次空枪 · 复活 0 次红色点 · 跟队脱离不超过 15 秒 · 命令复述 100%</text>
+<text x="40" y="430" class="s" text-anchor="start" fill="#5b6875">全部达标后进入下一课，不留在第一阶反复刷同一组动作。</text>
+</svg>

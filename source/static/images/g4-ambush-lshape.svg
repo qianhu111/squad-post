@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">L 形伏击与撤离路线</title><desc id="dsc">道路上的 L 形伏击阵地，封头、封尾、打侧面，两条撤离路线通向集结点。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:14px}.l{font-size:15px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="40" class="t" text-anchor="start">L 形伏击：封头、封尾、打侧面</text>
+
+<rect x="70" y="196" width="660" height="58" fill="#e8edf2"/>
+<line x1="70" y1="225" x2="730" y2="225" stroke="#8a97a5" stroke-width="2" stroke-dasharray="10 8"/>
+<text x="104" y="190" class="s" text-anchor="start" fill="#5b6875">敌人来向 →</text>
+<rect x="300" y="196" width="220" height="58" fill="#b42318" fill-opacity="0.14" stroke="#b42318" stroke-dasharray="5 4"/>
+<text x="410" y="222" class="s" text-anchor="middle" fill="#b42318">杀伤区 30–80 米</text>
+<text x="410" y="243" class="s" text-anchor="middle" fill="#b42318">头尾都进来再打</text>
+
+<line x1="520" y1="180" x2="520" y2="270" stroke="#d97706" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="520" y="172" class="s" text-anchor="middle" fill="#d97706">触发线</text>
+
+<circle cx="330" cy="165" r="14" fill="#1f5d78"/><text x="330" y="170" class="s" text-anchor="middle" fill="#ffffff">头</text>
+<circle cx="330" cy="285" r="14" fill="#1f5d78"/><text x="330" y="290" class="s" text-anchor="middle" fill="#ffffff">侧</text>
+<circle cx="505" cy="285" r="14" fill="#1f5d78"/><text x="505" y="290" class="s" text-anchor="middle" fill="#ffffff">尾</text>
+<line x1="330" y1="181" x2="330" y2="196" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="505" y1="270" x2="505" y2="255" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<line x1="346" y1="285" x2="380" y2="250" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+
+<path d="M310 300 C250 350 210 380 170 402" fill="none" stroke="#2f7d5b" stroke-width="3" marker-end="url(#ar-green)"/>
+<path d="M490 302 C500 350 540 380 585 398" fill="none" stroke="#2f7d5b" stroke-width="3" marker-end="url(#ar-green)"/>
+<circle cx="150" cy="408" r="12" fill="#2f7d5b"/><text x="150" y="413" class="s" text-anchor="middle" fill="#ffffff">集</text>
+<circle cx="605" cy="404" r="12" fill="#2f7d5b"/><text x="605" y="409" class="s" text-anchor="middle" fill="#ffffff">集</text>
+<text x="150" y="438" class="s" text-anchor="middle" fill="#2f7d5b">集结点 250–300 米</text>
+<text x="605" y="438" class="s" text-anchor="middle" fill="#2f7d5b">第二集结点 500 米</text>
+
+<text x="590" y="300" class="s" text-anchor="start" fill="#5b6875">打完 25–30 秒停火</text>
+<text x="590" y="320" class="s" text-anchor="start" fill="#5b6875">不捡装备、不补枪</text>
+<text x="40" y="72" class="s" text-anchor="start" fill="#5b6875">先撤最靠近敌人的一组，再撤火力组，最后队长和后卫。</text>
+</svg>

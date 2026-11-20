@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">迫击炮观察位与危险界</title><desc id="dsc">观察位选炮目线侧方，不站正后方或目标正前方；己方距目标五十米内要报危险界。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#5b6875"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:17px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">观察位：看得到目标，也要看得到落点</text>
+<path d="M40 330 Q180 260 300 320 T560 300 L760 330 L760 405 L40 405 Z" fill="#e3ece4" stroke="#a9bfae" stroke-width="2"/>
+<path d="M40 355 Q200 300 340 345 T620 335 L760 360" fill="none" stroke="#8a7a63" stroke-width="3"/>
+<circle cx="100" cy="330" r="16" fill="#1f5d78"/><text x="100" y="335" class="s" text-anchor="middle" fill="#fff">炮</text>
+<text x="100" y="310" class="s" text-anchor="middle" fill="#1f5d78">炮位（反斜面后）</text>
+<path d="M116 318 Q300 120 600 260" fill="none" stroke="#5b6875" stroke-width="2" stroke-dasharray="7 5"/>
+<circle cx="600" cy="262" r="20" fill="#b42318" opacity="0.18"/>
+<path d="M586 248 l28 28 M614 248 l-28 28" stroke="#b42318" stroke-width="4"/>
+<text x="600" y="235" class="s" text-anchor="middle" fill="#b42318">目标</text>
+<circle cx="600" cy="262" r="50" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="660" y="300" class="s" fill="#d97706">危险界 50 米</text>
+<circle cx="420" cy="180" r="15" fill="#2f7d5b"/><text x="420" y="185" class="s" text-anchor="middle" fill="#fff">观</text>
+<text x="420" y="160" class="s" text-anchor="middle" fill="#2f7d5b">观察位（侧方 100–200 米）</text>
+<line x1="435" y1="190" x2="570" y2="245" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="408" y1="192" x2="130" y2="325" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="270" y="250" class="s" fill="#2f7d5b">看目标</text>
+<text x="250" y="330" class="s" fill="#2f7d5b">看落点</text>
+<circle cx="480" cy="300" r="12" fill="#d97706"/><text x="480" y="305" class="s" text-anchor="middle" fill="#fff">落</text>
+<text x="505" y="305" class="s" fill="#d97706">落点：前后、左右各量一次</text>
+<rect x="40" y="70" width="250" height="105" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="58" y="96" class="m" fill="#b42318">不要站</text>
+<text x="58" y="122" class="s">炮目线正后方：落点被目标挡住</text>
+<text x="58" y="144" class="s">目标正前方：身处弹着区</text>
+<text x="58" y="166" class="s">山脊剪影 / 窗口正中</text>
+<rect x="310" y="70" width="230" height="105" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="328" y="96" class="m" fill="#2f7d5b">要报给炮手</text>
+<text x="328" y="122" class="s">观察位在目标西南 150 米</text>
+<text x="328" y="144" class="s">弹着区在我东北</text>
+<text x="328" y="166" class="s">己方距目标不足 50 米</text>
+<text x="40" y="432" class="s" fill="#5b6875">只露头不露身，看完就缩回；打完一轮换观察点，别让敌人顺着弹道摸上来。</text>
+</svg>

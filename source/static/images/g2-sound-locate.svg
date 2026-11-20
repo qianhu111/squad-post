@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">声音定位四步</title><desc id="dsc">停、转、数、对照四个步骤，把模糊的声音变成可报的方向。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:14px}.m{font-size:15px}.l{font-size:18px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">声音定位四步：先停、再转、多数两轮、最后对照</text>
+<rect x="24" y="86" width="172" height="270" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<circle cx="110" cy="126" r="24" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/><text x="110" y="133" class="l" text-anchor="middle" fill="#1f5d78">1</text>
+<text x="110" y="178" class="l" text-anchor="middle">停</text>
+<text x="110" y="212" class="s" text-anchor="middle">停止移动和射击</text>
+<text x="110" y="236" class="s" text-anchor="middle">让自己的声音先安静</text>
+<text x="110" y="276" class="s" text-anchor="middle" fill="#5b6875">1–2 秒就够</text>
+<rect x="212" y="86" width="172" height="270" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<circle cx="298" cy="126" r="24" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/><text x="298" y="133" class="l" text-anchor="middle" fill="#1f5d78">2</text>
+<text x="298" y="178" class="l" text-anchor="middle">转</text>
+<text x="298" y="212" class="s" text-anchor="middle">身体转向声源</text>
+<text x="298" y="236" class="s" text-anchor="middle">直到左右耳音量平衡</text>
+<text x="298" y="276" class="s" text-anchor="middle" fill="#5b6875">必要时左右各转一次</text>
+<path d="M186 221 h18" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<path d="M374 221 h18" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="400" y="86" width="172" height="270" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<circle cx="486" cy="126" r="24" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/><text x="486" y="133" class="l" text-anchor="middle" fill="#1f5d78">3</text>
+<text x="486" y="178" class="l" text-anchor="middle">数</text>
+<text x="486" y="212" class="s" text-anchor="middle">等声音重复 2–3 次</text>
+<text x="486" y="236" class="s" text-anchor="middle">记间隔和音量变化</text>
+<text x="486" y="276" class="s" text-anchor="middle" fill="#5b6875">变近、变快都是信息</text>
+<path d="M562 221 h18" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="588" y="86" width="188" height="270" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<circle cx="682" cy="126" r="24" fill="#fdf3e3" stroke="#d97706" stroke-width="2"/><text x="682" y="133" class="l" text-anchor="middle" fill="#d97706">4</text>
+<text x="682" y="178" class="l" text-anchor="middle">对照</text>
+<text x="682" y="212" class="s" text-anchor="middle">看地图、队友位置</text>
+<text x="682" y="236" class="s" text-anchor="middle">排除队友和回声</text>
+<text x="682" y="276" class="s" text-anchor="middle" fill="#5b6875">用第二声修正</text>
+<text x="40" y="402" class="m" text-anchor="start" fill="#5b6875">先让环境安静，再用重复声修正方向，最后用地图排除误判；不要听到声音就追过去。</text>
+<text x="40" y="430" class="s" text-anchor="start" fill="#5b6875">墙壁会反射声音，室内枪声可能听起来在另一个房间。</text>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">丛林节点与侧方观察位</title><desc id="dsc">小径交叉口、桥、空地、山脊都是节点；观察位放在节点侧方三十到五十米。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">节点不站人，观察位站侧方</text>
+<rect x="40" y="62" width="490" height="330" rx="12" fill="#e3ece4" stroke="#a9bfae" stroke-width="2"/>
+<path d="M70 360 Q180 280 250 240 T420 140 T510 80" fill="none" stroke="#b9a98f" stroke-width="12"/>
+<path d="M80 300 Q200 250 300 230 T490 210" fill="none" stroke="#b9a98f" stroke-width="7"/>
+<path d="M250 240 L250 120" stroke="#b9a98f" stroke-width="7"/>
+<text x="80" y="380" class="s" fill="#7a6a53">小径</text>
+<circle cx="250" cy="240" r="14" fill="#8a7a63"/><text x="250" y="268" class="s" text-anchor="middle" fill="#7a6a53">交叉口</text>
+<rect x="360" y="185" width="90" height="38" rx="6" fill="#dfe8ee" stroke="#1f5d78" stroke-width="2"/>
+<text x="405" y="210" class="s" text-anchor="middle" fill="#1f5d78">桥</text>
+<ellipse cx="150" cy="150" rx="55" ry="35" fill="#f4f1e6" stroke="#c9bfa3" stroke-width="2"/>
+<text x="150" y="155" class="s" text-anchor="middle" fill="#8a7a63">空地</text>
+<path d="M390 300 Q470 280 520 230" fill="none" stroke="#8a7a63" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="420" y="320" class="s" fill="#8a7a63">山脊</text>
+<circle cx="205" cy="290" r="10" fill="#2f7d5b"/><text x="205" y="315" class="s" text-anchor="middle" fill="#2f7d5b">观察位</text>
+<line x1="210" y1="282" x2="243" y2="250" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="190" y="345" class="s" fill="#b42318">30–50 米</text>
+<circle cx="320" cy="170" r="10" fill="#2f7d5b"/><text x="320" y="150" class="s" text-anchor="middle" fill="#2f7d5b">看桥</text>
+<line x1="328" y1="178" x2="365" y2="190" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="4 3"/>
+<circle cx="100" cy="120" r="10" fill="#2f7d5b"/><text x="100" y="103" class="s" text-anchor="middle" fill="#2f7d5b">看空地</text>
+<line x1="108" y1="128" x2="120" y2="140" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="4 3"/>
+<circle cx="465" cy="255" r="10" fill="#2f7d5b"/><text x="490" y="270" class="s" fill="#2f7d5b">看脊线侧方</text>
+<line x1="458" y1="248" x2="440" y2="232" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="4 3"/>
+<rect x="550" y="62" width="215" height="330" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="568" y="88" class="m" fill="#1f5d78">观察节奏</text>
+<text x="568" y="116" class="s">每 10–15 秒侧看一次</text>
+<text x="568" y="140" class="s">每 20–30 秒回头一次</text>
+<text x="568" y="164" class="s">转弯处停一下</text>
+<text x="568" y="188" class="s">每次交火后换尖兵</text>
+<line x1="568" y1="206" x2="745" y2="206" stroke="#c7d3dc" stroke-width="2"/>
+<text x="568" y="232" class="m" fill="#b42318">不要</text>
+<text x="568" y="258" class="s">站路口正中观察</text>
+<text x="568" y="282" class="s">站山脊线正中</text>
+<text x="568" y="306" class="s">走进空地再找掩体</text>
+<text x="568" y="330" class="s">所有人一起盯正面</text>
+<line x1="568" y1="344" x2="745" y2="344" stroke="#c7d3dc" stroke-width="2"/>
+<text x="568" y="368" class="s" fill="#5b6875">节点价值是提前知道</text>
+<text x="568" y="386" class="s" fill="#5b6875">谁在接近，不是占住它。</text>
+<text x="40" y="425" class="s" fill="#5b6875">站侧方，能看到节点，也能看到接近节点的两条路；站节点上反而被树线挡住。</text>
+</svg>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">命令链与频道</title>
+<desc id="dsc">指挥官、小队长、班长、队员四级命令链，对应指挥频道、小队频道与局部语音，以及紧急越级后补报的规则。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs>
+  <marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker>
+  <marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker>
+</defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.xs{font-size:12px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">命令链：命令向下，信息向上，一个声音</text>
+
+<rect x="290" y="72" width="220" height="54" rx="12" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="400" y="96" class="l" text-anchor="middle" fill="#1f5d78">指挥官</text>
+<text x="400" y="115" class="xs" text-anchor="middle" fill="#5b6875">定优先级、协调小队</text>
+
+<rect x="290" y="152" width="220" height="54" rx="12" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="400" y="176" class="l" text-anchor="middle" fill="#1f5d78">小队长</text>
+<text x="400" y="195" class="xs" text-anchor="middle" fill="#5b6875">决策、分配任务、对外协调</text>
+
+<rect x="290" y="232" width="220" height="54" rx="12" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="400" y="256" class="l" text-anchor="middle" fill="#1f5d78">班长</text>
+<text x="400" y="275" class="xs" text-anchor="middle" fill="#5b6875">过滤信息、带班行动</text>
+
+<rect x="290" y="312" width="220" height="54" rx="12" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="400" y="336" class="l" text-anchor="middle" fill="#1f5d78">队员</text>
+<text x="400" y="355" class="xs" text-anchor="middle" fill="#5b6875">报点、确认命令、执行</text>
+
+<path d="M368 128 L368 148" fill="none" stroke="#1f5d78" stroke-width="2.5" marker-end="url(#ar-blue)"/>
+<path d="M432 148 L432 128" fill="none" stroke="#5b6875" stroke-width="2.5" marker-end="url(#ar-blue)"/>
+<path d="M368 208 L368 228" fill="none" stroke="#1f5d78" stroke-width="2.5" marker-end="url(#ar-blue)"/>
+<path d="M432 228 L432 208" fill="none" stroke="#5b6875" stroke-width="2.5" marker-end="url(#ar-blue)"/>
+<path d="M368 288 L368 308" fill="none" stroke="#1f5d78" stroke-width="2.5" marker-end="url(#ar-blue)"/>
+<path d="M432 308 L432 288" fill="none" stroke="#5b6875" stroke-width="2.5" marker-end="url(#ar-blue)"/>
+<text x="400" y="143" class="xs" text-anchor="middle" fill="#5b6875">命令</text>
+<text x="400" y="223" class="xs" text-anchor="middle" fill="#5b6875">命令</text>
+<text x="400" y="303" class="xs" text-anchor="middle" fill="#5b6875">命令</text>
+
+<text x="535" y="90" class="s" text-anchor="start" fill="#1f5d78">指挥频道</text>
+<text x="535" y="110" class="xs" text-anchor="start" fill="#5b6875">各小队长 + 指挥官</text>
+<text x="535" y="170" class="s" text-anchor="start" fill="#1f5d78">指挥频道 + 小队频道</text>
+<text x="535" y="190" class="xs" text-anchor="start" fill="#5b6875">小队内部 + 对外协调</text>
+<text x="535" y="250" class="s" text-anchor="start" fill="#1f5d78">小队频道</text>
+<text x="535" y="270" class="xs" text-anchor="start" fill="#5b6875">队长 + 班长</text>
+<text x="535" y="330" class="s" text-anchor="start" fill="#1f5d78">局部语音 + 小队频道</text>
+<text x="535" y="350" class="xs" text-anchor="start" fill="#5b6875">身边队友 + 向上报点</text>
+
+<path d="M265 339 L265 102" fill="none" stroke="#b42318" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#ar-red)"/>
+<text x="252" y="220" class="xs" text-anchor="middle" fill="#b42318" transform="rotate(-90 252 220)">紧急越级 · 事后补报</text>
+
+<rect x="30" y="390" width="740" height="44" rx="10" fill="#fff5e6" stroke="#d97706"/>
+<text x="46" y="417" class="xs" text-anchor="start" fill="#16212b">不越级是默认；紧急越级先报警，随后补报直接上级；同一目标同一时间只允许一个指挥声源。</text>
+</svg>

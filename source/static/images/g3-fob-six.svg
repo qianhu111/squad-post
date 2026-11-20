@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">好 FOB 的六个条件</title><desc id="dsc">判断 FOB 位置的六个条件：隐蔽、坚固、多出口、能展开、能补给、不会被一锅端。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.n{font-size:22px;font-weight:800;fill:#1f5d78}</style>
+<text x="40" y="42" class="t" text-anchor="start">好 FOB 的六个条件</text>
+<text x="40" y="68" class="s" text-anchor="start" fill="#5b6875">六条互相牵制：先保能补给、能展开，再谈隐蔽和坚固。</text>
+
+<rect x="40" y="88" width="226" height="136" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="58" y="120" class="n" text-anchor="start">1</text><text x="86" y="119" class="l" text-anchor="start">隐蔽</text>
+<text x="58" y="150" class="s" text-anchor="start">不在公路边、不在天际线、</text>
+<text x="58" y="172" class="s" text-anchor="start">不在两点之间的必经线。</text>
+<text x="58" y="204" class="s" text-anchor="start" fill="#b42318">反例：兵站放在点与点的直线上</text>
+
+<rect x="287" y="88" width="226" height="136" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="305" y="120" class="n" text-anchor="start">2</text><text x="333" y="119" class="l" text-anchor="start">坚固</text>
+<text x="305" y="150" class="s" text-anchor="start">有顶、有厚墙，能挡迫击炮</text>
+<text x="305" y="172" class="s" text-anchor="start">和载具直射。</text>
+<text x="305" y="204" class="s" text-anchor="start" fill="#b42318">反例：树林空地、铁皮棚</text>
+
+<rect x="534" y="88" width="226" height="136" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="552" y="120" class="n" text-anchor="start">3</text><text x="580" y="119" class="l" text-anchor="start">多出口</text>
+<text x="552" y="150" class="s" text-anchor="start">至少两个方向能出来，</text>
+<text x="552" y="172" class="s" text-anchor="start">不被一条枪线封死。</text>
+<text x="552" y="204" class="s" text-anchor="start" fill="#b42318">反例：单门房间、死胡同</text>
+
+<rect x="40" y="244" width="226" height="136" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="58" y="276" class="n" text-anchor="start">4</text><text x="86" y="275" class="l" text-anchor="start">能展开</text>
+<text x="58" y="306" class="s" text-anchor="start">兵站到目标点之间有掩体群，</text>
+<text x="58" y="328" class="s" text-anchor="start">复活后能一段段往前挪。</text>
+<text x="58" y="360" class="s" text-anchor="start" fill="#b42318">反例：门口就是开阔地</text>
+
+<rect x="287" y="244" width="226" height="136" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="305" y="276" class="n" text-anchor="start">5</text><text x="333" y="275" class="l" text-anchor="start">能补给</text>
+<text x="305" y="306" class="s" text-anchor="start">补给车能开到电台 30 米内，</text>
+<text x="305" y="328" class="s" text-anchor="start">路线不被敌人直视。</text>
+<text x="305" y="360" class="s" text-anchor="start" fill="#b42318">反例：山顶、深林、窄巷深处</text>
+
+<rect x="534" y="244" width="226" height="136" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="552" y="276" class="n" text-anchor="start">6</text><text x="580" y="275" class="l" text-anchor="start">不一锅端</text>
+<text x="552" y="306" class="s" text-anchor="start">电台、兵站、弹药、火力点</text>
+<text x="552" y="328" class="s" text-anchor="start">分散到不同建筑。</text>
+<text x="552" y="360" class="s" text-anchor="start" fill="#b42318">反例：全挤在一个房间</text>
+
+<text x="40" y="420" class="s" text-anchor="start" fill="#5b6875">六条里有两三条明显不满足，就换位置；不要用“视野好”掩盖补给和坚固的缺口。</text>
+<text x="40" y="440" class="s" text-anchor="start" fill="#5b6875">一个补给得上、出得去的普通房子，胜过藏得极深但全队饿死的“完美点位”。</text>
+</svg>

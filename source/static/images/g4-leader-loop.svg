@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">队长的三根支柱与四段节奏</title><desc id="dsc">队长只抓复活点、信息、任务三根支柱，并用开局、推进、交火、重整四段循环带队。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#5b6875"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:14px}.l{font-size:15px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="40" class="t" text-anchor="start">队长：三根支柱 + 四段节奏</text>
+
+<rect x="40" y="62" width="220" height="92" rx="12" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="1.5"/>
+<text x="56" y="88" class="l" fill="#2f7d5b">支柱一 · 复活点</text>
+<text x="56" y="112" class="s">下一波从 HAB、队包还是车出来？</text>
+<text x="56" y="134" class="s">死亡到回战场超过 90 秒 = 太远</text>
+
+<rect x="290" y="62" width="220" height="92" rx="12" fill="#eef4f8" stroke="#1f5d78" stroke-width="1.5"/>
+<text x="306" y="88" class="l" fill="#1f5d78">支柱二 · 信息</text>
+<text x="306" y="112" class="s">眼睛、队员报点、地图与指挥频道</text>
+<text x="306" y="134" class="s">每 30 秒扫图，60–90 秒问敌情</text>
+
+<rect x="540" y="62" width="220" height="92" rx="12" fill="#fdf3e3" stroke="#d97706" stroke-width="1.5"/>
+<text x="556" y="88" class="l" fill="#d97706">支柱三 · 任务</text>
+<text x="556" y="112" class="s">进攻、防守、侦察、补给、支援</text>
+<text x="556" y="134" class="s">一句话能说完，九个人打同一场仗</text>
+
+<circle cx="400" cy="290" r="112" fill="none" stroke="#dfe6ee" stroke-width="18"/>
+<path d="M400 178 A112 112 0 0 1 512 290" fill="none" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<path d="M512 290 A112 112 0 0 1 400 402" fill="none" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<path d="M400 402 A112 112 0 0 1 288 290" fill="none" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<path d="M288 290 A112 112 0 0 1 400 178" fill="none" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+
+<rect x="340" y="168" width="120" height="40" rx="8" fill="#1f5d78"/>
+<text x="400" y="193" class="s" text-anchor="middle" fill="#ffffff">开局 0–90 秒</text>
+<rect x="452" y="270" width="120" height="40" rx="8" fill="#2f7d5b"/>
+<text x="512" y="295" class="s" text-anchor="middle" fill="#ffffff">推进 20–30 米</text>
+<rect x="340" y="372" width="120" height="40" rx="8" fill="#b42318"/>
+<text x="400" y="397" class="s" text-anchor="middle" fill="#ffffff">交火先分工</text>
+<rect x="228" y="270" width="120" height="40" rx="8" fill="#d97706"/>
+<text x="288" y="295" class="s" text-anchor="middle" fill="#ffffff">重整 ≤30 秒</text>
+<text x="386" y="238" class="m" text-anchor="middle" fill="#5b6875">每 5–8 分钟抬头</text>
+<text x="386" y="260" class="s" text-anchor="middle" fill="#5b6875">任务还成立吗？</text>
+
+<text x="40" y="430" class="s" text-anchor="start" fill="#5b6875">三根支柱断一根，队伍空转；四段循环少一段，节奏就乱。</text>
+</svg>

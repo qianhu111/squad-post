@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">补给路线的三种选择</title><desc id="dsc">主路快但可预测，副路慢但更安全，越野隐蔽但容易翻车。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}</style>
+<text x="40" y="42" class="t" text-anchor="start">补给路线：快、稳、隐蔽，只能选两个</text>
+
+<rect x="35" y="88" width="235" height="180" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="55" y="120" class="l" text-anchor="start" fill="#b42318">主路</text>
+<text x="55" y="146" class="s" text-anchor="start">快、平、好开</text>
+<text x="55" y="172" class="s" text-anchor="start" fill="#5b6875">适合：局势稳定、有人护送</text>
+<text x="55" y="198" class="s" text-anchor="start" fill="#b42318">风险：埋雷、架枪、被算时间</text>
+<text x="55" y="230" class="s" text-anchor="start" fill="#5b6875">最容易被敌人预判</text>
+<rect x="55" y="244" width="195" height="8" rx="4" fill="#fde8e6"/><rect x="55" y="244" width="170" height="8" rx="4" fill="#b42318"/>
+
+<rect x="282" y="88" width="235" height="180" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="302" y="120" class="l" text-anchor="start" fill="#d97706">副路</text>
+<text x="302" y="146" class="s" text-anchor="start">慢一点、绕一点</text>
+<text x="302" y="172" class="s" text-anchor="start" fill="#5b6875">适合：主路被封或刚被打过</text>
+<text x="302" y="198" class="s" text-anchor="start" fill="#b45309">风险：路窄、可能翻车</text>
+<text x="302" y="230" class="s" text-anchor="start" fill="#5b6875">需要提前探路</text>
+<rect x="302" y="244" width="195" height="8" rx="4" fill="#fff2dd"/><rect x="302" y="244" width="120" height="8" rx="4" fill="#d97706"/>
+
+<rect x="529" y="88" width="235" height="180" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="549" y="120" class="l" text-anchor="start" fill="#2f7d5b">越野</text>
+<text x="549" y="146" class="s" text-anchor="start">没有固定路线</text>
+<text x="549" y="172" class="s" text-anchor="start" fill="#5b6875">适合：敌人载具巡逻、要避视线</text>
+<text x="549" y="198" class="s" text-anchor="start" fill="#b42318">风险：坡陡、树多、容易翻车</text>
+<text x="549" y="230" class="s" text-anchor="start" fill="#5b6875">上坡按住加速键稳定车身</text>
+<rect x="549" y="244" width="195" height="8" rx="4" fill="#eaf5ef"/><rect x="549" y="244" width="85" height="8" rx="4" fill="#2f7d5b"/>
+
+<rect x="35" y="296" width="729" height="110" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="55" y="324" class="l" text-anchor="start" fill="#1f5d78">选路三问</text>
+<text x="55" y="350" class="s" text-anchor="start">1. 敌人最后一次出现在哪？　　2. 这条路有没有掩体挡住第一发？　　3. 翻车了能不能救、能不能绕？</text>
+<text x="55" y="378" class="s" text-anchor="start" fill="#b42318">补给车不是坦克：遇到敌人先绕开或倒车，不要停下来对枪。</text>
+<text x="55" y="398" class="xs" text-anchor="start" fill="#5b6875">成功走过一趟的路，下次未必安全；没有绝对安全的路线，只有当时更合适的路线。</text>
+
+<text x="40" y="440" class="xs" text-anchor="start" fill="#5b6875">最后一公里提前 100 米停车观察，确认 FOB 周边再进；车头始终朝撤离方向。</text>
+</svg>

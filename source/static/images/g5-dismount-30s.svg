@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">下车后三十秒</title><desc id="dsc">零到五秒车入掩体或压制，五到十秒人员散开，十到二十秒火力建立，二十到三十秒报点指定集结点。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">下车后 30 秒：从乘客到战斗队形</text>
+<line x1="60" y1="190" x2="745" y2="190" stroke="#5b6875" stroke-width="3"/>
+<g>
+<circle cx="120" cy="190" r="10" fill="#1f5d78"/><text x="120" y="165" class="m" text-anchor="middle" fill="#1f5d78">0–5 秒</text>
+<text x="120" y="220" class="s" text-anchor="middle">车入掩体</text>
+<text x="120" y="242" class="s" text-anchor="middle">或保持压制</text>
+<text x="120" y="264" class="s" text-anchor="middle" fill="#5b6875">司机/炮手</text>
+</g>
+<g>
+<circle cx="300" cy="190" r="10" fill="#2f7d5b"/><text x="300" y="165" class="m" text-anchor="middle" fill="#2f7d5b">5–10 秒</text>
+<text x="300" y="220" class="s" text-anchor="middle">人员散开</text>
+<text x="300" y="242" class="s" text-anchor="middle">5–10 米</text>
+<text x="300" y="264" class="s" text-anchor="middle" fill="#5b6875">全员</text>
+</g>
+<g>
+<circle cx="480" cy="190" r="10" fill="#d97706"/><text x="480" y="165" class="m" text-anchor="middle" fill="#d97706">10–20 秒</text>
+<text x="480" y="220" class="s" text-anchor="middle">筒子看车</text>
+<text x="480" y="242" class="s" text-anchor="middle">机枪占高</text>
+<text x="480" y="264" class="s" text-anchor="middle">步枪正面</text>
+</g>
+<g>
+<circle cx="660" cy="190" r="10" fill="#b42318"/><text x="660" y="165" class="m" text-anchor="middle" fill="#b42318">20–30 秒</text>
+<text x="660" y="220" class="s" text-anchor="middle">队长报点</text>
+<text x="660" y="242" class="s" text-anchor="middle">指定集结点</text>
+<text x="660" y="264" class="s" text-anchor="middle">下一道掩体</text>
+</g>
+<rect x="55" y="310" width="700" height="90" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="75" y="338" class="m" fill="#1f5d78">火力成三角</text>
+<text x="75" y="364" class="s">左翼、右翼、高点至少占两个方向，能交叉射击前方接近路。</text>
+<text x="75" y="386" class="s" fill="#b42318">全队趴同一条土坎，看起来整齐，实际只有一条射界。</text>
+<text x="40" y="430" class="s" fill="#5b6875">集结点选车头侧前方 20–30 米、有硬掩体的位置；不要选车尾，那里是二次爆炸波及区。</text>
+</svg>

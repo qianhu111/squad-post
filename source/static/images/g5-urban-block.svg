@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">街区是掩体群</title><desc id="dsc">点位周围的楼房与院墙构成掩体群，外围是开阔地；控制点位就是控制周围掩体群和出入口。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">点位只是空地，周围楼才是阵地</text>
+<rect x="40" y="62" width="500" height="330" rx="12" fill="#e9eef1" stroke="#c7d3dc" stroke-width="2"/>
+<rect x="40" y="195" width="500" height="52" fill="#dfe8ee"/>
+<rect x="250" y="62" width="55" height="330" fill="#dfe8ee"/>
+<text x="68" y="226" class="s" fill="#5b6875">主街（杀伤区）</text>
+<text x="277" y="90" class="s" text-anchor="middle" fill="#5b6875">支路</text>
+<g fill="#e8e2d6" stroke="#8a7a63" stroke-width="2">
+<rect x="70" y="85" width="120" height="80" rx="5"/>
+<rect x="70" y="270" width="120" height="95" rx="5"/>
+<rect x="330" y="85" width="180" height="80" rx="5"/>
+<rect x="330" y="270" width="80" height="95" rx="5"/>
+<rect x="430" y="270" width="80" height="95" rx="5"/>
+</g>
+<text x="130" y="132" class="s" text-anchor="middle" fill="#7a6a53">临街楼 A</text>
+<text x="130" y="325" class="s" text-anchor="middle" fill="#7a6a53">临街楼 B</text>
+<text x="420" y="132" class="s" text-anchor="middle" fill="#7a6a53">目标楼</text>
+<circle cx="250" cy="221" r="22" fill="#1f5d78" opacity="0.22"/>
+<text x="250" y="226" class="s" text-anchor="middle" fill="#1f5d78">点</text>
+<circle cx="130" cy="125" r="10" fill="#2f7d5b"/><text x="130" y="80" class="s" text-anchor="middle" fill="#2f7d5b">交叉火力</text>
+<circle cx="130" cy="320" r="10" fill="#2f7d5b"/>
+<line x1="140" y1="125" x2="330" y2="200" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ar-green)"/>
+<line x1="140" y1="320" x2="330" y2="245" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ar-green)"/>
+<text x="185" y="255" class="s" fill="#b42318">开阔地：从外打内难，从内打外易</text>
+<path d="M470 320 L530 360" stroke="#b42318" stroke-width="3" marker-end="url(#ar-red)"/>
+<text x="500" y="390" class="s" fill="#b42318">敌人接近路</text>
+<rect x="560" y="62" width="205" height="330" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="578" y="88" class="m" fill="#1f5d78">控制顺序</text>
+<text x="578" y="116" class="s">1 占外围能看住街的楼</text>
+<text x="578" y="140" class="s">2 架住支路和桥头</text>
+<text x="578" y="164" class="s">3 烟幕过街，分批进目标楼</text>
+<text x="578" y="188" class="s">4 逐层清，最后拉点</text>
+<line x1="578" y1="206" x2="745" y2="206" stroke="#c7d3dc" stroke-width="2"/>
+<text x="578" y="232" class="m" fill="#b42318">兵力不够时</text>
+<text x="578" y="258" class="s">不强行占楼，先把枪线</text>
+<text x="578" y="280" class="s">放在掩体群出入口，</text>
+<text x="578" y="302" class="s">让敌人进不来、出不去。</text>
+<line x1="578" y1="320" x2="745" y2="320" stroke="#c7d3dc" stroke-width="2"/>
+<text x="578" y="346" class="s" fill="#5b6875">点位是旗杆，</text>
+<text x="578" y="368" class="s" fill="#5b6875">掩体群才是阵地。</text>
+<text x="40" y="425" class="s" fill="#5b6875">先问“这栋楼能看见哪条街、能不能退”，再问“离点多近”。</text>
+</svg>

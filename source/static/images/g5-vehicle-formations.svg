@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">三种步载编组间距</title><desc id="dsc">运输护送车距五十到一百米，步战车在步兵后五十到一百米，坦克在两百到四百米。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">三种编组：谁在前，谁在后，隔多远</text>
+<rect x="40" y="65" width="720" height="110" rx="10" fill="#eef3f6" stroke="#c7d3dc" stroke-width="2"/>
+<text x="58" y="92" class="l" fill="#1f5d78">运输护送</text>
+<rect x="70" y="112" width="60" height="34" rx="7" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<rect x="250" y="112" width="60" height="34" rx="7" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<rect x="430" y="112" width="60" height="34" rx="7" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<line x1="130" y1="129" x2="245" y2="129" stroke="#b42318" stroke-width="2"/>
+<line x1="310" y1="129" x2="425" y2="129" stroke="#b42318" stroke-width="2"/>
+<text x="188" y="120" class="s" text-anchor="middle" fill="#b42318">50–100 米</text>
+<text x="188" y="145" class="s" text-anchor="middle" fill="#b42318">50–100 米</text>
+<text x="525" y="128" class="s" fill="#5b6875">头车探路，尾车看后；前车冲出伏击区再停。</text>
+<rect x="40" y="185" width="720" height="110" rx="10" fill="#e7f0ea" stroke="#c7d3dc" stroke-width="2"/>
+<text x="58" y="212" class="l" fill="#2f7d5b">步战车伴随</text>
+<circle cx="140" cy="238" r="9" fill="#2f7d5b"/><circle cx="180" cy="252" r="9" fill="#2f7d5b"/><circle cx="220" cy="238" r="9" fill="#2f7d5b"/>
+<rect x="340" y="225" width="80" height="40" rx="8" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<text x="380" y="250" class="s" text-anchor="middle" fill="#1f5d78">步战车</text>
+<line x1="230" y1="245" x2="335" y2="245" stroke="#b42318" stroke-width="2"/>
+<text x="282" y="235" class="s" text-anchor="middle" fill="#b42318">50–100 米</text>
+<text x="450" y="250" class="s" fill="#5b6875">步兵清近处，车打上层窗口；车不进窄巷。</text>
+<rect x="40" y="305" width="720" height="105" rx="10" fill="#f8ecd9" stroke="#c7d3dc" stroke-width="2"/>
+<text x="58" y="332" class="l" fill="#d97706">坦克支援</text>
+<circle cx="130" cy="360" r="9" fill="#2f7d5b"/><circle cx="165" cy="375" r="9" fill="#2f7d5b"/><circle cx="200" cy="360" r="9" fill="#2f7d5b"/>
+<rect x="480" y="345" width="100" height="42" rx="8" fill="#e8e2d6" stroke="#8a7a63" stroke-width="2"/>
+<text x="530" y="371" class="s" text-anchor="middle" fill="#7a6a53">坦克</text>
+<line x1="215" y1="367" x2="475" y2="367" stroke="#b42318" stroke-width="2"/>
+<text x="345" y="357" class="s" text-anchor="middle" fill="#b42318">200–400 米</text>
+<text x="600" y="371" class="s" fill="#5b6875">步兵前出警戒，坦克不进村。</text>
+<text x="40" y="438" class="s" fill="#5b6875">间距不是越远越安全：太远火力和观察接不上，太近一发炮弹带走两个单元。</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">报点六槽位</title><desc id="dsc">参照物、方位、距离、标高、目标、状态六个槽位组成一句完整报点。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:14px}.m{font-size:15px}.l{font-size:17px;font-weight:700}.t{font-size:20px;font-weight:800}.ex{font-size:14px;fill:#1f5d78}</style>
+<text x="40" y="42" class="t" text-anchor="start">一句完整报点：六个槽位，一个都不能省</text>
+<rect x="30" y="86" width="222" height="118" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="141" y="118" class="l" text-anchor="middle" fill="#1f5d78">参照物</text>
+<text x="141" y="148" class="s" text-anchor="middle">先框住大概区域</text>
+<text x="141" y="176" class="ex" text-anchor="middle">“D6 加油站”</text>
+<path d="M256 145 h26" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="288" y="86" width="222" height="118" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="399" y="118" class="l" text-anchor="middle" fill="#1f5d78">方位</text>
+<text x="399" y="148" class="s" text-anchor="middle">说清以谁为 12 点</text>
+<text x="399" y="176" class="ex" text-anchor="middle">“东北 / 2 点”</text>
+<path d="M514 145 h26" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="546" y="86" width="222" height="118" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="657" y="118" class="l" text-anchor="middle" fill="#1f5d78">距离</text>
+<text x="657" y="148" class="s" text-anchor="middle">给量级，不报个位</text>
+<text x="657" y="176" class="ex" text-anchor="middle">“大约 150 米”</text>
+<path d="M657 208 v34" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="546" y="250" width="222" height="118" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="657" y="282" class="l" text-anchor="middle" fill="#1f5d78">标高</text>
+<text x="657" y="312" class="s" text-anchor="middle">说清楼层与遮挡</text>
+<text x="657" y="340" class="ex" text-anchor="middle">“二层窗口”</text>
+<path d="M514 309 h-26" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="288" y="250" width="222" height="118" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="399" y="282" class="l" text-anchor="middle" fill="#1f5d78">目标</text>
+<text x="399" y="312" class="s" text-anchor="middle">类型与数量</text>
+<text x="399" y="340" class="ex" text-anchor="middle">“敌方机枪，至少一人”</text>
+<path d="M256 309 h-26" stroke="#1f5d78" stroke-width="2" marker-end="url(#ar-blue)"/>
+<rect x="30" y="250" width="222" height="118" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="141" y="282" class="l" text-anchor="middle" fill="#1f5d78">状态</text>
+<text x="141" y="312" class="s" text-anchor="middle">正在做什么</text>
+<text x="141" y="340" class="ex" text-anchor="middle">“正在压制东侧”</text>
+<text x="40" y="406" class="m" text-anchor="start" fill="#5b6875">紧急时可以先喊目标，但参照物、方位、距离、标高四项定位信息一个都不能少。</text>
+<text x="40" y="432" class="s" text-anchor="start" fill="#5b6875">一次只报一到三个目标，按威胁排序，编号与地图标记一一对应。</text>
+</svg>

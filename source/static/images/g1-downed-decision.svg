@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">倒地后的等救与放弃判断</title><desc id="dsc">按掩体、队友位置、敌人火力和烟雾条件判断等救还是放弃。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#5b6875"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:14px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="42" class="t" text-anchor="start">倒地后 10 秒内做完这道判断题</text>
+<rect x="300" y="70" width="200" height="60" rx="10" fill="#fdecea" stroke="#b42318" stroke-width="2"/>
+<text x="400" y="106" class="l" text-anchor="middle" fill="#b42318">我倒在掩体后吗？</text>
+<line x1="400" y1="130" x2="400" y2="165" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-gray)"/>
+<rect x="260" y="168" width="280" height="60" rx="10" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+<text x="400" y="204" class="l" text-anchor="middle" fill="#d97706">队友能安全走到我身边吗？</text>
+<line x1="260" y1="198" x2="150" y2="198" stroke="#2f7d5b" stroke-width="2" marker-end="url(#ar-green)"/>
+<text x="205" y="188" class="s" text-anchor="middle" fill="#2f7d5b">能</text>
+<line x1="540" y1="198" x2="650" y2="198" stroke="#b42318" stroke-width="2" marker-end="url(#ar-red)"/>
+<text x="595" y="188" class="s" text-anchor="middle" fill="#b42318">不能</text>
+<rect x="40" y="168" width="110" height="60" rx="10" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<text x="95" y="203" class="l" text-anchor="middle" fill="#2f7d5b">等救</text>
+<rect x="650" y="168" width="110" height="60" rx="10" fill="#fdecea" stroke="#b42318" stroke-width="2"/>
+<text x="705" y="203" class="l" text-anchor="middle" fill="#b42318">放弃</text>
+<line x1="400" y1="228" x2="400" y2="262" stroke="#5b6875" stroke-width="2" marker-end="url(#ar-gray)"/>
+<rect x="235" y="265" width="330" height="60" rx="10" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="400" y="294" class="l" text-anchor="middle" fill="#1f5d78">敌人火力覆盖倒地点吗？有烟吗？</text>
+<text x="400" y="314" class="s" text-anchor="middle">有烟、能压制 → 可以救；全暴露 → 不救</text>
+<rect x="235" y="350" width="330" height="55" rx="10" fill="#eef2f5" stroke="#5b6875" stroke-width="2"/>
+<text x="400" y="374" class="l" text-anchor="middle">队友先报点、封烟、清最近威胁</text>
+<text x="400" y="394" class="s" text-anchor="middle">救援者先保自己，再救别人</text>
+<text x="40" y="432" class="s" text-anchor="start" fill="#5b6875">倒地点在敌方点内、开阔地且无烟无掩护时，等救大概率变成双杀。</text>
+</svg>

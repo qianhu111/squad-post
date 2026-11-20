@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">安全三环</title><desc id="dsc">外圈信息最多也最危险，内圈最安全但看不到外面，观察位选次外圈。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">安全三环：信息多的圈最危险</text>
+<circle cx="280" cy="245" r="165" fill="#f5e3e0" stroke="#b42318" stroke-width="2"/>
+<circle cx="280" cy="245" r="110" fill="#f8ecd9" stroke="#d97706" stroke-width="2"/>
+<circle cx="280" cy="245" r="55" fill="#e7f0ea" stroke="#2f7d5b" stroke-width="2"/>
+<text x="280" y="240" class="l" text-anchor="middle" fill="#2f7d5b">内圈</text>
+<text x="280" y="262" class="s" text-anchor="middle" fill="#2f7d5b">最安全 / 最瞎</text>
+<text x="280" y="180" class="m" text-anchor="middle" fill="#d97706">次外圈</text>
+<text x="280" y="202" class="s" text-anchor="middle" fill="#d97706">观察位</text>
+<text x="280" y="105" class="m" text-anchor="middle" fill="#b42318">外圈</text>
+<text x="280" y="127" class="s" text-anchor="middle" fill="#b42318">信息最多 / 最危险</text>
+<circle cx="280" cy="195" r="9" fill="#d97706"/>
+<text x="300" y="188" class="s" fill="#d97706">peek / 短暂露头</text>
+<line x1="280" y1="195" x2="420" y2="160" stroke="#d97706" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="425" y="155" class="s" fill="#2f7d5b">看林外</text>
+<rect x="490" y="65" width="270" height="330" rx="10" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="510" y="92" class="m" fill="#1f5d78">怎么用</text>
+<text x="510" y="120" class="s">1 行军走内圈，减少暴露</text>
+<text x="510" y="144" class="s">2 到边缘前停在次外圈</text>
+<text x="510" y="168" class="s">3 只露头/开镜几秒观察</text>
+<text x="510" y="192" class="s">4 看完缩回，换位置再看</text>
+<text x="510" y="216" class="s">5 确认安全后快速穿外圈</text>
+<line x1="510" y1="236" x2="745" y2="236" stroke="#c7d3dc" stroke-width="2"/>
+<text x="510" y="262" class="m" fill="#b42318">不要</text>
+<text x="510" y="288" class="s">站最外圈长时间观察</text>
+<text x="510" y="312" class="s">躲最内圈等敌人进来</text>
+<text x="510" y="336" class="s">在一个点反复露头</text>
+<line x1="510" y1="350" x2="745" y2="350" stroke="#c7d3dc" stroke-width="2"/>
+<text x="510" y="374" class="s" fill="#5b6875">外圈给你信息，也把你的</text>
+<text x="510" y="392" class="s" fill="#5b6875">轮廓交给对面。</text>
+<text x="40" y="435" class="s" fill="#5b6875">不是固定圆：树线、坡地、光照都会改变三环形状，用眼睛重新画。</text>
+</svg>

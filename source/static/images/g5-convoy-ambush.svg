@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">车队遇伏击</title><desc id="dsc">头车加速冲出伏击区，后车压制，中间车不堵路，人员从远离火力一侧下车。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:15px}.l{font-size:16px;font-weight:700}.t{font-size:21px;font-weight:800}</style>
+<text x="40" y="40" class="t">伏击区里不停车：头车出、后车压、人往侧下</text>
+<rect x="40" y="65" width="720" height="320" rx="12" fill="#eef3e8" stroke="#a9bfae" stroke-width="2"/>
+<path d="M60 250 Q250 235 420 245 T740 230" fill="none" stroke="#b9a98f" stroke-width="16"/>
+<rect x="240" y="95" width="210" height="70" rx="6" fill="#e3ece4" stroke="#2f7d5b" stroke-width="2"/>
+<text x="345" y="125" class="s" text-anchor="middle" fill="#2f7d5b">伏击火力（东侧林线）</text>
+<circle cx="330" cy="180" r="10" fill="#b42318"/><circle cx="370" cy="190" r="10" fill="#b42318"/><circle cx="410" cy="180" r="10" fill="#b42318"/>
+<line x1="330" y1="190" x2="300" y2="240" stroke="#b42318" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ar-red)"/>
+<line x1="370" y1="200" x2="360" y2="240" stroke="#b42318" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ar-red)"/>
+<line x1="410" y1="190" x2="420" y2="240" stroke="#b42318" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#ar-red)"/>
+<rect x="200" y="235" width="58" height="30" rx="6" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<text x="229" y="255" class="s" text-anchor="middle" fill="#1f5d78">头车</text>
+<rect x="320" y="235" width="58" height="30" rx="6" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<text x="349" y="255" class="s" text-anchor="middle" fill="#1f5d78">中车</text>
+<rect x="440" y="235" width="58" height="30" rx="6" fill="#dce8ee" stroke="#1f5d78" stroke-width="2"/>
+<text x="469" y="255" class="s" text-anchor="middle" fill="#1f5d78">后车</text>
+<line x1="200" y1="250" x2="105" y2="250" stroke="#2f7d5b" stroke-width="4" marker-end="url(#ar-green)"/>
+<text x="115" y="235" class="s" fill="#2f7d5b">头车冲出 50 米再停</text>
+<line x1="469" y1="270" x2="530" y2="270" stroke="#d97706" stroke-width="3" marker-end="url(#ar-blue)"/>
+<text x="535" y="275" class="s" fill="#d97706">后车压制火力区</text>
+<circle cx="280" cy="300" r="10" fill="#1f5d78"/><circle cx="300" cy="315" r="10" fill="#1f5d78"/><circle cx="340" cy="305" r="10" fill="#1f5d78"/>
+<text x="300" y="340" class="s" text-anchor="middle" fill="#1f5d78">人从西侧下，不穿火线</text>
+<rect x="560" y="95" width="185" height="75" rx="8" fill="#ffffff" stroke="#c7d3dc" stroke-width="2"/>
+<text x="578" y="120" class="m" fill="#b42318">三个不要</text>
+<text x="578" y="142" class="s">不要停在伏击区</text>
+<text x="578" y="162" class="s">不要掉头堵后车</text>
+<text x="578" y="182" class="s">不要全员挤一侧</text>
+<text x="40" y="410" class="s" fill="#5b6875">近伏击：冲出去或向火力方向突击；远伏击：倒出射界、投烟、从侧翼绕。两种情况都先报点。</text>
+<text x="40" y="432" class="s" fill="#5b6875">车距 50–100 米，就是为了让一发火箭只打中一辆，而不是一串。</text>
+</svg>

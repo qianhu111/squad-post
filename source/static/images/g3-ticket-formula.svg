@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">票账公式</title><desc id="dsc">行动净收益公式和期望票值公式，以及各变量的含义。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}.f{font-size:18px;font-weight:700;fill:#1f5d78}</style>
+<text x="40" y="42" class="t" text-anchor="start">票账的两个公式</text>
+
+<rect x="40" y="78" width="720" height="146" rx="14" fill="#ffffff" stroke="#1f5d78" stroke-width="2"/>
+<text x="60" y="108" class="l" text-anchor="start" fill="#1f5d78">一、行动净收益</text>
+<text x="60" y="144" class="f" text-anchor="start">占点摆动 + 击毁收益 − 我方损失 − 流血速度 × 行动分钟</text>
+<text x="60" y="176" class="s" text-anchor="start" fill="#5b6875">占点摆动：拉穿敌点 +60，中立点 +20，拉白 0。</text>
+<text x="60" y="198" class="s" text-anchor="start" fill="#5b6875">我方损失：阵亡人数、被毁载具、丢掉或主动拆掉的 FOB。</text>
+<text x="60" y="216" class="s" text-anchor="start" fill="#b42318">流血速度按 1 票/分钟、2 票/分钟或 60 票/分钟代入。</text>
+
+<rect x="40" y="242" width="720" height="118" rx="14" fill="#ffffff" stroke="#2f7d5b" stroke-width="2"/>
+<text x="60" y="272" class="l" text-anchor="start" fill="#2f7d5b">二、期望票值</text>
+<text x="60" y="308" class="f" text-anchor="start" fill="#2f7d5b">成功率 × 成功净收益 + 失败率 × 失败损失</text>
+<text x="60" y="340" class="s" text-anchor="start" fill="#5b6875">成功率按“敌方增援多远、我方有没有反装甲、时间够不够”三问粗分高、中、低。</text>
+
+<rect x="40" y="378" width="720" height="48" rx="10" fill="#fff2dd" stroke="#d97706"/>
+<text x="60" y="400" class="s" text-anchor="start" fill="#b45309">票面大不等于期望高：先把成功率乘进去，再把行动分钟除进去。</text>
+<text x="60" y="418" class="s" text-anchor="start" fill="#5b6875">期望为负的仗，偶尔可以赌一次；但不能把它当成稳定收益反复打。</text>
+<text x="40" y="442" class="xs" text-anchor="start" fill="#5b6875">例：拉穿方案 0.5 × 30 + 0.5 × (−30) = 0，长期不赚，只在必须赌时打。</text>
+</svg>

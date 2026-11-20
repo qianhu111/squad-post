@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">分段跃进与交替掩护</title><desc id="dsc">四人小队沿四个掩体分段跃进，一组移动时另一组架枪，开阔地控制在三秒内通过。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#1f5d78"/></marker><marker id="ar-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#2f7d5b"/></marker><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.m{font-size:14px}.l{font-size:15px;font-weight:700}.t{font-size:20px;font-weight:800}</style>
+<text x="40" y="40" class="t" text-anchor="start">分段跃进：一段移动、一段架枪</text>
+
+<path d="M70 360 L210 300 L360 315 L510 210 L690 145" fill="none" stroke="#8a97a5" stroke-width="3" stroke-dasharray="8 6"/>
+<rect x="56" y="336" width="34" height="34" rx="5" fill="#8a97a5"/><text x="73" y="358" class="s" text-anchor="middle" fill="#ffffff">A</text>
+<rect x="196" y="282" width="34" height="34" rx="5" fill="#8a97a5"/><text x="213" y="304" class="s" text-anchor="middle" fill="#ffffff">B</text>
+<rect x="346" y="298" width="34" height="34" rx="5" fill="#8a97a5"/><text x="363" y="320" class="s" text-anchor="middle" fill="#ffffff">C</text>
+<rect x="496" y="192" width="34" height="34" rx="5" fill="#8a97a5"/><text x="513" y="214" class="s" text-anchor="middle" fill="#ffffff">D</text>
+
+<circle cx="120" cy="300" r="11" fill="#2f7d5b"/><text x="120" y="304" class="s" text-anchor="middle" fill="#ffffff">1</text>
+<circle cx="150" cy="330" r="11" fill="#2f7d5b"/><text x="150" y="334" class="s" text-anchor="middle" fill="#ffffff">2</text>
+<line x1="128" y1="292" x2="190" y2="285" stroke="#2f7d5b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ar-green)"/>
+<text x="158" y="272" class="s" text-anchor="middle" fill="#2f7d5b">架枪组</text>
+
+<circle cx="250" cy="355" r="11" fill="#1f5d78"/><text x="250" y="359" class="s" text-anchor="middle" fill="#ffffff">3</text>
+<circle cx="282" cy="368" r="11" fill="#1f5d78"/><text x="282" y="372" class="s" text-anchor="middle" fill="#ffffff">4</text>
+<line x1="260" y1="348" x2="352" y2="316" stroke="#1f5d78" stroke-width="3" marker-end="url(#ar-blue)"/>
+<text x="330" y="400" class="s" text-anchor="middle" fill="#1f5d78">机动组：一次 30–50 米</text>
+
+<rect x="378" y="232" width="120" height="52" rx="8" fill="#fdeceb" stroke="#b42318" stroke-dasharray="5 4"/>
+<text x="438" y="253" class="s" text-anchor="middle" fill="#b42318">开阔地 15–20 米</text>
+<text x="438" y="272" class="s" text-anchor="middle" fill="#b42318">3 秒内冲过</text>
+
+<circle cx="600" cy="178" r="16" fill="#dfe6ee"/>
+<text x="600" y="183" class="s" text-anchor="middle" fill="#5b6875">烟</text>
+<text x="640" y="182" class="s" text-anchor="start" fill="#5b6875">下一段终点</text>
+<text x="640" y="202" class="s" text-anchor="start" fill="#5b6875">必须先看清</text>
+
+<text x="620" y="104" class="s" text-anchor="middle" fill="#b42318">敌情方向</text>
+<line x1="690" y1="115" x2="690" y2="140" stroke="#b42318" stroke-width="2" marker-end="url(#ar-red)"/>
+<text x="40" y="425" class="s" text-anchor="start" fill="#5b6875">每段都有起点掩体、终点掩体和通过方式；到点报“到位”，再走下一段。</text>
+</svg>

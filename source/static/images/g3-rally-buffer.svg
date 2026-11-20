@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">队包与 HAB 的间距</title><desc id="dsc">队包不要贴着 HAB 放，要隔开一段跑动距离并错开方向，避免被一起踩掉。</desc>
+<rect width="800" height="450" rx="16" fill="#f7f9fb"/>
+<defs><marker id="ar-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#b42318"/></marker><marker id="ar-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#5b6875"/></marker></defs>
+<style>text{font-family:'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;fill:#16212b}.muted{fill:#5b6875}.s{font-size:13px}.l{font-size:16px;font-weight:700}.t{font-size:20px;font-weight:800}.xs{font-size:12px}</style>
+<text x="40" y="42" class="t" text-anchor="start">队包和 HAB：隔开距离，错开方向</text>
+
+<rect x="90" y="150" width="90" height="70" rx="8" fill="#e8f2f6" stroke="#1f5d78" stroke-width="2"/>
+<text x="135" y="180" class="l" text-anchor="middle" fill="#1f5d78">HAB</text>
+<text x="135" y="202" class="s" text-anchor="middle" fill="#5b6875">电台圈内</text>
+<line x1="185" y1="185" x2="430" y2="185" stroke="#5b6875" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#ar-gray)"/>
+<text x="307" y="172" class="s" text-anchor="middle" fill="#5b6875">隔开一段跑动距离</text>
+
+<rect x="440" y="150" width="90" height="70" rx="8" fill="#eaf5ef" stroke="#2f7d5b" stroke-width="2"/>
+<path d="M485 192 v-26" stroke="#2f7d5b" stroke-width="4"/>
+<path d="M485 166 l16 8 -16 8z" fill="#2f7d5b"/>
+<text x="485" y="212" class="s" text-anchor="middle" fill="#2f7d5b">队包</text>
+<text x="485" y="232" class="s" text-anchor="middle" fill="#5b6875">隐蔽处 / 另一方向</text>
+
+<circle cx="485" cy="150" r="55" fill="none" stroke="#b42318" stroke-width="2" stroke-dasharray="7 5" opacity="0.8"/>
+<text x="556" y="134" class="s" text-anchor="start" fill="#b42318">敌人进入 30 米</text>
+<text x="556" y="154" class="s" text-anchor="start" fill="#b42318">队包消失</text>
+<text x="556" y="182" class="s" text-anchor="start" fill="#b42318">顺着方向可能找到 HAB</text>
+
+<rect x="90" y="285" width="620" height="100" rx="12" fill="#ffffff" stroke="#dfe6ee"/>
+<text x="110" y="313" class="l" text-anchor="start" fill="#b42318">不要这样放</text>
+<text x="110" y="338" class="s" text-anchor="start">队包贴着 HAB、方向还一致：敌人踩掉队包后，抬头就能看到 HAB，两个复活点一起丢。</text>
+<text x="110" y="362" class="s" text-anchor="start" fill="#2f7d5b">正确做法：HAB 在一侧，队包在另一侧掩体后；队包消失本身就是“30 米内有人”的警报。</text>
+<text x="110" y="382" class="xs" text-anchor="start" fill="#5b6875">队包放得再近，也不会加快复活；它只负责多一个方向。</text>
+
+<text x="40" y="430" class="s" text-anchor="start" fill="#5b6875">队包 15 米内凑人（步兵 1 名 / 载具或飞行员 3 名）；30 米内敌人即消失；50 米内禁放。</text>
+</svg>
