@@ -15,14 +15,14 @@ import shutil
 from pathlib import Path
 
 from markdown_lite import inline, render
-from features import reading, seo, sitemap
+from features import feed, reading, seo, sitemap, tags as tag_features
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "source"
 DIST = ROOT / "dist"
 META_PATH = SOURCE / "meta.json"
 
-THEME_BOOT = """(function(){try{var k='youchai-theme';var s=localStorage.getItem(k);var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=s||(m?'dark':'light')}catch(e){document.documentElement.dataset.theme='light'}})();"""
+THEME_BOOT = """(function(){try{var k='youchai-theme';var s=localStorage.getItem(k);var m=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.dataset.theme=s||(m?'dark':'light');var f=localStorage.getItem('youchai-font');if(f==='1'||f==='1.08'||f==='1.16'){document.documentElement.style.setProperty('--reading-scale',f)}if(localStorage.getItem('youchai-reading')==='1'){document.documentElement.setAttribute('data-reading','1')}}catch(e){document.documentElement.dataset.theme='light'}})();"""
 
 
 def e(value: object) -> str:
@@ -113,6 +113,7 @@ NAV_ICONS = {
     "book": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/></svg>',
     "bolt": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>',
     "check": '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>',
+    "tag": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13 13 20 4 11V4h7z"/><circle cx="8" cy="8" r="1.5"/></svg>',
 }
 
 
@@ -152,10 +153,20 @@ def shell(
         json_ld=json_ld,
         noindex=noindex,
     )
+    reading_tools = ""
+    if is_course:
+        reading_tools = """    <button class="icon-btn" id="reading-toggle" type="button" aria-label="进入阅读模式" aria-pressed="false" title="阅读模式">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/></svg>
+    </button>
+    <button class="icon-btn font-btn" id="font-toggle" type="button" aria-label="切换正文字号" title="切换正文字号">
+      <span class="font-glyph" aria-hidden="true">Aa</span>
+    </button>
+"""
     nav = "\n    ".join([
         nav_link(root, "index.html", "首页", body_page == "home", "home"),
         nav_link(root, "courses/index.html", "课程", body_page == "courses" or is_lesson, "book"),
         nav_link(root, "reference/index.html", "速查", body_page in {"reference", "sources"}, "bolt"),
+        nav_link(root, "tags/index.html", "标签", body_page == "tags", "tag"),
         nav_link(root, "quiz/beginner.html", "能力自检 Ⅰ", body_page == "quiz-beginner", "check"),
         nav_link(root, "quiz/advanced.html", "能力自检 Ⅱ", body_page == "quiz-advanced", "check"),
     ])
@@ -204,6 +215,7 @@ def shell(
 {seo_block}
 <meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="{root}assets/css/site.css">
+<link rel="alternate" type="application/atom+xml" title="{e(site['title'])}" href="{root}feed.xml">
 <script>{THEME_BOOT}</script>
 </head>
 <body data-page="{e(body_page)}" data-root="{e(root)}">
@@ -216,7 +228,7 @@ def shell(
     <button class="icon-btn" id="search-open" type="button" aria-label="打开搜索" title="搜索（Ctrl/⌘ + K）">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
     </button>
-    <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅主题" title="切换深浅主题">
+{reading_tools}    <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9c0-.4 0-.8-.1-1.2A7 7 0 0 1 12 3z"></path></svg>
     </button>
   </div>
@@ -263,6 +275,10 @@ def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
     read_minutes = reading.reading_minutes(md)
 
     stage = stage_by_id(meta, course["stage"])
+    tag_chips = "".join(
+        f'<a class="tag-chip" href="../../tags/{e(slug)}.html">#{e(tag_features.tag_name(meta, slug))}</a>'
+        for slug in course.get("tags", [])
+    )
     num = f'{course["num"]:02d}'
     idx = courses.index(course)
     prev_course = courses[idx - 1] if idx > 0 else None
@@ -292,6 +308,7 @@ def build_course(meta: dict, course: dict, courses: list[dict]) -> str:
       <span class="pill">前置：{e(course['prereq'])}</span>
     </div>
     <p class="reading-meta">正文约 {word_count:,} 字 · 阅读约 {read_minutes} 分钟</p>
+    <div class="tag-list">{tag_chips}</div>
     <div class="lesson-progress" id="lesson-progress" aria-label="本课进度"><span></span></div>
     <article class="prose">
 {body}
@@ -390,6 +407,8 @@ def build_home(meta: dict) -> str:
       <div class="tool-grid">
         <a class="tool-card" href="./reference/index.html"><strong>速查表</strong><span>票值、复活、压制、报点模板，一页查完。</span></a>
         <a class="tool-card" href="./reference/sources.html"><strong>资料说明</strong><span>每课根据哪些材料改写，哪些材料只作背景。</span></a>
+        <a class="tool-card" href="./tags/index.html"><strong>标签索引</strong><span>按主题找课：医疗、FOB、巷战、载具……</span></a>
+        <a class="tool-card" href="./feed.xml"><strong>RSS 订阅</strong><span>用阅读器订阅课程更新。</span></a>
         <a class="tool-card" href="./quiz/beginner.html"><strong>能力自检 Ⅰ</strong><span>个人基础、观察报点与资源规则。</span></a>
         <a class="tool-card" href="./quiz/advanced.html"><strong>能力自检 Ⅱ</strong><span>小队行动、专业协同与指挥复盘。</span></a>
       </div>
@@ -458,6 +477,72 @@ def build_courses_index(meta: dict) -> str:
         content=content,
         page_path="courses/index.html",
         json_ld=overview_json_ld,
+    )
+
+
+def build_tags_index(meta: dict) -> str:
+    counts = tag_features.tag_counts(meta)
+    cards = []
+    for tag in meta.get("tags", []):
+        count = counts.get(tag["slug"], 0)
+        cards.append(
+            f"""      <a class="tag-card" href="./{e(tag['slug'])}.html">
+        <span class="tag-count">{count} 课</span>
+        <strong>#{e(tag['name'])}</strong>
+        <span>{e(tag['description'])}</span>
+      </a>"""
+        )
+    content = f"""    <p class="kicker">标签</p>
+    <h1>按主题找课</h1>
+    <p class="lead">{len(meta.get('tags', []))} 个标签覆盖 {len(meta['courses'])} 课。想补哪一块，就从标签进入。</p>
+    <div class="tag-grid">
+{chr(10).join(cards)}
+    </div>"""
+    url = seo.absolute_url(meta["site"], "tags/index.html")
+    json_ld = seo.json_ld_collection(meta["site"], "标签", "按主题浏览邮差战队课程集。", url)
+    return shell(
+        meta,
+        title="标签",
+        description="按主题浏览邮差战队课程集：医疗、FOB、巷战、载具、迫击炮等。",
+        root="../",
+        body_page="tags",
+        content=content,
+        page_path="tags/index.html",
+        json_ld=json_ld,
+    )
+
+
+def build_tag_page(meta: dict, tag: dict) -> str:
+    courses = tag_features.courses_for_tag(meta["courses"], tag["slug"])
+    cards = []
+    for course in courses:
+        stage = stage_by_id(meta, course["stage"])
+        cards.append(
+            f"""        <a class="course-card" href="../{course['file']}">
+          <span class="course-num">{course['num']:02d}</span>
+          <span class="course-body"><strong>{e(course['title'])}</strong><span>{e(stage['name'])} · {e(course['subtitle'])}</span></span>
+          <span class="course-time">{e(course['minutes'])}′</span>
+        </a>"""
+        )
+    content = f"""    <p class="kicker">标签</p>
+    <h1>#{e(tag['name'])}</h1>
+    <p class="lead">{e(tag['description'])}</p>
+    <p class="reading-meta">共 {len(courses)} 课</p>
+    <div class="course-list">
+{chr(10).join(cards)}
+    </div>
+    <p><a href="./index.html">← 全部标签</a></p>"""
+    url = seo.absolute_url(meta["site"], f"tags/{tag['slug']}.html")
+    json_ld = seo.json_ld_collection(meta["site"], f"标签：{tag['name']}", tag["description"], url)
+    return shell(
+        meta,
+        title=f"标签：{tag['name']}",
+        description=f"{tag['name']}：{tag['description']}",
+        root="../",
+        body_page="tags",
+        content=content,
+        page_path=f"tags/{tag['slug']}.html",
+        json_ld=json_ld,
     )
 
 
@@ -542,6 +627,7 @@ def build_js(meta: dict) -> None:
                 "minutes": c["minutes"],
                 "goal": c["goal"],
                 "keywords": c["keywords"],
+                "tags": [tag_features.tag_name(meta, slug) for slug in c.get("tags", [])],
                 "prereq": c["prereq"],
             }
             for c in meta["courses"]
@@ -556,6 +642,7 @@ def build_js(meta: dict) -> None:
             "subtitle": c["subtitle"],
             "path": c["file"],
             "keywords": c["keywords"],
+            "tags": [tag_features.tag_name(meta, slug) for slug in c.get("tags", [])],
         }
         for c in meta["courses"]
     ]
@@ -639,11 +726,15 @@ def main() -> None:
         body_page="quiz-advanced",
         intro="",
     ))
+    write(DIST / "tags/index.html", build_tags_index(meta))
+    for tag in meta.get("tags", []):
+        write(DIST / f"tags/{tag['slug']}.html", build_tag_page(meta, tag))
+    write(DIST / "feed.xml", feed.build_feed(meta, courses))
     write(DIST / "sitemap.xml", sitemap.build_sitemap(meta, courses))
     write(DIST / "robots.txt", sitemap.build_robots(meta))
     build_js(meta)
     copy_static()
-    print(f"built {len(courses)} lessons and {7 + len(courses)} HTML pages into {DIST}")
+    print(f"built {len(courses)} lessons and {8 + len(courses) + len(meta.get('tags', []))} HTML pages into {DIST}")
 
 
 if __name__ == "__main__":

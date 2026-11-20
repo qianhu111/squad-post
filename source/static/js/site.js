@@ -82,16 +82,70 @@
     });
   }
 
+  var THEMES = ['light', 'dark', 'sepia', 'contrast'];
+  var THEME_LABELS = { light: '浅色', dark: '深色', sepia: '纸张', contrast: '高对比' };
+
   function initTheme() {
     var button = document.getElementById('theme-toggle');
     if (!button) return;
-    var current = document.documentElement.getAttribute('data-theme') || 'light';
-    button.setAttribute('aria-label', current === 'dark' ? '切换到浅色主题' : '切换到深色主题');
+    function paint() {
+      var current = document.documentElement.getAttribute('data-theme') || 'light';
+      var label = THEME_LABELS[current] || current;
+      button.setAttribute('aria-label', '切换主题，当前' + label);
+      button.title = '切换主题（当前' + label + '）';
+    }
+    paint();
     button.addEventListener('click', function () {
-      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      var current = document.documentElement.getAttribute('data-theme') || 'light';
+      var index = THEMES.indexOf(current);
+      var next = THEMES[(index < 0 ? 0 : index + 1) % THEMES.length];
       document.documentElement.setAttribute('data-theme', next);
       writeStore(THEME_KEY, next);
-      button.setAttribute('aria-label', next === 'dark' ? '切换到浅色主题' : '切换到深色主题');
+      paint();
+    });
+  }
+
+  function initReadingMode() {
+    var button = document.getElementById('reading-toggle');
+    if (!button) return;
+    var root = document.documentElement;
+    function paint() {
+      var on = root.getAttribute('data-reading') === '1';
+      button.setAttribute('aria-pressed', on ? 'true' : 'false');
+      button.setAttribute('aria-label', on ? '退出阅读模式' : '进入阅读模式');
+      button.title = on ? '退出阅读模式' : '进入阅读模式';
+    }
+    paint();
+    button.addEventListener('click', function () {
+      var on = root.getAttribute('data-reading') === '1';
+      if (on) root.removeAttribute('data-reading');
+      else root.setAttribute('data-reading', '1');
+      writeStore('youchai-reading', on ? '0' : '1');
+      paint();
+    });
+  }
+
+  function initFontScale() {
+    var button = document.getElementById('font-toggle');
+    if (!button) return;
+    var root = document.documentElement;
+    var scales = ['1', '1.08', '1.16'];
+    function current() {
+      var value = root.style.getPropertyValue('--reading-scale').trim();
+      return scales.indexOf(value) >= 0 ? value : '1';
+    }
+    function paint() {
+      var percent = Math.round(parseFloat(current()) * 100);
+      button.setAttribute('aria-label', '切换正文字号，当前 ' + percent + '%');
+      button.title = '切换正文字号（当前 ' + percent + '%）';
+    }
+    paint();
+    button.addEventListener('click', function () {
+      var index = scales.indexOf(current());
+      var next = scales[(index + 1) % scales.length];
+      root.style.setProperty('--reading-scale', next);
+      writeStore('youchai-font', next);
+      paint();
     });
   }
 
@@ -249,7 +303,8 @@
         item.title || '',
         item.subtitle || '',
         item.stage || '',
-        (item.keywords || []).join(' ')
+        (item.keywords || []).join(' '),
+        (item.tags || []).join(' ')
       ].join(' ').toLowerCase();
       return terms.every(function (term) { return haystack.indexOf(term) > -1; });
     }).slice(0, 12);
@@ -310,4 +365,6 @@
   initTheme();
   initSidebar();
   initCopy();
+  initReadingMode();
+  initFontScale();
 })();

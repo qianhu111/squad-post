@@ -17,10 +17,12 @@ ALLOWED_TOP = {
     "_headers",
     "sitemap.xml",
     "robots.txt",
+    "feed.xml",
     "assets",
     "courses",
     "reference",
     "quiz",
+    "tags",
 }
 
 FORBIDDEN_SUFFIXES = {

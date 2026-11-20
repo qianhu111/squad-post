@@ -22,6 +22,9 @@ def build_sitemap(meta: dict, courses: list[dict]) -> str:
     ]
     for course in courses:
         pages.append((course["file"], course.get("updated", default)))
+    pages.append(("tags/index.html", default))
+    for tag in meta.get("tags", []):
+        pages.append((f"tags/{tag['slug']}.html", default))
     pages.extend([
         ("reference/index.html", default),
         ("reference/sources.html", default),

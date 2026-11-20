@@ -86,6 +86,18 @@ def check_meta(meta: dict) -> tuple[list[str], list[dict]]:
         issues.append("meta: site.url must not end with /")
     if not site.get("author"):
         issues.append("meta: site.author is missing")
+
+    tags = meta.get("tags", [])
+    tag_slugs = [tag.get("slug") for tag in tags]
+    if len(tag_slugs) != len(set(tag_slugs)):
+        issues.append("meta: duplicate tag slug")
+    for tag in tags:
+        for key in ("slug", "name", "description"):
+            if not tag.get(key):
+                issues.append(f"meta: tag missing {key}")
+        if tag.get("slug") and not re.fullmatch(r"[a-z0-9-]+", str(tag["slug"])):
+            issues.append(f"meta: invalid tag slug {tag['slug']}")
+    tag_set = set(tag_slugs)
     if len(stages) != 6:
         issues.append(f"meta: expected 6 stages, got {len(stages)}")
     if len(courses) != 36:
@@ -118,11 +130,16 @@ def check_meta(meta: dict) -> tuple[list[str], list[dict]]:
             issues.append(f"meta: course {num} has unknown stage {c.get('stage')}")
         if not (ROOT / c.get("source", "")).exists():
             issues.append(f"meta: missing lesson source {c.get('source')}")
-        for key in ("title", "subtitle", "goal", "keywords", "prereq", "minutes", "updated"):
+        for key in ("title", "subtitle", "goal", "keywords", "prereq", "minutes", "updated", "tags"):
             if key not in c:
                 issues.append(f"meta: course {num} missing {key}")
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(c.get("updated", ""))):
             issues.append(f"meta: course {num} has invalid updated date")
+        if not c.get("tags"):
+            issues.append(f"meta: course {num} has no tags")
+        for slug in c.get("tags", []):
+            if slug not in tag_set:
+                issues.append(f"meta: course {num} has unknown tag {slug}")
     return issues, courses
 
 
@@ -171,8 +188,10 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
     if not DIST.exists():
         return ["dist: directory does not exist"]
 
-    expected = {"index.html", "404.html", "_headers", "sitemap.xml", "robots.txt"}
+    expected = {"index.html", "404.html", "_headers", "sitemap.xml", "robots.txt", "feed.xml", "tags/index.html"}
     expected.update(c["file"] for c in courses)
+    for tag in meta.get("tags", []):
+        expected.add(f"tags/{tag['slug']}.html")
     expected.update({
         "courses/index.html",
         "reference/index.html",
@@ -205,8 +224,9 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
             if '<meta charset="UTF-8">' not in text:
                 issues.append(f"dist: missing charset in {rel}")
             issues.extend(check_html(rel, text, courses, site_url))
-    if html_count != 43:
-        issues.append(f"dist: expected 43 HTML files, found {html_count}")
+    expected_html = 43 + 1 + len(meta.get("tags", []))
+    if html_count != expected_html:
+        issues.append(f"dist: expected {expected_html} HTML files, found {html_count}")
 
     for path in DIST.rglob("*"):
         if not path.is_file():
@@ -250,13 +270,29 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
             root = ET.fromstring(sitemap_path.read_text(encoding="utf-8"))
             ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
             locs = [el.text or "" for el in root.findall(".//s:loc", ns)]
-            if len(locs) != 42:
-                issues.append(f"dist: sitemap expected 42 URLs, found {len(locs)}")
+            expected_locs = 42 + 1 + len(meta.get("tags", []))
+            if len(locs) != expected_locs:
+                issues.append(f"dist: sitemap expected {expected_locs} URLs, found {len(locs)}")
             for loc in locs:
                 if not loc.startswith(site_url + "/"):
                     issues.append(f"dist: sitemap URL not under site.url: {loc}")
         except ET.ParseError as exc:
             issues.append(f"dist: sitemap.xml is not valid XML: {exc}")
+
+    feed_path = DIST / "feed.xml"
+    if feed_path.exists():
+        try:
+            feed_root = ET.fromstring(feed_path.read_text(encoding="utf-8"))
+            ns = {"a": "http://www.w3.org/2005/Atom"}
+            entries = feed_root.findall("a:entry", ns)
+            if len(entries) != len(courses):
+                issues.append(f"dist: feed expected {len(courses)} entries, found {len(entries)}")
+            for link in feed_root.findall("a:entry/a:link", ns):
+                href = link.get("href", "")
+                if not href.startswith(site_url + "/"):
+                    issues.append(f"dist: feed entry URL not under site.url: {href}")
+        except ET.ParseError as exc:
+            issues.append(f"dist: feed.xml is not valid XML: {exc}")
 
     robots_path = DIST / "robots.txt"
     if robots_path.exists():
@@ -308,6 +344,8 @@ def check_html(rel: str, text: str, courses: list[dict], site_url: str) -> list[
             issues.append(f"html {rel}: missing {prop}")
     if 'name="twitter:card"' not in text:
         issues.append(f"html {rel}: missing twitter:card")
+    if 'type="application/atom+xml"' not in text:
+        issues.append(f"html {rel}: missing feed alternate link")
 
     ld_blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
     if rel != "404.html" and not ld_blocks:

@@ -56,6 +56,78 @@
       "summary": "会做风险收益判断、下命令、处理复杂局面、组织训练与复盘。"
     }
   ],
+  "tags": [
+    {
+      "slug": "intro",
+      "name": "入门准备",
+      "description": "进服、界面、兵种与第一局。"
+    },
+    {
+      "slug": "ui",
+      "name": "界面与键位",
+      "description": "HUD、键位、地图界面与基础操作。"
+    },
+    {
+      "slug": "medic",
+      "name": "医疗与生存",
+      "description": "倒地、止血、救人、撤退与生存。"
+    },
+    {
+      "slug": "map",
+      "name": "报点与地图",
+      "description": "观察、听声、报点、地图与目标指示。"
+    },
+    {
+      "slug": "spawn",
+      "name": "复活与 FOB",
+      "description": "主基地、FOB、HAB、队包与复活点。"
+    },
+    {
+      "slug": "logistics",
+      "name": "后勤与票数",
+      "description": "补给、建材、票数、流血与回防。"
+    },
+    {
+      "slug": "squad",
+      "name": "小队协同",
+      "description": "跟队、掩护、补枪、火力组、队形与机动。"
+    },
+    {
+      "slug": "command",
+      "name": "队长与指挥",
+      "description": "队长职责、决策、命令链与复杂局面。"
+    },
+    {
+      "slug": "urban",
+      "name": "巷战",
+      "description": "城市作战、房间、楼层与街道。"
+    },
+    {
+      "slug": "jungle",
+      "name": "丛林与地形",
+      "description": "丛林、复杂地形、地图与地形分析。"
+    },
+    {
+      "slug": "vehicle",
+      "name": "载具与反载具",
+      "description": "步载、步坦、反载具与装甲配合。"
+    },
+    {
+      "slug": "mortar",
+      "name": "迫击炮",
+      "description": "引导、刻度、修正与炮位。"
+    },
+    {
+      "slug": "training",
+      "name": "训练与复盘",
+      "description": "新兵训练、考核、复盘与综合演练。"
+    },
+    {
+      "slug": "comms",
+      "name": "通信",
+      "description": "语音频道、命令、报点通信与频道纪律。"
+    }
+  ],
   "courses": [
     {
       "num": 1,
@@ -79,7 +151,11 @@
         "死法"
       ],
       "prereq": "无",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "intro",
+        "squad"
+      ]
     },
     {
       "num": 2,
@@ -103,7 +179,12 @@
         "标记"
       ],
       "prereq": "第 01 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "intro",
+        "ui",
+        "map"
+      ]
     },
     {
       "num": 3,
@@ -127,7 +208,11 @@
         "生存"
       ],
       "prereq": "第 02 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "intro",
+        "medic"
+      ]
     },
     {
       "num": 4,
@@ -151,7 +236,11 @@
         "医疗兵"
       ],
       "prereq": "第 03 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "medic",
+        "squad"
+      ]
     },
     {
       "num": 5,
@@ -175,7 +264,11 @@
         "频道"
       ],
       "prereq": "第 02 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "comms",
+        "intro"
+      ]
     },
     {
       "num": 6,
@@ -199,7 +292,11 @@
         "考试"
       ],
       "prereq": "第 01–05 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "training",
+        "intro"
+      ]
     },
     {
       "num": 7,
@@ -223,7 +320,11 @@
         "区域"
       ],
       "prereq": "第 01 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "map",
+        "squad"
+      ]
     },
     {
       "num": 8,
@@ -247,7 +348,11 @@
         "视觉"
       ],
       "prereq": "第 07 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "map",
+        "comms"
+      ]
     },
     {
       "num": 9,
@@ -271,7 +376,11 @@
         "标记"
       ],
       "prereq": "第 02 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "map",
+        "jungle"
+      ]
     },
     {
       "num": 10,
@@ -295,7 +404,11 @@
         "窗口"
       ],
       "prereq": "第 07 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "map",
+        "squad"
+      ]
     },
     {
       "num": 11,
@@ -319,7 +432,11 @@
         "标记"
       ],
       "prereq": "第 08 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "map",
+        "comms"
+      ]
     },
     {
       "num": 12,
@@ -343,7 +460,11 @@
         "判断"
       ],
       "prereq": "第 08–11 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "map",
+        "command"
+      ]
     },
     {
       "num": 13,
@@ -367,7 +488,11 @@
         "压制"
       ],
       "prereq": "第 01 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "spawn",
+        "intro"
+      ]
     },
     {
       "num": 14,
@@ -391,7 +516,11 @@
         "补给"
       ],
       "prereq": "第 13 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "spawn",
+        "logistics"
+      ]
     },
     {
       "num": 15,
@@ -415,7 +544,11 @@
         "复活"
       ],
       "prereq": "第 13 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "spawn",
+        "logistics"
+      ]
     },
     {
       "num": 16,
@@ -439,7 +572,11 @@
         "弹药"
       ],
       "prereq": "第 14 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "logistics",
+        "spawn"
+      ]
     },
     {
       "num": 17,
@@ -463,7 +600,11 @@
         "回防"
       ],
       "prereq": "第 13 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "logistics",
+        "command"
+      ]
     },
     {
       "num": 18,
@@ -487,7 +628,11 @@
         "决策"
       ],
       "prereq": "第 17 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "logistics",
+        "command"
+      ]
     },
     {
       "num": 19,
@@ -511,7 +656,11 @@
         "救人"
       ],
       "prereq": "第 01 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "squad",
+        "medic"
+      ]
     },
     {
       "num": 20,
@@ -535,7 +684,11 @@
         "命令"
       ],
       "prereq": "第 19 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "command",
+        "squad"
+      ]
     },
     {
       "num": 21,
@@ -560,7 +713,11 @@
         "2-1"
       ],
       "prereq": "第 20 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "squad",
+        "command"
+      ]
     },
     {
       "num": 22,
@@ -584,7 +741,11 @@
         "重整"
       ],
       "prereq": "第 21 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "squad",
+        "command"
+      ]
     },
     {
       "num": 23,
@@ -608,7 +769,11 @@
         "分层"
       ],
       "prereq": "第 20 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "squad",
+        "command"
+      ]
     },
     {
       "num": 24,
@@ -632,7 +797,11 @@
         "撤离"
       ],
       "prereq": "第 21–23 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "squad",
+        "map"
+      ]
     },
     {
       "num": 25,
@@ -656,7 +825,11 @@
         "载具"
       ],
       "prereq": "第 19–24 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "vehicle",
+        "squad"
+      ]
     },
     {
       "num": 26,
@@ -680,7 +853,11 @@
         "落点"
       ],
       "prereq": "第 11 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "mortar",
+        "comms"
+      ]
     },
     {
       "num": 27,
@@ -704,7 +881,11 @@
         "交叉火力"
       ],
       "prereq": "第 21–24 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "urban",
+        "squad"
+      ]
     },
     {
       "num": 28,
@@ -728,7 +909,11 @@
         "渗透"
       ],
       "prereq": "第 27 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "jungle",
+        "squad"
+      ]
     },
     {
       "num": 29,
@@ -752,7 +937,11 @@
         "路线"
       ],
       "prereq": "第 09 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "jungle",
+        "map"
+      ]
     },
     {
       "num": 30,
@@ -776,7 +965,11 @@
         "视角"
       ],
       "prereq": "第 25 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "vehicle",
+        "squad"
+      ]
     },
     {
       "num": 31,
@@ -800,7 +993,11 @@
         "止损"
       ],
       "prereq": "第 18 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "command",
+        "logistics"
+      ]
     },
     {
       "num": 32,
@@ -824,7 +1021,11 @@
         "队长"
       ],
       "prereq": "第 20 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "comms",
+        "command"
+      ]
     },
     {
       "num": 33,
@@ -848,7 +1049,11 @@
         "优先级"
       ],
       "prereq": "第 20–32 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "command",
+        "squad"
+      ]
     },
     {
       "num": 34,
@@ -872,7 +1077,11 @@
         "指挥错误"
       ],
       "prereq": "第 01–33 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "training",
+        "command"
+      ]
     },
     {
       "num": 35,
@@ -896,7 +1105,11 @@
         "模板"
       ],
       "prereq": "第 34 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "training",
+        "command"
+      ]
     },
     {
       "num": 36,
@@ -920,7 +1133,11 @@
         "训练计划"
       ],
       "prereq": "第 01–35 课",
-      "updated": "2026-11-20"
+      "updated": "2026-11-20",
+      "tags": [
+        "training",
+        "squad"
+      ]
     }
   ]
 }
