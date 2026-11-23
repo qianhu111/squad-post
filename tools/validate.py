@@ -40,12 +40,12 @@ REQUIRED_SECTIONS = [
 ]
 
 WORD_TARGETS = {
-    "s1": 2600,
-    "s2": 3000,
+    "s1": 3000,
+    "s2": 3500,
     "s3": 3500,
     "s4": 4000,
     "s5": 4000,
-    "s6": 3500,
+    "s6": 4000,
 }
 
 ALLOWED_IMAGE_HOSTS = {
@@ -172,7 +172,7 @@ def check_lessons(meta: dict) -> list[str]:
                 issues.append(f"lesson {course['num']:02d}: section {name} has no takeaway")
 
         words = len(CJK_RE.findall(text))
-        target = WORD_TARGETS.get(course["stage"], 2500)
+        target = WORD_TARGETS.get(course["stage"], 3000)
         if words < target:
             issues.append(f"lesson {course['num']:02d}: only {words} CJK chars, target >= {target}")
 
@@ -245,6 +245,7 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
         "quiz/beginner.html",
         "quiz/advanced.html",
         "progress/index.html",
+        "members/index.html",
         "changelog/index.html",
         "assets/css/site.css",
         "assets/js/site.js",
@@ -273,7 +274,7 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
             if '<meta charset="UTF-8">' not in text:
                 issues.append(f"dist: missing charset in {rel}")
             issues.extend(check_html(rel, text, courses, site_url))
-    expected_html = 43 + 3 + len(meta.get("tags", []))
+    expected_html = 43 + 4 + len(meta.get("tags", []))
     if html_count != expected_html:
         issues.append(f"dist: expected {expected_html} HTML files, found {html_count}")
 
@@ -322,7 +323,7 @@ def check_dist(meta: dict, courses: list[dict]) -> list[str]:
             root = ET.fromstring(sitemap_path.read_text(encoding="utf-8"))
             ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
             locs = [el.text or "" for el in root.findall(".//s:loc", ns)]
-            expected_locs = 44 + 1 + len(meta.get("tags", []))
+            expected_locs = 44 + 2 + len(meta.get("tags", []))
             if len(locs) != expected_locs:
                 issues.append(f"dist: sitemap expected {expected_locs} URLs, found {len(locs)}")
             for loc in locs:
@@ -484,7 +485,7 @@ def check_html(rel: str, text: str, courses: list[dict], site_url: str) -> list[
 
     if rel.startswith("courses/") and rel != "courses/index.html":
         scripts = [urlparse(s).path for s in SCRIPT_RE.findall(text)]
-        base = ["assets/js/search-index.js", "assets/js/site.js", "assets/js/courses-data.js", "assets/js/courses.js"]
+        base = ["assets/js/courses-data.js", "assets/js/site.js", "assets/js/courses.js"]
         positions = []
         for wanted in base:
             matches = [i for i, s in enumerate(scripts) if s.endswith(wanted)]

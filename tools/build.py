@@ -52,6 +52,7 @@ def qq_footer(root: str) -> str:
     footer_links = (
         f'<nav class="footer-links" aria-label="站点链接">'
         f'<a href="{seo.pretty_href(root, "progress/index.html")}">学习进度</a>'
+        f'<a href="{seo.pretty_href(root, "members/index.html")}">队员名单</a>'
         f'<a href="{seo.pretty_href(root, "changelog/index.html")}">更新日志</a>'
         f'<a href="{seo.pretty_href(root, "tags/index.html")}">标签</a>'
         f'<a href="{root}feed.xml">RSS</a>'
@@ -195,7 +196,7 @@ def shell(
         bottom_scripts = f"""<script>
 (function(){{
   var r = location.protocol === 'file:' ? './' : '/';
-  ['search-index', 'site', 'courses-data', 'courses'].forEach(function(name){{
+  ['courses-data', 'site', 'courses'].forEach(function(name){{
     document.write('<script src="' + r + 'assets/js/' + name + '.js?v={ASSET_VERSION}"><\\/script>');
   }});
 }})();
@@ -204,9 +205,8 @@ def shell(
         head_assets = f"""<link rel="icon" type="image/svg+xml" href="{root}assets/images/favicon.svg">
 <link rel="stylesheet" href="{root}assets/css/site.css?v={ASSET_VERSION}">
 <link rel="alternate" type="application/atom+xml" title="{e(site['title'])}" href="{root}feed.xml">"""
-        bottom_scripts = f"""<script src="{root}assets/js/search-index.js?v={ASSET_VERSION}"></script>
+        bottom_scripts = f"""<script src="{root}assets/js/courses-data.js?v={ASSET_VERSION}"></script>
 <script src="{root}assets/js/site.js?v={ASSET_VERSION}"></script>
-<script src="{root}assets/js/courses-data.js?v={ASSET_VERSION}"></script>
 <script src="{root}assets/js/courses.js?v={ASSET_VERSION}"></script>
 {extra_scripts}"""
 
@@ -470,7 +470,7 @@ def build_home(meta: dict) -> str:
     notes = page_source("home.md")
     extra = render(notes) if notes.strip() else ""
     content = f"""    <header class="hero">
-      <div class="hero-bg" style="background-image:url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/393380/ss_62314ae7cc786d5f4ce67f191d37e9a1520d4cb4.1920x1080.jpg?t=1792423549')"></div>
+      <div class="hero-bg" style="background-image:url('./assets/images/og-cover.jpg')"></div>
       <div class="hero-inner">
         <p class="kicker">POST Courses · Squad 10.6.x</p>
         <h1>先把第一局打明白，<br>再把队伍带起来。</h1>
@@ -504,6 +504,7 @@ def build_home(meta: dict) -> str:
       <h2 id="home-s3">顺便带上的工具<a class="heading-anchor" href="#home-s3" aria-label="链接到本节">#</a></h2>
       <div class="tool-grid">
         <a class="tool-card" href="./progress/"><strong>学习进度</strong><span>看 36 课完成到哪，接着上一课继续。</span></a>
+        <a class="tool-card" href="./members/"><strong>队员名单</strong><span>公会正式队员名单，按登记数据展示。</span></a>
         <a class="tool-card" href="./reference/"><strong>速查表</strong><span>票值、复活、压制、报点模板，一页查完。</span></a>
         <a class="tool-card" href="./reference/sources"><strong>资料说明</strong><span>每课根据哪些材料改写，哪些材料只作背景。</span></a>
         <a class="tool-card" href="./tags/"><strong>标签索引</strong><span>按主题找课：医疗、FOB、巷战、载具……</span></a>
@@ -771,6 +772,68 @@ def build_changelog(meta: dict) -> str:
     )
 
 
+def build_members(meta: dict) -> str:
+    path = SOURCE / "members.json"
+    if not path.exists():
+        raise FileNotFoundError(f"Missing members source: {path}")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    updated = data.get("updated", "")
+    sections = []
+    total = 0
+    for group in data.get("groups", []):
+        members = group.get("members", [])
+        total += len(members)
+        rows = []
+        for m in members:
+            note = m.get("note", "")
+            note_html = f'<span class="member-note">{e(note)}</span>' if note else ""
+            rows.append(
+                f"""        <tr>
+          <td>{e(m.get('name', ''))}</td>
+          <td>{e(m.get('gameId', ''))}</td>
+          <td>{e(m.get('rank', ''))}</td>
+          <td>{e(m.get('role', ''))}</td>
+          <td>{e(m.get('joined', ''))}</td>
+          <td>{e(m.get('status', ''))}</td>
+          <td>{note_html}</td>
+        </tr>"""
+            )
+        desc = group.get("description", "")
+        desc_html = f'<p class="member-group-desc">{e(desc)}</p>' if desc else ""
+        sections.append(
+            f"""    <section class="intro-section member-group">
+      <h2 id="members-{e(group.get('id', 'group'))}">{e(group.get('name', '名单'))}<a class="heading-anchor" href="#members-{e(group.get('id', 'group'))}" aria-label="链接到本节">#</a></h2>
+      {desc_html}
+      <div class="table-wrap"><table>
+        <thead><tr><th>姓名</th><th>游戏 ID</th><th>军衔</th><th>位置</th><th>入队日期</th><th>状态</th><th>备注</th></tr></thead>
+        <tbody>
+{chr(10).join(rows) if rows else '        <tr><td colspan="7">暂无队员。</td></tr>'}
+        </tbody>
+      </table></div>
+    </section>"""
+        )
+    content = f"""    <p class="kicker">公会名单</p>
+    <h1 id="members-title">队员名单<a class="heading-anchor" href="#members-title" aria-label="链接到本节">#</a></h1>
+    <p class="lead">邮差好友公会队员名单，共 {total} 人。名单由管理端统一维护，页面按 {e(updated)} 的数据生成。</p>
+    <div class="note"><b>说明</b>想加入公会，回首页点群卡片申请；名单信息以公会登记为准，页面只作展示。</div>
+{chr(10).join(sections)}
+    <div class="takeaway">名单最后更新：{e(updated)}。进队、转队、退役找管理端登记，不在游戏里口头报。</div>"""
+    desc = f"邮差好友公会队员名单，共 {total} 人，数据更新于 {updated}。"
+    url = seo.absolute_url(meta["site"], "members/index.html")
+    json_ld = seo.json_ld_webpage(meta["site"], "队员名单", desc, url)
+    return shell(
+        meta,
+        title="队员名单",
+        description=desc,
+        root="../",
+        body_page="members",
+        content=content,
+        page_path="members/index.html",
+        page_type="article",
+        json_ld=json_ld,
+    )
+
+
 def build_quiz(meta: dict, *, source_name: str, out: str, title: str, desc: str, root: str, body_page: str, intro: str) -> str:
     path = SOURCE / "pages" / source_name
     if not path.exists():
@@ -953,6 +1016,7 @@ def main() -> None:
         intro="",
     ))
     write(DIST / "progress/index.html", build_progress(meta))
+    write(DIST / "members/index.html", build_members(meta))
     write(DIST / "changelog/index.html", build_changelog(meta))
     write(DIST / "tags/index.html", build_tags_index(meta))
     for tag in meta.get("tags", []):

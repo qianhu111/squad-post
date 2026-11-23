@@ -31,6 +31,7 @@ def build_sitemap(meta: dict, courses: list[dict]) -> str:
         ("quiz/beginner.html", default),
         ("quiz/advanced.html", default),
         ("progress/index.html", default),
+        ("members/index.html", default),
         ("changelog/index.html", default),
     ])
     body = "\n".join(_entry(site, path, lastmod) for path, lastmod in pages)

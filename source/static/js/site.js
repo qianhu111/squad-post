@@ -342,6 +342,34 @@
   var input = document.getElementById('search-input');
   var results = document.getElementById('search-results');
   var lastFocus = null;
+  var SEARCH_INDEX_KEY = 'youchai-search-index';
+  var searchIndexState = window.YOUCHAI_SEARCH_INDEX ? 'ready' : 'loading';
+
+  function ensureSearchIndex(callback) {
+    if (window.YOUCHAI_SEARCH_INDEX) {
+      searchIndexState = 'ready';
+      callback();
+      return;
+    }
+    if (searchIndexState === 'error') {
+      callback();
+      return;
+    }
+    var root = (document.body && document.body.getAttribute('data-root')) || './';
+    var src = root + 'assets/js/' + SEARCH_INDEX_KEY + '.js';
+    var script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    script.onload = function () {
+      searchIndexState = 'ready';
+      callback();
+    };
+    script.onerror = function () {
+      searchIndexState = 'error';
+      callback();
+    };
+    document.head.appendChild(script);
+  }
 
   function rootPrefix() {
     return (document.body && document.body.getAttribute('data-root')) || './';
@@ -465,6 +493,15 @@
       results.innerHTML = '<div class="search-hint">输入课次、标题、小节、正文或关键词开始搜索。</div>';
       return;
     }
+    if (!window.YOUCHAI_SEARCH_INDEX) {
+      if (searchIndexState === 'error') {
+        results.innerHTML = '<div class="search-empty">搜索索引加载失败，请刷新页面重试。</div>';
+      } else {
+        results.innerHTML = '<div class="search-hint">正在加载搜索索引…</div>';
+        ensureSearchIndex(function () { renderResults(query); });
+      }
+      return;
+    }
     var terms = q.split(/\s+/);
     var matched = searchItems(terms);
 
@@ -494,6 +531,9 @@
       input.value = '';
       renderResults('');
       input.focus();
+    }
+    if (!window.YOUCHAI_SEARCH_INDEX && searchIndexState !== 'error') {
+      ensureSearchIndex(function () { if (input && input.value.trim()) renderResults(input.value); });
     }
   }
 

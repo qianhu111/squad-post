@@ -379,6 +379,8 @@ pre {
 .progress-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .progress-actions .btn { min-width: 140px; }
 .progress-warning { padding: 12px 16px; border: 1px solid var(--danger); border-radius: 10px; background: var(--danger-soft); color: var(--danger); font-size: .9rem; }
+.member-group-desc { color: var(--muted); font-size: .92rem; margin: -4px 0 12px; }
+.member-note { display: block; color: var(--muted); font-size: .82rem; }
 .progress-stages { display: grid; gap: 16px; margin-top: 22px; }
 .stage-progress { padding: 18px 20px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); box-shadow: var(--shadow); }
 .stage-progress-head { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: start; }

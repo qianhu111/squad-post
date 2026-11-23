@@ -5,3 +5,9 @@ dist/
 source/_tmp_*.txt
 .DS_Store
 Thumbs.db
+
+# 内部会话记录，不进公开仓库
+PROGRESS.md
+SESSION_OPERATIONS_FULL.md
+EARLIER_SESSIONS_OPERATIONS.md
+OPERATIONS_LOG.md
