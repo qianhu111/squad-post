@@ -885,6 +885,9 @@ def copy_static() -> None:
         shutil.copyfile(headers_src, DIST / "_headers")
     else:
         write(DIST / "_headers", "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n\n/*.html\n  Cache-Control: max-age=0, must-revalidate\n\n/assets/*\n  Cache-Control: public, max-age=604800\n")
+    verify_src = SOURCE / "static" / "googleb70d6eba4dbb6085.html"
+    if verify_src.exists():
+        shutil.copyfile(verify_src, DIST / "googleb70d6eba4dbb6085.html")
 
 
 def main() -> None:
