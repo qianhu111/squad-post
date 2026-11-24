@@ -807,13 +807,13 @@ def build_members(meta: dict) -> str:
         members = group.get("members", [])
         total += len(members)
         rows = []
-        for m in members:
+        for idx, m in enumerate(members, start=1):
             note = m.get("note", "")
             note_html = f'<span class="member-note">{e(note)}</span>' if note else ""
             rows.append(
                 f"""        <tr>
+          <td>{idx:02d}</td>
           <td>{e(m.get('gameId', ''))}</td>
-          <td>{e(m.get('name', ''))}</td>
           <td>{e(m.get('rank', ''))}</td>
           <td>{e(m.get('role', ''))}</td>
           <td>{e(m.get('joined', ''))}</td>
@@ -828,7 +828,7 @@ def build_members(meta: dict) -> str:
       <h2 id="members-{e(group.get('id', 'group'))}">{e(group.get('name', '名单'))}<a class="heading-anchor" href="#members-{e(group.get('id', 'group'))}" aria-label="链接到本节">#</a></h2>
       {desc_html}
       <div class="table-wrap"><table>
-        <thead><tr><th>ID</th><th>姓名</th><th>军衔</th><th>位置</th><th>入队日期</th><th>状态</th><th>备注</th></tr></thead>
+        <thead><tr><th>编号</th><th>游戏 ID</th><th>军衔</th><th>位置</th><th>入队日期</th><th>状态</th><th>备注</th></tr></thead>
         <tbody>
 {chr(10).join(rows) if rows else '        <tr><td colspan="7">暂无队员。</td></tr>'}
         </tbody>
