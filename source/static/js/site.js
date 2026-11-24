@@ -373,7 +373,7 @@
   var input = document.getElementById('search-input');
   var results = document.getElementById('search-results');
   var lastFocus = null;
-  var SEARCH_INDEX_KEY = 'youchai-search-index';
+  var SEARCH_INDEX_KEY = 'search-index';
   var searchIndexState = window.YOUCHAI_SEARCH_INDEX ? 'ready' : 'loading';
 
   function ensureSearchIndex(callback) {
@@ -392,7 +392,11 @@
     script.src = src;
     script.async = true;
     script.onload = function () {
-      searchIndexState = 'ready';
+      if (window.YOUCHAI_SEARCH_INDEX) {
+        searchIndexState = 'ready';
+      } else {
+        searchIndexState = 'error';
+      }
       callback();
     };
     script.onerror = function () {

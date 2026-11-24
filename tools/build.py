@@ -339,7 +339,7 @@ def shell(
   </main>
 </div>
 {qq_footer(root)}
-<button class="backtop" id="backtop" type="button" aria-label="返回顶部">↑</button>
+<button class="backtop" id="backtop" type="button" aria-label="返回顶部" title="回到顶部">↑</button>
 <div class="search-panel" id="search-panel" role="dialog" aria-modal="true" aria-label="站内搜索" hidden>
   <div class="search-backdrop" data-search-close></div>
   <div class="search-box">
