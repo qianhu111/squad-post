@@ -807,12 +807,12 @@ def build_members(meta: dict) -> str:
         members = group.get("members", [])
         total += len(members)
         rows = []
-        for idx, m in enumerate(members, start=1):
+        for m in members:
             note = m.get("note", "")
             note_html = f'<span class="member-note">{e(note)}</span>' if note else ""
             rows.append(
                 f"""        <tr>
-          <td>{idx:02d}</td>
+          <td>{e(m.get('num', ''))}</td>
           <td>{e(m.get('gameId', ''))}</td>
           <td>{e(m.get('rank', ''))}</td>
           <td>{e(m.get('role', ''))}</td>
