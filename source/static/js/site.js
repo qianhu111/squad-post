@@ -351,6 +351,47 @@
     });
   }
 
+  function initQuiz() {
+    var list = document.querySelector('.quiz-list[data-quiz-total]');
+    if (!list) return;
+    var total = parseInt(list.getAttribute('data-quiz-total'), 10) || 0;
+    var score = document.getElementById('quiz-score');
+    var answered = {};
+    var correctCount = 0;
+
+    function paintScore() {
+      var count = Object.keys(answered).length;
+      if (score) score.textContent = '已答 ' + count + ' / ' + total + '，答对 ' + correctCount;
+    }
+
+    [].forEach.call(list.querySelectorAll('[data-quiz-option]'), function (btn) {
+      btn.addEventListener('click', function () {
+        var qNum = btn.getAttribute('data-q');
+        var question = list.querySelector('[data-quiz-question="' + qNum + '"]');
+        if (!question || answered[qNum]) return;
+        answered[qNum] = true;
+
+        var isCorrect = btn.getAttribute('data-correct') === '1';
+        [].forEach.call(question.querySelectorAll('[data-quiz-option]'), function (other) {
+          other.disabled = true;
+          if (other.getAttribute('data-correct') === '1') {
+            other.classList.add('correct');
+          } else if (other === btn && !isCorrect) {
+            other.classList.add('wrong');
+          }
+        });
+        if (isCorrect) correctCount += 1;
+
+        var answerEl = question.querySelector('.quiz-answer');
+        if (answerEl) answerEl.hidden = false;
+        var explainEl = question.querySelector('.quiz-explain');
+        if (explainEl) explainEl.hidden = false;
+        paintScore();
+      });
+    });
+    paintScore();
+  }
+
   function initPage() {
     if (pageInitialized) return;
     pageInitialized = true;
@@ -360,6 +401,7 @@
     initTocHighlight();
     initFileLinks();
     initNavDropdowns();
+    initQuiz();
   }
 
   window.YOUCHAI_INIT_PAGE = initPage;

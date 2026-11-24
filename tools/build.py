@@ -865,25 +865,35 @@ def build_quiz(meta: dict, *, source_name: str, out: str, title: str, desc: str,
     questions = data.get("questions", [])
     blocks = []
     for i, q in enumerate(questions, start=1):
-        options = "".join(
-            f'<li{" class=correct" if j == q["answer"] else ""}>{e(chr(65 + j))}. {inline(opt)}</li>'
-            for j, opt in enumerate(q["options"])
-        )
+        answer = q["answer"]
+        options = []
+        for j, opt in enumerate(q["options"]):
+            letter = chr(65 + j)
+            options.append(
+                f'<button type="button" class="quiz-option" data-quiz-option'
+                f' data-correct="{1 if j == answer else 0}" data-q="{i}">'
+                f'<span class="quiz-letter">{letter}</span><span>{inline(opt)}</span></button>'
+            )
+        options_html = "\n".join(options)
         explain = q.get("explain", "")
         explain_html = f'<p class="quiz-explain">{inline(explain)}</p>' if explain else ""
         blocks.append(
-            f"""      <details>
-        <summary>{i}. {inline(q['q'])}</summary>
-        <ol class="quiz-options">{options}</ol>
-        <p class="quiz-answer">答：{e(chr(65 + q['answer']))}。{inline(q.get('answer_text', q['options'][q['answer']]))}</p>
+            f"""      <div class="quiz-question" data-quiz-question="{i}">
+        <p class="quiz-q">{i}. {inline(q['q'])}</p>
+        <div class="quiz-options">
+{options_html}
+        </div>
+        <p class="quiz-answer" hidden>答：{e(chr(65 + answer))}。{inline(q.get('answer_text', q['options'][answer]))}</p>
         {explain_html}
-      </details>"""
+      </div>"""
         )
+    total = len(questions)
     content = f"""    <p class="kicker">能力自检</p>
     <h1>{e(title)}</h1>
     <p class="lead">{e(desc)}</p>
-    <div class="note"><b>怎么用</b>先自己回答，再展开答案。错题回到对应课次重看一遍，下一局只练一个动作。</div>
-    <div class="quiz-list">
+    <div class="note"><b>怎么用</b>每题点一个选项，点完立即判对错并给出答案解析。错题回到对应课次重看一遍，下一局只练一个动作。</div>
+    <div class="quiz-score" id="quiz-score">已答 0 / {total}，答对 0</div>
+    <div class="quiz-list" data-quiz-total="{total}">
 {chr(10).join(blocks)}
     </div>
     <div class="takeaway">自检不是考试排名，是找出下一局最值得练的那一个动作。</div>"""
