@@ -321,6 +321,36 @@
     });
   }
 
+  function initNavDropdowns() {
+    var groups = [].slice.call(document.querySelectorAll('.nav-group'));
+    if (!groups.length) return;
+    [].forEach.call(groups, function (group) {
+      var btn = group.querySelector('.nav-group-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var open = group.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+    document.addEventListener('click', function (event) {
+      [].forEach.call(groups, function (group) {
+        if (!group.contains(event.target)) {
+          group.classList.remove('open');
+          var btn = group.querySelector('.nav-group-btn');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+    document.addEventListener('keydown', function (event) {
+      if (event.key !== 'Escape') return;
+      [].forEach.call(groups, function (group) {
+        group.classList.remove('open');
+        var btn = group.querySelector('.nav-group-btn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
   function initPage() {
     if (pageInitialized) return;
     pageInitialized = true;
@@ -329,6 +359,7 @@
     initHomeResume();
     initTocHighlight();
     initFileLinks();
+    initNavDropdowns();
   }
 
   window.YOUCHAI_INIT_PAGE = initPage;

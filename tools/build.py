@@ -50,17 +50,29 @@ def qq_footer(root: str) -> str:
         for name, num, _tag in QQ_GROUPS
     )
     footer_links = (
-        f'<nav class="footer-links" aria-label="站点链接">'
+        f'<nav class="footer-cols" aria-label="站点链接">'
+        f'<div class="footer-col"><span class="footer-col-title">学习</span>'
+        f'<a href="{seo.pretty_href(root, "courses/index.html")}">课程阶梯</a>'
+        f'<a href="{seo.pretty_href(root, "quiz/beginner.html")}">能力自检 Ⅰ</a>'
+        f'<a href="{seo.pretty_href(root, "quiz/advanced.html")}">能力自检 Ⅱ</a>'
         f'<a href="{seo.pretty_href(root, "progress/index.html")}">学习进度</a>'
+        f'</div>'
+        f'<div class="footer-col"><span class="footer-col-title">参考</span>'
+        f'<a href="{seo.pretty_href(root, "reference/index.html")}">速查表</a>'
+        f'<a href="{seo.pretty_href(root, "reference/sources.html")}">资料说明</a>'
+        f'<a href="{seo.pretty_href(root, "tags/index.html")}">标签索引</a>'
+        f'<a href="{root}feed.xml">RSS 订阅</a>'
+        f'</div>'
+        f'<div class="footer-col"><span class="footer-col-title">公会</span>'
         f'<a href="{seo.pretty_href(root, "members/index.html")}">队员名单</a>'
         f'<a href="{seo.pretty_href(root, "changelog/index.html")}">更新日志</a>'
-        f'<a href="{seo.pretty_href(root, "tags/index.html")}">标签</a>'
-        f'<a href="{root}feed.xml">RSS</a>'
+        f'</div>'
         f'</nav>'
     )
     return f"""<footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-brand"><strong>邮差战队课程集</strong><span>由「邮差好友公会」制作</span>{footer_links}</div>
+    <div class="footer-brand"><strong>邮差战队课程集</strong><span>由「邮差好友公会」制作</span></div>
+    {footer_links}
     <div class="footer-groups"><span class="footer-label">点击群号申请加群</span>{links}</div>
   </div>
 </footer>"""
@@ -149,6 +161,22 @@ def nav_link(root: str, path: str, label: str, active: bool, icon: str) -> str:
     return f'<a href="{seo.pretty_href(root, path)}"{marker}>{NAV_ICONS[icon]}<span>{label}</span></a>'
 
 
+def nav_dropdown(root: str, label: str, icon: str, active: bool, items: list[tuple[str, str, bool]]) -> str:
+    """A top-nav group with a horizontal flyout on hover/focus."""
+    links = ""
+    for text, path, is_active in items:
+        marker = ' aria-current="page"' if is_active else ""
+        links += f'<a href="{seo.pretty_href(root, path)}"{marker}>{e(text)}</a>'
+    marker = ' aria-current="page"' if active else ""
+    return (
+        f'<div class="nav-group"{marker}>'
+        f'<button class="nav-group-btn" type="button" aria-haspopup="true" aria-expanded="false">'
+        f'{NAV_ICONS[icon]}<span>{e(label)}</span></button>'
+        f'<div class="nav-flyout" role="menu">{links}</div>'
+        f'</div>'
+    )
+
+
 def shell(
     meta: dict,
     *,
@@ -224,10 +252,20 @@ def shell(
     nav = "\n    ".join([
         nav_link(root, "index.html", "首页", body_page == "home", "home"),
         nav_link(root, "courses/index.html", "课程", body_page == "courses" or is_lesson, "book"),
-        nav_link(root, "reference/index.html", "速查", body_page in {"reference", "sources"}, "bolt"),
-        nav_link(root, "tags/index.html", "标签", body_page == "tags", "tag"),
-        nav_link(root, "quiz/beginner.html", "能力自检 Ⅰ", body_page == "quiz-beginner", "check"),
-        nav_link(root, "quiz/advanced.html", "能力自检 Ⅱ", body_page == "quiz-advanced", "check"),
+        nav_dropdown(root, "速查", "bolt", body_page in {"reference", "sources"}, [
+            ("速查表", "reference/index.html", body_page == "reference"),
+            ("资料说明", "reference/sources.html", body_page == "sources"),
+        ]),
+        nav_dropdown(root, "自测", "check", body_page in {"quiz-beginner", "quiz-advanced"}, [
+            ("能力自检 Ⅰ", "quiz/beginner.html", body_page == "quiz-beginner"),
+            ("能力自检 Ⅱ", "quiz/advanced.html", body_page == "quiz-advanced"),
+        ]),
+        nav_dropdown(root, "公会", "tag", body_page in {"tags", "members", "progress", "changelog"}, [
+            ("标签索引", "tags/index.html", body_page == "tags"),
+            ("队员名单", "members/index.html", body_page == "members"),
+            ("学习进度", "progress/index.html", body_page == "progress"),
+            ("更新日志", "changelog/index.html", body_page == "changelog"),
+        ]),
     ])
 
     crumb = f'<nav class="breadcrumb" aria-label="面包屑">{breadcrumb}</nav>' if breadcrumb else ""
@@ -283,9 +321,6 @@ def shell(
   <a class="brand" href="{seo.pretty_href(root, 'index.html')}">邮差战队课程集 <span>/ Squad 10.6.x</span></a>
   <nav class="topnav" aria-label="主导航">{nav}</nav>
   <div class="top-actions">
-    <a class="icon-btn" id="progress-link" href="{seo.pretty_href(root, 'progress/index.html')}" aria-label="学习进度" title="学习进度"{' aria-current="page"' if body_page == 'progress' else ''}>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>
-    </a>
     <button class="icon-btn" id="search-open" type="button" aria-label="打开搜索" title="搜索（Ctrl/⌘ + K）">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
     </button>
@@ -483,35 +518,23 @@ def build_home(meta: dict) -> str:
       </div>
     </header>
     <section class="intro-section">
-      <h2 id="home-s1">一条连续的成长路线<a class="heading-anchor" href="#home-s1" aria-label="链接到本节">#</a></h2>
-      <p>36 课串成一条从第一次进服到带队复盘的成长路线。你只需要从第 01 课往前走：每一阶解决一类问题，每一课都留给你可以直接带进下一局的动作。</p>
+      <h2 id="home-s1">六阶成长路线<a class="heading-anchor" href="#home-s1" aria-label="链接到本节">#</a></h2>
+      <p>36 课串成一条从第一次进服到带队复盘的成长路线。每一阶解决一类问题，每一课都留给你可以直接带进下一局的动作。</p>
       <div class="stage-grid">
 {stage_cards(meta, './')}
       </div>
-      <div class="takeaway">顺序学习就从第 01 课开始；带着问题回来，就按课次跳到对应阶段。</div>
-    </section>
-    <section class="intro-section">
-      <h2 id="home-s2">完整课程表<a class="heading-anchor" href="#home-s2" aria-label="链接到本节">#</a></h2>
-      <div class="table-wrap course-table"><table>
-        <thead><tr><th>课次</th><th>标题</th><th>一句话目标</th><th>时长</th></tr></thead>
-        <tbody>
-{course_rows(meta, './')}
-        </tbody>
-      </table></div>
+      <div class="takeaway">顺序学习就从第 01 课开始；带着问题回来，就按课次跳到对应阶段。完整课程表见<a href="./courses/">课程阶梯</a>。</div>
     </section>
 {extra}
     <section class="intro-section tools-section">
-      <h2 id="home-s3">顺便带上的工具<a class="heading-anchor" href="#home-s3" aria-label="链接到本节">#</a></h2>
+      <h2 id="home-s3">顺手的工具<a class="heading-anchor" href="#home-s3" aria-label="链接到本节">#</a></h2>
       <div class="tool-grid">
         <a class="tool-card" href="./progress/"><strong>学习进度</strong><span>看 36 课完成到哪，接着上一课继续。</span></a>
-        <a class="tool-card" href="./members/"><strong>队员名单</strong><span>公会正式队员名单，按登记数据展示。</span></a>
         <a class="tool-card" href="./reference/"><strong>速查表</strong><span>票值、复活、压制、报点模板，一页查完。</span></a>
-        <a class="tool-card" href="./reference/sources"><strong>资料说明</strong><span>每课根据哪些材料改写，哪些材料只作背景。</span></a>
-        <a class="tool-card" href="./tags/"><strong>标签索引</strong><span>按主题找课：医疗、FOB、巷战、载具……</span></a>
-        <a class="tool-card" href="./changelog/"><strong>更新日志</strong><span>最近补了哪些课、改了哪些功能。</span></a>
-        <a class="tool-card" href="./feed.xml"><strong>RSS 订阅</strong><span>用阅读器订阅课程更新。</span></a>
         <a class="tool-card" href="./quiz/beginner"><strong>能力自检 Ⅰ</strong><span>个人基础、观察报点与资源规则。</span></a>
         <a class="tool-card" href="./quiz/advanced"><strong>能力自检 Ⅱ</strong><span>小队行动、专业协同与指挥复盘。</span></a>
+        <a class="tool-card" href="./members/"><strong>队员名单</strong><span>公会正式队员名单，按登记数据展示。</span></a>
+        <a class="tool-card" href="./tags/"><strong>标签索引</strong><span>按主题找课：医疗、FOB、巷战、载具……</span></a>
       </div>
     </section>
     <section class="intro-section qq-section">
